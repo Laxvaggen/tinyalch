@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://7xv4pt3un3x4"]
+
+[ext_resource type="Script" path="res://scenes/player/magma_shot.gd" id="1_nphfk"]
+[ext_resource type="Texture2D" uid="uid://lmlutyiq5smv" path="res://sprites/player/Magma Shot.png" id="2_88m1b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps6qw"]
+atlas = ExtResource("2_88m1b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q586u"]
+atlas = ExtResource("2_88m1b")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpv2r"]
+atlas = ExtResource("2_88m1b")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjpmh"]
+atlas = ExtResource("2_88m1b")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cbcv"]
+atlas = ExtResource("2_88m1b")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fqp2"]
+atlas = ExtResource("2_88m1b")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haea2"]
+atlas = ExtResource("2_88m1b")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jh4lg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ps6qw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q586u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpv2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjpmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cbcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fqp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haea2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="MagmaShot" type="Area2D"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_nphfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jh4lg")
+offset = Vector2(0, -16)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,0 +1,13 @@
+-menus
+-light+shadows+lamp scene
+-"enemy" class
+	-detection in func "can_see_player", depending on light level around player, player movement type (crouch, walk, air...), enemy type
+	-save last player seen location
+	-basic pathfinding, finding if can jump up a level or fall down
+-tilemap
+	-add light occlusion map
+	-improve collision
+
+player
+	-when selecting spell, icon fades in and moves out of player upwards
+	-grayscale effect when health low, as only indicator

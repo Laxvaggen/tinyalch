@@ -1,0 +1,108 @@
+2a60927148abd1d33b818b535e306557
+::res://::1678834419
+default_env.tres::Environment::-1::1678725561::0::1::::<><>::
+icon.png::CompressedTexture2D::2732464065281321328::1678725127::1678725566::1::::<><>::
+ideas.txt::TextFile::-1::1678831700::0::1::::<><>::
+::res://extra_classes/::1678832895
+enemy.gd::GDScript::-1::1678826913::0::1::::Enemy<>Entity<>::
+enemy_state.gd::GDScript::-1::1678825713::0::1::::EnemyState<>State<>::
+entity.gd::GDScript::-1::1678829577::0::1::::Entity<>CharacterBody2D<>::
+hitbox.gd::GDScript::-1::1678821610::0::1::::HitBox<>Area2D<>::
+hurtbox.gd::GDScript::-1::1678821817::0::1::::HurtBox<>Area2D<>::
+level.gd::GDScript::-1::1678830132::0::1::::Level<>Node2D<>::
+player_state.gd::GDScript::-1::1678825634::0::1::::PlayerState<>State<>::
+state.gd::GDScript::-1::1678821895::0::1::::State<>Node<>::
+state_machine.gd::GDScript::-1::1678821895::0::1::::StateMachine<>Node<>::
+trap.gd::GDScript::-1::1678832895::0::1::::Trap<>Area2D<>::
+::res://scenes/::1678830245
+background.tscn::PackedScene::3017772607186321507::1678830245::0::1::::<><>::
+scene_manager.gd::GDScript::-1::1678829647::0::1::::<>Node2D<>::
+scene_manager.tscn::PackedScene::5500026930974347304::1678830138::0::1::::<><>::res://scenes/scene_manager.gd
+tile_map.tscn::PackedScene::6675773893836594141::1678830197::0::1::::<><>::uid://f6jf78xbx2r0<>uid://28mmkaarspk6
+::res://scenes/archergoblin/::1678830277
+archer_goblin.gd::GDScript::-1::1678830277::0::1::::<>Enemy<>::
+archer_goblin.tscn::PackedScene::8105128694037915729::1678830277::0::1::::<><>::uid://b5xfkfb6yihie<>res://scenes/archergoblin/archer_goblin.gd
+::res://scenes/muncher/::1678830286
+muncher.gd::GDScript::-1::1678830282::0::1::::<>Enemy<>::
+muncher.tscn::PackedScene::3351309477007126234::1678830286::0::1::::<><>::res://scenes/muncher/muncher.gd<>uid://dd3mv16shxqkr
+::res://scenes/pigassassin/::1678830286
+pig_assassin.gd::GDScript::-1::1678830286::0::1::::<>Enemy<>::
+pig_assassin.tscn::PackedScene::1404933351262955769::1678735448::0::1::::<><>::uid://qjreoge1lroe<>res://scenes/pigassassin/pig_assassin.gd
+::res://scenes/player/::1678832895
+magma_shot.gd::GDScript::-1::1678729379::0::1::::<>Area2D<>::
+magma_shot.tscn::PackedScene::2294851348132747651::1678735470::0::1::::<><>::res://scenes/player/magma_shot.gd<>uid://lmlutyiq5smv
+player.gd::GDScript::-1::1678829618::0::1::::Player<>Entity<>::
+player.tscn::PackedScene::5120604666027160750::1678834440::0::1::::<><>::res://scenes/player/player.gd<>uid://d2jiyo7ukdxgg<>uid://dekbnllma1es3<>uid://bq7ftivyr18pb<>uid://1yxuxdr245e6
+::res://scenes/rollypolly/::1678830300
+rolly_polly.gd::GDScript::-1::1678830300::0::1::::<>Enemy<>::
+rolly_polly.tscn::PackedScene::2497797952088057562::1678830300::0::1::::<><>::res://scenes/rollypolly/rolly_polly.gd<>uid://uh6pmfsnym1c
+::res://scenes/speargoblin/::1678830302
+spear_goblin.gd::GDScript::-1::1678830302::0::1::::<>Enemy<>::
+spear_goblin.tscn::PackedScene::61575572736346433::1678830302::0::1::::<><>::res://scenes/speargoblin/spear_goblin.gd<>uid://d2k08x6r8pws
+::res://scenes/troll/::1678830305
+troll.gd::GDScript::-1::1678830305::0::1::::<>Enemy<>::
+troll.tscn::PackedScene::4582647760434412698::1678830305::0::1::::<><>::res://scenes/troll/troll.gd<>uid://c027wpe70e73u
+::res://sprites/::1678831544
+::res://sprites/monsters/::1678831573
+::res://sprites/monsters/goblins/::1678831597
+archer golbin.png::CompressedTexture2D::4539888389682776848::1678730514::1678831597::1::::<><>::
+spearGolbin.png::CompressedTexture2D::266958315282585458::1678730514::1678831597::1::::<><>::
+::res://sprites/monsters/muncher/::1678831597
+muncher.png::CompressedTexture2D::856704250890814187::1678731219::1678831597::1::::<><>::
+muncher_no_outline.png::CompressedTexture2D::7428398679016429901::1678731826::1678831597::1::::<><>::
+::res://sprites/monsters/pig assassin/::1678831597
+Sprite Sheet.png::CompressedTexture2D::1142640974860373020::1678730514::1678831597::1::::<><>::
+::res://sprites/monsters/rolly polly/::1678831597
+Roller.png::CompressedTexture2D::1420137169563791798::1678730514::1678831597::1::::<><>::
+::res://sprites/monsters/troll/::1678831597
+troll.png::CompressedTexture2D::6585283684448067196::1678730514::1678831597::1::::<><>::
+::res://sprites/player/::1678831015
+All 96x48 Sprite Sheet.png::CompressedTexture2D::3575840238821479715::1678726269::1678726307::1::::<><>::
+All 112 x 48.png::CompressedTexture2D::7460745730781512992::1678726222::1678726307::1::::<><>::
+heal.png::CompressedTexture2D::1875888420879127703::1678729605::1678729607::1::::<><>::
+Magma Shot.png::CompressedTexture2D::797554451270626405::1678729314::1678729316::1::::<><>::
+Tiny Alchemist Sprite Sheet 48x32.png::CompressedTexture2D::9073469609771424614::1651744804::1678726307::1::::<><>::
+::res://sprites/player/icons/::1678831016
+icon fire dash.png::CompressedTexture2D::8846017134438435901::1678831009::1678831016::1::::<><>::
+icon fury fists.png::CompressedTexture2D::2872967427267779022::1678831009::1678831016::1::::<><>::
+icon heal.png::CompressedTexture2D::5289276086307213134::1678831009::1678831016::1::::<><>::
+icon magma shot.png::CompressedTexture2D::802757383059435315::1678831009::1678831016::1::::<><>::
+icon quick slashes.png::CompressedTexture2D::8221467318866676516::1678831009::1678831016::1::::<><>::
+icon rage.png::CompressedTexture2D::3127394361747752381::1678831009::1678831016::1::::<><>::
+icon water spear.png::CompressedTexture2D::7537633608046691800::1678831009::1678831016::1::::<><>::
+icon wave slam.png::CompressedTexture2D::6323967798234057440::1678831009::1678831016::1::::<><>::
+::res://sprites/tiles/::1678834419
+grass tileset.png::CompressedTexture2D::1963973802807847631::1678734468::1678734468::1::::<><>::
+Tileset1.png::CompressedTexture2D::415497043243474863::1678734468::1678734468::1::::<><>::
+::res://sprites/tiles/bodies/::1678831622
+Body1.png::CompressedTexture2D::7473904269070770782::1673383823::1678831622::1::::<><>::
+Body2.png::CompressedTexture2D::4631365227630652713::1673383823::1678831622::1::::<><>::
+Body3.png::CompressedTexture2D::4126416596302188643::1673383823::1678831622::1::::<><>::
+Body4.png::CompressedTexture2D::8090128057828764381::1673383823::1678831622::1::::<><>::
+Body5.png::CompressedTexture2D::7653238221707052607::1673383823::1678831622::1::::<><>::
+Body6.png::CompressedTexture2D::6248600601822576643::1673383823::1678831622::1::::<><>::
+Body7.png::CompressedTexture2D::4810675752428396118::1673383823::1678831622::1::::<><>::
+Body8.png::CompressedTexture2D::6588329136411991218::1673383823::1678831622::1::::<><>::
+Body9.png::CompressedTexture2D::5782340542518084415::1673383823::1678831622::1::::<><>::
+Body10.png::CompressedTexture2D::7150463650205298572::1673383823::1678831622::1::::<><>::
+Body11.png::CompressedTexture2D::1449171929599812266::1673383823::1678831622::1::::<><>::
+Body12.png::CompressedTexture2D::3180227220046986805::1673383823::1678831622::1::::<><>::
+Body13.png::CompressedTexture2D::3151765243029585082::1673383823::1678831622::1::::<><>::
+Body14.png::CompressedTexture2D::579899692299583854::1673383823::1678831622::1::::<><>::
+Body15.png::CompressedTexture2D::7810851681194182837::1673383823::1678831622::1::::<><>::
+Body16.png::CompressedTexture2D::8226404107925968814::1673383823::1678831622::1::::<><>::
+::res://sprites/tiles/traps/::1678831667
+Bear trap 32x19.png::CompressedTexture2D::236829043674715609::1673383823::1678831622::1::::<><>::
+Circular Saw 16x16.png::CompressedTexture2D::4932509841653364467::1673383823::1678831622::1::::<><>::
+Smoke Flame Ejector red 16x32.png::CompressedTexture2D::3716181847794015926::1673383823::1678831622::1::::<><>::
+Spike Ejector 16x32.png::CompressedTexture2D::997763133736249995::1673383823::1678831622::1::::<><>::
+Spike Ejector Small 16x32.png::CompressedTexture2D::1655105630711330592::1673383823::1678831622::1::::<><>::
+Spikes 48x16.png::CompressedTexture2D::991194247236188360::1673383823::1678831622::1::::<><>::
+Swaying sword35x106.png::CompressedTexture2D::2585591441959769878::1673383823::1678831622::1::::<><>::
+Sword slicer 64x32.png::CompressedTexture2D::3836915003795601480::1673383823::1678831622::1::::<><>::
+::res://sprites/ui/::1678834419
+GUI.png::CompressedTexture2D::290410030539733273::1678834412::1678834419::1::::<><>::
+MinimalPixel v2.ttf::FontFile::7723080916423094398::1678834412::1678834419::1::::<><>::
+theme.tres::Theme::3896730608850141008::1678834505::0::1::::<><>::
+::res://tinyalch/::1678833298
+README.md::TextFile::-1::1678833298::0::1::::<><>::

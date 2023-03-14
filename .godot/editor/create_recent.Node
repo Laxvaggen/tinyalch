@@ -1,0 +1,13 @@
+Button
+CollisionShape2D
+Trap
+Area2D
+ColorRect
+AnimationPlayer
+CanvasLayer
+Node2D
+TileMap
+Sprite2D
+CharacterBody2D
+AnimatedSprite2D
+Skeleton2D
