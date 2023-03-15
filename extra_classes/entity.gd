@@ -1,6 +1,8 @@
 class_name Entity
 extends CharacterBody2D
 
+#Base class for non-player and player characters
+
 @export var max_health: int
 @export var max_mana: int
 

@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bvbefu2r37b7v"]
+
+[ext_resource type="FontFile" uid="uid://dibeaqtrm2sb3" path="res://sprites/ui/MinimalPixel v2.ttf" id="1_fy3l0"]
+
+[resource]
+default_font = ExtResource("1_fy3l0")

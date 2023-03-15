@@ -35,6 +35,7 @@ func _ready():
 	hitbox.get_node("CollisionShape2D").set_deferred("disabled", true)
 	hitbox.connect("area_entered", Callable(self, "_cycle_trap"))
 
+#Use and reset trap, if trap is activatable
 func _cycle_trap() -> void:
 	activation_delay.start()
 	await activation_delay.timeout

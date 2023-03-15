@@ -17,9 +17,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	stats["time"] += delta
 
+#Called when level is completed
 func level_cleared() -> void:
 	SceneManager._level_cleared(stats)
 
+#Called when player dies
 func level_failed() -> void:
 	SceneManager.level_failed(stats)
 

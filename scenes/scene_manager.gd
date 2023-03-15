@@ -1,5 +1,7 @@
 extends Node2D
 
+
+#Reference variable for item in levels array
 var level = {"filepath":"res://...",
 				"name":""}
 
@@ -31,6 +33,7 @@ func _process(_delta: float) -> void:
 		var pause_menu_instance = pause_menu_ref.instantiate()
 		get_tree().get_root().add_child(pause_menu_instance)
 
+#Transitions smoothly to scene
 func load_scene(scenepath: String, in_game = false):
 	if transition_scene != null:
 		transition_scene.visible = true
@@ -43,12 +46,14 @@ func load_scene(scenepath: String, in_game = false):
 	else:
 		get_tree().change_scene_to_file(scenepath)
 
+#Exports save to file
 func export_savedata() -> void:
 	var save_data = completed_levels_data
 	var file = FileAccess.open("user://save_data.json", FileAccess.WRITE)
 	file.store_line(JSON.new().stringify(save_data))
 	file.close()
 
+#Imports save from file
 func import_savedata() -> void:
 	var file = FileAccess.open("user://save_data.json", FileAccess.READ)
 	if not file.file_exists("user://save_data.json"):
@@ -96,6 +101,7 @@ func restart_level() -> void:
 
 func level_cleared(stats: Dictionary) -> void:
 	var level = levels[current_level_index]
+	stats["time"] = round(stats["time"]*10)/10
 	if !completed_levels_data.has(level["name"]):
 		completed_levels_data[level["name"]] = stats
 	elif completed_levels_data[level["name"]]["time"] > stats["time"]:
