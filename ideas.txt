@@ -1,24 +1,31 @@
 TODO
 
-ADD LIGHT OCCLUSION TO TILEMAP
 PLAYER:
 	-coyote
-	-player is on edge
+
+
 MENUS
+-Controls: World (Node2D) node, controls list & backToMenu button on canvaslayer
+-GameComplete: Control node, Stylized and backToMenu button
+-LevelClearedMenu: Control node, info on level stats and nextLevel, restartLevel & backToMenu buttons
+-LevelFailedMenu: Control node, info on level stats and nextLevel (disabled), restartLevel & backToMenu buttons
+-LevelSelectMenu: Control node, backToMenu button, Selected Level stats, selectNextLevel, selectPreviousLevel and enterLevel buttons
+-Control node: nextLevel, newGame, levelSelect, quitToDesktop, muteAudio & Controls buttons
+-PauseMenu: CanvasLayer node: resumeGame, restartLevel & returnToMenu buttons
+
 LIGHTS + SHADOWS, LAMP SCENE 
 PLAYER "get_brightness_visibility_modifier" FUNCTION
 ADD MODIFIER ON "get_distance_to_player" FUNCTION
-MAKE ENEMIES ABLE TO RECOGNIZE "ALMOST" SEEING PLAYER
+MAKE BASE STATES; SOME ARE VERY SIMILAR
 
 
-	
-	
-	
-	
-	
-	
-	
-	
--when selecting spell, icon fades in and moves out of player upwards
--grayscale effect when health low, as only indicator
-	
+THEN ITS TIME FOR STATE MACHINES
+
+-when selecting spell, icon pops in and fades out
+-use visual cues instead of health/mana bars
+-physics objects like crates, deal damage when falling on things, can be pushed by player
+
+
+MIGHT BE DONE:
+	CALCULATE "jump_distance" CORRECTLY
+

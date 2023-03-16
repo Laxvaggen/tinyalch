@@ -10,6 +10,8 @@ var spawn_position: Vector2
 #updates to player position if sees player
 var target_position: Vector2
 
+signal spotted_player
+
 func _ready() -> void:
 	spawn_position = global_position
 
@@ -32,14 +34,16 @@ func get_distance_to_player() -> float:
 		return -1
 	return (global_position-player.global_position).length()
 
-# get the difference between vision score & player visibility score
-func get_vision_difference():
+func can_see_player() -> bool:
 	assert(player.has("visibility_score"))
 	var actual_vision_score: float = base_vision_score * vision_obstruction_multiplier() / get_distance_to_player()
-	return actual_vision_score - player.visibility_score
+	if actual_vision_score > player.visibility_score:
+		return true
+	return false
 
-# get difference between hearing score & player noise score
-func get_noise_difference():
+func can_hear_player():
 	assert(player.has("noise_score"))
 	var actual_hearing_score: float = base_hearing_score / get_distance_to_player()
-	return actual_hearing_score - player.noise_score
+	if actual_hearing_score > player.noise_score:
+		return true
+	return false

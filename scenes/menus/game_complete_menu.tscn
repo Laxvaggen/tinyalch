@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmymv8ee37rg0"]
+
+[ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_12k6x"]
+
+[node name="GameCompleteMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_12k6x")

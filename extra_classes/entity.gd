@@ -78,12 +78,12 @@ func _physics_update(_delta: float) -> void:
 # converts movement stats from readable units to usable units
 func _convert_stats() -> void:
 	# to be multiplied by delta
-	move_speed = move_speed_ * 16
-	sneak_speed = sneak_speed_ * 16
-	air_speed = air_speed_ * 16
+	move_speed = move_speed_ * Globals.tile_size
+	sneak_speed = sneak_speed_ * Globals.tile_size
+	air_speed = air_speed_ * Globals.tile_size
 	# max_jump_height = 3/2 * -jump_strength^2 / gravity
 	# 
-	jump_strength = sqrt(jump_height_*16*2*gravity)
+	jump_strength = sqrt(jump_height_*Globals.tile_size*2*gravity)
 
 func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
 	health -= damage
@@ -92,9 +92,13 @@ func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
 	if state_machine == null:
 		return
 	if health <= 0 and state_machine.get_node("Dead"):
-		state_machine.transition_to("Dead")
+		if state_machine.has_node("Dead"):
+			state_machine.transition_to("Dead")
+		else:
+			queue_free()
 	elif state_machine.get_node("Hit"):
-		state_machine.transition_to("Hit")
+		if state_machine.has_node("Hit"):
+			state_machine.transition_to("Hit")
 
 func gain_health(amount: int) -> void:
 	health += amount

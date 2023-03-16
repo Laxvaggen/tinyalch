@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw04al6tyjadp"]
+
+[ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_hj342"]
+[ext_resource type="Texture2D" uid="uid://be6vjwh4qqwyi" path="res://icon.png" id="1_kxtoh"]
+[ext_resource type="Script" path="res://scenes/menus/level_select_menu.gd" id="1_uqdk6"]
+
+[node name="LevelSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hj342")
+script = ExtResource("1_uqdk6")
+
+[node name="LevelSelectorContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelName" type="Label" parent="LevelSelectorContainer"]
+layout_mode = 2
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="LevelSelectorContainer"]
+layout_mode = 2
+
+[node name="PreviousLevel" type="TextureButton" parent="LevelSelectorContainer/ButtonsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_kxtoh")
+
+[node name="EnterLevel" type="Button" parent="LevelSelectorContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Enter
+"
+
+[node name="NextLevel" type="TextureButton" parent="LevelSelectorContainer/ButtonsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_kxtoh")
+
+[node name="DataContainer" type="PanelContainer" parent="LevelSelectorContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectorContainer/DataContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -99.0
+offset_right = 105.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -20.0
+offset_right = 22.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quit" type="Button" parent="Control/MarginContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="pressed" from="LevelSelectorContainer/ButtonsContainer/PreviousLevel" to="." method="_on_previous_level_pressed"]
+[connection signal="pressed" from="LevelSelectorContainer/ButtonsContainer/EnterLevel" to="." method="_on_enter_level_pressed"]
+[connection signal="pressed" from="LevelSelectorContainer/ButtonsContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Quit" to="." method="_on_quit_pressed"]

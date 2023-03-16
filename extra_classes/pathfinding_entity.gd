@@ -24,16 +24,11 @@ func _ready() -> void:
 	if has_node("PathFinder"):
 		path_finder = $PathFinder
 	else:
-		create_pathfinder()
+		push_error("PathfindingEntityNoPathFinder")
 	set_up_direction(Vector2.UP)
 	if state_locked_timer != null:
 		state_locked_timer.connect("timeout",Callable(self,"unlock_state_switching"))
 	_enter()
-
-func create_pathfinder() -> void:
-	var pathfinder_instance = preload("res://extra_classes/path_finder.tscn").instantiate()
-	add_child(pathfinder_instance)
-	
 
 func _next_target():
 	if len(current_path) == 0:
@@ -41,7 +36,7 @@ func _next_target():
 		return
 	current_target = current_path.pop_front()
 
-func set_target(pos: Vector2) -> void:
+func pathfinder_set_target(pos: Vector2) -> void:
 	await get_tree().process_frame
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(pos, Vector2(pos.x, pos.y + 1000))
@@ -51,7 +46,10 @@ func set_target(pos: Vector2) -> void:
 		current_path = path_finder.find_path(self.position, go_to)
 		_next_target()
 
-func get_pathfinder_direction():
+func pathfinder_flush_points() -> void:
+	current_path = []
+
+func pathfinder_get_move_direction():
 	if len(current_path) == 0:
 		return 0
 	if current_target:

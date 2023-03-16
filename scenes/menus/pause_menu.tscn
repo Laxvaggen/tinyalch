@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0vk2df3g5ksb"]
+
+[ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_06rn3"]
+[ext_resource type="Script" path="res://scenes/menus/pause_menu.gd" id="1_qpu8g"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_06rn3")
+script = ExtResource("1_qpu8g")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 2
+offset_left = 541.0
+offset_top = 282.0
+offset_right = 611.0
+offset_bottom = 282.0
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Control/PanelContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="RestartLevel" type="Button" parent="Control/PanelContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="Control/PanelContainer/ButtonsContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="Control/PanelContainer/ButtonsContainer/Resume" to="Control" method="_on_resume_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/ButtonsContainer/RestartLevel" to="Control" method="_on_restart_level_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/ButtonsContainer/Quit" to="Control" method="_on_quit_pressed"]

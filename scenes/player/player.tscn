@@ -1110,4 +1110,12 @@ libraries = {
 position = Vector2(1, -8)
 target_position = Vector2(0, -8)
 
+[node name="EdgeFinderTop" type="RayCast2D" parent="."]
+position = Vector2(6, -16)
+target_position = Vector2(2, 0)
+
+[node name="EdgeFinderBottom" type="RayCast2D" parent="."]
+position = Vector2(6, -8)
+target_position = Vector2(2, 0)
+
 [connection signal="animation_finished" from="HealSprite" to="." method="_on_heal_sprite_animation_finished"]

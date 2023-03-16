@@ -9,14 +9,13 @@ var levels: Array
 var completed_levels_data: Dictionary
 var current_level_index: int
 
-var main_menu_ref = "res://..."
-var level_cleared_menu_ref = "res://..."
-var level_failed_menu_ref = "res://..."
-var controls_menu_ref = "res://..."
-var level_select_menu_ref = "res://..."
-var game_complete_menu_ref = "res://..."
-var background_ref = "res://..."
-var pause_menu_ref = "res://..."
+var main_menu_ref = "res://scenes/menus/main_menu.tscn"
+var level_cleared_menu_ref = "res://scenes/menus/level_cleared_menu.tscn"
+var level_failed_menu_ref = "res://scenes/menus/level_failed_menu.tscn"
+var controls_menu_ref = "res://scenes/menus/controls_menu.tscn"
+var level_select_menu_ref = "res://scenes/menus/level_select_menu.tscn"
+var game_complete_menu_ref = "res://scenes/menus/game_complete_menu.tscn"
+var pause_menu_ref = "res://scenes/menus/pause_menu.tscn"
 
 var transition_scene
 
@@ -76,7 +75,7 @@ func start_next_level() -> void:
 		if all_levels_completed():
 			load_scene(game_complete_menu_ref)
 			return
-		return_to_menu()
+		enter_main_menu()
 		return
 	current_level_index += 1
 	load_scene(levels[current_level_index]["filepath"], true)
@@ -87,13 +86,13 @@ func start_new_game() -> void:
 	export_savedata()
 	load_scene(levels[0]["filepath"], true)
 
-func enter_level(index) -> void:
+func start_level(index) -> void:
 	load_scene(levels[index]["filepath"], true)
 
 func resume_game() -> void:
 	get_tree().paused = false
 
-func return_to_menu() -> void:
+func enter_main_menu() -> void:
 	load_scene(main_menu_ref)
 
 func restart_level() -> void:
@@ -112,8 +111,8 @@ func level_cleared(stats: Dictionary) -> void:
 func level_failed(_stats: Dictionary) -> void:
 	load_scene(level_failed_menu_ref)
 
-func open_controls() -> void:
+func enter_controls() -> void:
 	load_scene(controls_menu_ref)
 
-func open_level_select() -> void:
+func enter_level_select() -> void:
 	load_scene(level_select_menu_ref)

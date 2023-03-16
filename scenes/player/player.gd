@@ -40,6 +40,15 @@ func is_ceiling_low() -> bool:
 	raycast.enabled = false
 	return false
 
+func is_on_edge() -> bool:
+	if !is_on_wall():
+		return false
+	if !$EdgeFinderTop.is_colliding() and $EdgeFinderBottom.is_colliding():
+		return true
+	else:
+		return false
+	
+
 func set_collision_height(height: String) -> void:
 	assert(height == "low" or height == "high")
 	if height == "low":

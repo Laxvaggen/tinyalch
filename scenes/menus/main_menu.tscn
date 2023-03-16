@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://db20raeu2djw2"]
+
+[ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_q7kau"]
+[ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_sn8nl"]
+[ext_resource type="Texture2D" uid="uid://be6vjwh4qqwyi" path="res://icon.png" id="2_8hsm4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sn8nl")
+script = ExtResource("1_q7kau")
+
+[node name="AllButtonsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -68.0
+offset_right = 52.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainButtonsContainer" type="VBoxContainer" parent="AllButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Continue" type="Button" parent="AllButtonsContainer/MainButtonsContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="NewGame" type="Button" parent="AllButtonsContainer/MainButtonsContainer"]
+layout_mode = 2
+text = "New Game
+"
+
+[node name="LevelSelect" type="Button" parent="AllButtonsContainer/MainButtonsContainer"]
+layout_mode = 2
+text = "Levels
+"
+
+[node name="Exit" type="Button" parent="AllButtonsContainer/MainButtonsContainer"]
+layout_mode = 2
+text = "Exit
+"
+
+[node name="ExtraButtonsContainer" type="VBoxContainer" parent="AllButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Controls" type="TextureButton" parent="AllButtonsContainer/ExtraButtonsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_8hsm4")
+
+[node name="Audio" type="TextureButton" parent="AllButtonsContainer/ExtraButtonsContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("2_8hsm4")
+
+[connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/Exit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="AllButtonsContainer/ExtraButtonsContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="AllButtonsContainer/ExtraButtonsContainer/Audio" to="." method="_on_audio_pressed"]

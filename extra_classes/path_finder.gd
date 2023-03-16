@@ -7,8 +7,11 @@ var jump_distance: float
 var tilemap: TileMap
 var graph
 
+var cell_size = Globals.tile_size
 
-var cell_size = 16
+signal started_processing(entity:Pathfinder)
+signal finished_processing(entity:Pathfinder)
+
 
 func find_path(start, end) -> Array:
 	var first_point = graph.get_closest_point(start)
@@ -44,9 +47,9 @@ func find_path(start, end) -> Array:
 	return actions
 
 func _ready() -> void:
-	
 	jump_height = get_parent().jump_height_
-	jump_distance = 4
+	jump_distance = get_jump_distance()
+	print(jump_distance)
 	
 	
 	graph = AStar2D.new()
@@ -56,6 +59,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	create_map()
 	connect_points()
+	emit_signal("finished_processing", self)
 
 func connect_points():
 	var points = graph.get_point_ids()
@@ -112,7 +116,7 @@ func connect_points():
 func create_map() -> void:
 	var space_state = get_world_2d().direct_space_state
 	var cells = tilemap.get_used_cells(0).filter(func(cell): 
-		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("Decoration"))
+		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("decoration"))
 	for cell in cells:
 		var type = cell_type(cell)
 		if type and type != Vector2i.ZERO:
@@ -169,3 +173,16 @@ func create_point(pos: Vector2i) -> void:
 	var actual_pos = tilemap.map_to_local(Vector2i(pos.x, pos.y - 1))
 	
 	graph.add_point(graph.get_available_point_id(), actual_pos)
+
+func get_jump_distance() -> int:
+	var move_speed = get_parent().air_speed
+	var jump_velocity = get_parent().jump_strength
+	var gravity = Globals.default_gravity
+	# -jump_height = -gravity*time^2 / 2
+	# and multiply by 2 since it is only for the fall
+	# 2(2*jump_height/gravity) = time^2
+	# sqrt(4jump_height/gravity) = time
+	# 2sqrt(jump_height/gravity) = time
+	var jump_time := 2 * sqrt(jump_height*cell_size/gravity)
+	var jump_distance: int = move_speed * jump_time
+	return jump_distance
