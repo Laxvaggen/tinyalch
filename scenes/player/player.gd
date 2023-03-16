@@ -8,6 +8,7 @@ extends Entity
 
 var visibility_score: float
 var noise_score: float
+var light_level: float
 
 func _enter():
 	$HealSprite.visible = false
@@ -65,13 +66,18 @@ func climb_ledge() -> void:
 	global_position += Vector2(-10*direction, 16)
 
 func get_brightness_visibility_multiplier() -> float:
-	return 1
+	return 1 + light_level * 5
 
 func get_visibility_score() -> float:
+	return 0
 	return base_visibility_score * get_brightness_visibility_multiplier() * state_machine.state.state_visibility_multiplier
 
 func get_noise_score() -> float:
-	return base_visibility_score * state_machine.state.state_noise_multiplier
+	return 0
+	return base_noise_score * state_machine.state.state_noise_multiplier
+
+func receive_light_level(lightlevel) -> void:
+	light_level = lightlevel
 
 func _on_heal_sprite_animation_finished():
 	$HealSprite.visible = false

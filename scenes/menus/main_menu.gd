@@ -1,5 +1,16 @@
 extends Control
 
+func _ready():
+	if SceneManager.completed_levels_data.size() > 0:
+		$AllButtonsContainer/MainButtonsContainer/Continue.disabled = false
+		$AllButtonsContainer/MainButtonsContainer/LevelSelect.disabled = false
+	else:
+		$AllButtonsContainer/MainButtonsContainer/Continue.disabled = true
+		$AllButtonsContainer/MainButtonsContainer/LevelSelect.disabled = true
+	
+	if SceneManager.all_levels_completed():
+		$AllButtonsContainer/MainButtonsContainer/Continue.disabled = true
+
 func _on_continue_pressed():
 	SceneManager.start_next_level()
 
@@ -17,7 +28,7 @@ func _on_quit_pressed():
 
 
 func _on_controls_pressed():
-	pass # Replace with function body.
+	SceneManager.enter_controls()
 
 
 func _on_audio_pressed():

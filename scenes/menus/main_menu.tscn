@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://db20raeu2djw2"]
+[gd_scene load_steps=3 format=3 uid="uid://db20raeu2djw2"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_q7kau"]
 [ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_sn8nl"]
-[ext_resource type="Texture2D" uid="uid://be6vjwh4qqwyi" path="res://icon.png" id="2_8hsm4"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -23,17 +22,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -52.5
+offset_left = -58.0
 offset_top = -68.0
-offset_right = 52.5
-offset_bottom = 68.0
+offset_right = 59.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MainButtonsContainer" type="VBoxContainer" parent="AllButtonsContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 4
 
 [node name="Continue" type="Button" parent="AllButtonsContainer/MainButtonsContainer"]
 layout_mode = 2
@@ -56,17 +55,17 @@ text = "Exit
 
 [node name="ExtraButtonsContainer" type="VBoxContainer" parent="AllButtonsContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="Controls" type="TextureButton" parent="AllButtonsContainer/ExtraButtonsContainer"]
+[node name="Controls" type="Button" parent="AllButtonsContainer/ExtraButtonsContainer"]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-texture_normal = ExtResource("2_8hsm4")
 
-[node name="Audio" type="TextureButton" parent="AllButtonsContainer/ExtraButtonsContainer"]
+[node name="Audio" type="Button" parent="AllButtonsContainer/ExtraButtonsContainer"]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_vertical = 8
-texture_normal = ExtResource("2_8hsm4")
 
 [connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/NewGame" to="." method="_on_new_game_pressed"]

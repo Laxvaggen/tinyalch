@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://q8lias37j7g3"]
+
+[ext_resource type="Texture2D" uid="uid://dvbpmwkirp4wx" path="res://sprites/light sprite.png" id="1_xjfor"]
+[ext_resource type="Script" path="res://scenes/lamp_light.gd" id="2_46him"]
+
+[node name="LampLight" type="PointLight2D"]
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("1_xjfor")
+script = ExtResource("2_46him")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 3

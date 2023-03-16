@@ -3,18 +3,14 @@ TODO
 PLAYER:
 	-coyote
 
+-Buttons dont work?
 
-MENUS
--Controls: World (Node2D) node, controls list & backToMenu button on canvaslayer
--GameComplete: Control node, Stylized and backToMenu button
--LevelClearedMenu: Control node, info on level stats and nextLevel, restartLevel & backToMenu buttons
--LevelFailedMenu: Control node, info on level stats and nextLevel (disabled), restartLevel & backToMenu buttons
--LevelSelectMenu: Control node, backToMenu button, Selected Level stats, selectNextLevel, selectPreviousLevel and enterLevel buttons
--Control node: nextLevel, newGame, levelSelect, quitToDesktop, muteAudio & Controls buttons
--PauseMenu: CanvasLayer node: resumeGame, restartLevel & returnToMenu buttons
-
-LIGHTS + SHADOWS, LAMP SCENE 
-PLAYER "get_brightness_visibility_modifier" FUNCTION
+FIX LIGHT OCCLUSION MAPPING IN TILEMAP: IT IS VERY NOTICEABLE WHEN IT DOESNT LINE UP WITH TILES
+FIX LAMPLIGHT TEXTURE
+ADD LAMPLIGHT SPRITE TEXTURE
+ADD LAMPLIGHT AS TILE IN TILEMAP
+ADD TEXTURE TO UNPATHABLE TILE: IT IS IMPOSSIBLE TO REMOVE RIGHT NOW
+MAYBE POSSIBLE TO ADD RAYCAST EXCEPTION TO SPECIFIC TILES IN TILEMAP? IF SO, POSSIBLE TO LET LIGHT THROUGH PLATFORMS
 ADD MODIFIER ON "get_distance_to_player" FUNCTION
 MAKE BASE STATES; SOME ARE VERY SIMILAR
 

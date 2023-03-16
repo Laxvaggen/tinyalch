@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw04al6tyjadp"]
+[gd_scene load_steps=5 format=3 uid="uid://cw04al6tyjadp"]
 
 [ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_hj342"]
-[ext_resource type="Texture2D" uid="uid://be6vjwh4qqwyi" path="res://icon.png" id="1_kxtoh"]
 [ext_resource type="Script" path="res://scenes/menus/level_select_menu.gd" id="1_uqdk6"]
+[ext_resource type="Texture2D" uid="uid://ctic8a4pitw45" path="res://sprites/ui/GUIButtonLeft.png" id="3_ll7fw"]
+[ext_resource type="Texture2D" uid="uid://dwbvehiy4pc58" path="res://sprites/ui/GUIButtonRight.png" id="4_ofoir"]
 
 [node name="LevelSelectMenu" type="Control"]
 layout_mode = 3
@@ -30,53 +31,64 @@ grow_vertical = 2
 
 [node name="LevelName" type="Label" parent="LevelSelectorContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "LevelName"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="LevelSelectorContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="PreviousLevel" type="TextureButton" parent="LevelSelectorContainer/ButtonsContainer"]
+[node name="PreviousLevel" type="Button" parent="LevelSelectorContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_normal = ExtResource("1_kxtoh")
+icon = ExtResource("3_ll7fw")
+icon_alignment = 1
+expand_icon = true
 
 [node name="EnterLevel" type="Button" parent="LevelSelectorContainer/ButtonsContainer"]
 layout_mode = 2
 text = "Enter
 "
 
-[node name="NextLevel" type="TextureButton" parent="LevelSelectorContainer/ButtonsContainer"]
+[node name="NextLevel" type="Button" parent="LevelSelectorContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_normal = ExtResource("1_kxtoh")
+icon = ExtResource("4_ofoir")
+icon_alignment = 1
+expand_icon = true
 
 [node name="DataContainer" type="PanelContainer" parent="LevelSelectorContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectorContainer/DataContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LevelSelectorContainer/DataContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectorContainer/DataContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -99.0
-offset_right = 105.0
-grow_vertical = 0
+[node name="Time" type="Label" parent="LevelSelectorContainer/DataContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Time"
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.5
-offset_top = -20.0
-offset_right = 22.5
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Kills" type="Label" parent="LevelSelectorContainer/DataContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Kills"
 
-[node name="Quit" type="Button" parent="Control/MarginContainer"]
+[node name="DamageTaken" type="Label" parent="LevelSelectorContainer/DataContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Damage Taken"
+
+[node name="TimesDetected" type="Label" parent="LevelSelectorContainer/DataContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Times Detected"
+
+[node name="Back" type="Button" parent="LevelSelectorContainer"]
 layout_mode = 2
 text = "Back
 "
@@ -84,4 +96,4 @@ text = "Back
 [connection signal="pressed" from="LevelSelectorContainer/ButtonsContainer/PreviousLevel" to="." method="_on_previous_level_pressed"]
 [connection signal="pressed" from="LevelSelectorContainer/ButtonsContainer/EnterLevel" to="." method="_on_enter_level_pressed"]
 [connection signal="pressed" from="LevelSelectorContainer/ButtonsContainer/NextLevel" to="." method="_on_next_level_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="LevelSelectorContainer/Back" to="." method="_on_back_pressed"]

@@ -9,14 +9,16 @@ var levels: Array
 var completed_levels_data: Dictionary
 var current_level_index: int
 
+var in_game := false
+
 var main_menu_ref = "res://scenes/menus/main_menu.tscn"
-var level_cleared_menu_ref = "res://scenes/menus/level_cleared_menu.tscn"
-var level_failed_menu_ref = "res://scenes/menus/level_failed_menu.tscn"
+var level_progress_menu_ref = "res://scenes/menus/level_cleared_menu.tscn"
 var controls_menu_ref = "res://scenes/menus/controls_menu.tscn"
 var level_select_menu_ref = "res://scenes/menus/level_select_menu.tscn"
 var game_complete_menu_ref = "res://scenes/menus/game_complete_menu.tscn"
-var pause_menu_ref = "res://scenes/menus/pause_menu.tscn"
 
+
+var pause_menu
 var transition_scene
 
 func _ready() -> void:
@@ -24,16 +26,18 @@ func _ready() -> void:
 		transition_scene = $Transition
 	else:
 		push_error("noTransitionScene")
-	#import_savedata()
+	if has_node("PauseMenu/Control"):
+		pause_menu = $PauseMenu/Control
+		pause_menu.deactivate()
+	import_savedata()
 	current_level_index = completed_levels_data.size() -1
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") and get_tree().current_scene.is_in_group("Levels"):
-		var pause_menu_instance = pause_menu_ref.instantiate()
-		get_tree().get_root().add_child(pause_menu_instance)
+	if Input.is_action_just_pressed("pause") and in_game:
+		pause_menu.call_deferred("activate")
 
 #Transitions smoothly to scene
-func load_scene(scenepath: String, _in_game = false):
+func load_scene(scenepath: String, entering_game = false):
 	if transition_scene != null:
 		transition_scene.visible = true
 		transition_scene.get_node("AnimationPlayer").play("fade_in")
@@ -44,6 +48,10 @@ func load_scene(scenepath: String, _in_game = false):
 		transition_scene.visible = false
 	else:
 		get_tree().change_scene_to_file(scenepath)
+	if entering_game:
+		in_game = true
+	else:
+		in_game = false
 
 #Exports save to file
 func export_savedata() -> void:
@@ -90,7 +98,7 @@ func start_level(index) -> void:
 	load_scene(levels[index]["filepath"], true)
 
 func resume_game() -> void:
-	get_tree().paused = false
+	pause_menu.deactivate()
 
 func enter_main_menu() -> void:
 	load_scene(main_menu_ref)
@@ -105,11 +113,15 @@ func level_cleared(stats: Dictionary) -> void:
 		completed_levels_data[level["name"]] = stats
 	elif completed_levels_data[level["name"]]["time"] > stats["time"]:
 		completed_levels_data[level["name"]] = stats
-	load_scene(level_cleared_menu_ref)
+	load_scene(level_progress_menu_ref)
 	export_savedata()
+	await level_progress_menu_ref.tree_entered
+	level_progress_menu_ref.update_data(stats, true)
 
-func level_failed(_stats: Dictionary) -> void:
-	load_scene(level_failed_menu_ref)
+func level_failed(stats: Dictionary) -> void:
+	load_scene(level_progress_menu_ref)
+	await level_progress_menu_ref.tree_entered
+	level_progress_menu_ref.update_data(stats, false)
 
 func enter_controls() -> void:
 	load_scene(controls_menu_ref)

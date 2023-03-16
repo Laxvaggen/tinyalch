@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmymv8ee37rg0"]
+[gd_scene load_steps=3 format=3 uid="uid://bmymv8ee37rg0"]
 
 [ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_12k6x"]
+[ext_resource type="Script" path="res://scenes/menus/game_complete_menu.gd" id="2_q1pki"]
 
 [node name="GameCompleteMenu" type="Control"]
 layout_mode = 3
@@ -10,3 +11,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_12k6x")
+script = ExtResource("2_q1pki")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "That's all folks!"
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back
+"
+
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
