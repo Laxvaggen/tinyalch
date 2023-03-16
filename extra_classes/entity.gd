@@ -6,20 +6,24 @@ extends CharacterBody2D
 @export var max_health: int
 @export var max_mana: int
 
-@export var move_speed: int
-@export var sneak_speed: int
-@export var ground_acceleration: int
-@export var air_speed: int
-@export var air_acceleration: int
-@export var jump_velocity: int
+## in tiles per second.
+@export var move_speed_: int
+## in tiles per second.
+@export var sneak_speed_: int
+## in tiles per second.
+@export var air_speed_: int
+## in tiles.
+@export var jump_height_: int
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity := Globals.default_gravity
+var max_fall_speed := Globals.max_fall_speed
+var move_speed: float
+var sneak_speed: float
+var air_speed: float
+var jump_strength: float
 
 var direction := 1
-var facing_x := direction
-var target_velocity: Vector2
-var acceleration: float
 
 @onready var health = max_health
 @onready var mana = max_mana
@@ -32,6 +36,7 @@ signal died
 signal damage_taken(amount:int)
 
 func _ready() -> void:
+	_convert_stats()
 	if has_node("StateMachine"):
 		state_machine = $StateMachine
 	else:
@@ -58,7 +63,6 @@ func _physics_process(delta: float) -> void:
 	_physics_update(delta)
 	if state_machine != null:
 		state_machine.state.physics_update(delta)
-	_velocity_move_toward_target(delta)
 	
 	move_and_slide()
 
@@ -70,6 +74,16 @@ func _update(_delta: float) -> void:
 
 func _physics_update(_delta: float) -> void:
 	pass
+
+# converts movement stats from readable units to usable units
+func _convert_stats() -> void:
+	# to be multiplied by delta
+	move_speed = move_speed_ * 16
+	sneak_speed = sneak_speed_ * 16
+	air_speed = air_speed_ * 16
+	# max_jump_height = 3/2 * -jump_strength^2 / gravity
+	# 
+	jump_strength = sqrt(jump_height_*16*2*gravity)
 
 func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
 	health -= damage
@@ -97,15 +111,6 @@ func disable_collision(target: Node2D) -> void:
 		if child is CollisionShape2D:
 			child.set_deferred("disabled", true)
 		disable_collision(child)
-
-func _velocity_move_toward_target(delta: float) -> void:
-	if velocity == target_velocity:
-		return
-	velocity.move_toward(target_velocity, acceleration*delta)
-
-func set_target_velocity(new_target_velocity: Vector2, new_acceleration: float) -> void:
-	target_velocity = new_target_velocity
-	acceleration = new_acceleration
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
@@ -136,12 +141,12 @@ func unlock_state_switching() -> void:
 func set_node_direction(new_direction: int, force_look_forward: bool = true) -> void:
 	if !abs(direction) == 1:
 		return
-	if new_direction == facing_x:
+	if new_direction == direction:
 		return
 
 	flip_children(direction, self)
 	
-	facing_x = new_direction
+	direction = new_direction
 	if force_look_forward:
 		direction = new_direction
 

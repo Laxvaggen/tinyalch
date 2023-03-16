@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckmiv03esw2si"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://scenes/scene_manager.gd" id="1_6kya2"]
+[ext_resource type="Script" path="res://scenes/autoloads/scene_manager.gd" id="1_6kya2"]
 
 [sub_resource type="Animation" id="Animation_bmhpn"]
 resource_name = "fade_in"

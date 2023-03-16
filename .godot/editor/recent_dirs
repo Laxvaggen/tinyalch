@@ -1,6 +1,8 @@
 res://
-res://sprites/ui
+res://resources
 res://scenes
+res://scenes/autoloads
+res://sprites/ui
 res://scenes/archergoblin
 res://scenes/speargoblin
 res://scenes/pigassassin

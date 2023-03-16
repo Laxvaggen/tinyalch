@@ -13,6 +13,7 @@ func _ready() -> void:
 	$Player.connect("damage_taken",Callable(self,"player_damage_taken"))
 	for enemy in get_children().filter(func(node): node is Enemy):
 		enemy.connect("died",Callable(self,"enemy_died"))
+		enemy.player = $Player
 
 func _process(delta: float) -> void:
 	stats["time"] += delta
