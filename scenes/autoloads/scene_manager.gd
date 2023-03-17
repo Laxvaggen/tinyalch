@@ -24,6 +24,7 @@ var transition_scene
 func _ready() -> void:
 	if has_node("Transition"):
 		transition_scene = $Transition
+		transition_scene.visible = false
 	else:
 		push_error("noTransitionScene")
 	if has_node("PauseMenu/Control"):
@@ -41,10 +42,10 @@ func load_scene(scenepath: String, entering_game = false):
 	if transition_scene != null:
 		transition_scene.visible = true
 		transition_scene.get_node("AnimationPlayer").play("fade_in")
-		await transition_scene.animation_player.animation_finished
+		await transition_scene.get_node("AnimationPlayer").animation_finished
 		get_tree().change_scene_to_file(scenepath)
-		transition_scene.animation_player.get_node("AnimationPlayer").play_backwards("fade_in")
-		await transition_scene.animation_player.animation_finished
+		transition_scene.get_node("AnimationPlayer").play_backwards("fade_in")
+		await transition_scene.get_node("AnimationPlayer").animation_finished
 		transition_scene.visible = false
 	else:
 		get_tree().change_scene_to_file(scenepath)

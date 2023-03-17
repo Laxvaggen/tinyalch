@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://q8lias37j7g3"]
+[gd_scene load_steps=4 format=3 uid="uid://q8lias37j7g3"]
 
 [ext_resource type="Texture2D" uid="uid://dvbpmwkirp4wx" path="res://sprites/light sprite.png" id="1_xjfor"]
 [ext_resource type="Script" path="res://scenes/lamp_light.gd" id="2_46him"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_d2u5e"]
+polygon = PackedVector2Array(-59, 74, -41, -58, 34, -59, 49, 77, 48, -93, -59, -91)
+
 [node name="LampLight" type="PointLight2D"]
 shadow_enabled = true
-shadow_filter = 1
 texture = ExtResource("1_xjfor")
 script = ExtResource("2_46him")
 
@@ -13,3 +15,6 @@ script = ExtResource("2_46him")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 3
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_d2u5e")
