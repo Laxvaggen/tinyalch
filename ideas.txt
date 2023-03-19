@@ -1,27 +1,33 @@
 TODO
 
-PLAYER:
-	-coyote
+Enemies:
+	Attack state
+		-entered by being in "hunt" and player being inside an area2d "attack range".
+		-for melee, should be as simple as playing "attack" animation, then checking distance to player again on finished
+		-oh yeah, attack range should be in both direcitons, and just flip enemy the correct way before starting animation
+		- for ranged, should be able to create a "launch projectile" function in each enemy. this could then be called in animation player
+	
+	Fix other enemies. should only need to copy paste state machine, pathfinder and playertargeter
 
--Buttons dont work?
+-dashing out of level is a problem...
 
-FIX LIGHT OCCLUSION MAPPING IN TILEMAP: IT IS VERY NOTICEABLE WHEN IT DOESNT LINE UP WITH TILES
-FIX LAMPLIGHT TEXTURE
-ADD LAMPLIGHT SPRITE TEXTURE
-ADD LAMPLIGHT AS TILE IN TILEMAP
-ADD TEXTURE TO UNPATHABLE TILE: IT IS IMPOSSIBLE TO REMOVE RIGHT NOW
-MAYBE POSSIBLE TO ADD RAYCAST EXCEPTION TO SPECIFIC TILES IN TILEMAP? IF SO, POSSIBLE TO LET LIGHT THROUGH PLATFORMS
-ADD MODIFIER ON "get_distance_to_player" FUNCTION
-MAKE BASE STATES; SOME ARE VERY SIMILAR
-
-
-THEN ITS TIME FOR STATE MACHINES
-
+-spells for player
+	-take a msg and transition to spell state
+	-spell state is just play animation, ending when button no longer held
+	-or when animation finished
 -when selecting spell, icon pops in and fades out
+
+-coyote for player
+
+
 -use visual cues instead of health/mana bars
+	-greyscale when low health for example
 -physics objects like crates, deal damage when falling on things, can be pushed by player
 
 
 MIGHT BE DONE:
 	CALCULATE "jump_distance" CORRECTLY
 
+
+BROKEN:
+	enemy pathfinding, it just jumps when entering Alert

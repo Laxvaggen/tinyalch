@@ -116,7 +116,8 @@ func level_cleared(stats: Dictionary) -> void:
 		completed_levels_data[level["name"]] = stats
 	load_scene(level_progress_menu_ref)
 	export_savedata()
-	await level_progress_menu_ref.tree_entered
+	await get_tree().tree_changed
+	
 	level_progress_menu_ref.update_data(stats, true)
 
 func level_failed(stats: Dictionary) -> void:

@@ -1,7 +1,9 @@
 class_name State
 extends Node
 
-var state_machine = null
+var state_machine:StateMachine
+var animation_player: AnimationPlayer
+var entity: Entity
 
 func handle_input(_event: InputEvent) -> void:
 	pass

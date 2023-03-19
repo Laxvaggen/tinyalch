@@ -47,10 +47,8 @@ func find_path(start, end) -> Array:
 	return actions
 
 func _ready() -> void:
-	jump_height = get_parent().jump_height_
-	jump_distance = get_jump_distance()
-	print(jump_distance)
-	
+	jump_height = get_parent().jump_height_ - 0.5
+	jump_distance = get_jump_distance() - 0.5
 	
 	graph = AStar2D.new()
 	tilemap = find_parent("World").find_child("TileMap")
@@ -149,7 +147,7 @@ func cell_type(pos: Vector2i, global = false, is_above = false):
 	if is_above:
 		pos = Vector2(pos.x, pos.y + 1)
 	var cells = tilemap.get_used_cells(0).filter(func(cell): 
-		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("Decoration"))
+		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("decoration"))
 	
 	if Vector2i(pos.x, pos.y - 1) in cells:
 		return null
@@ -171,18 +169,12 @@ func create_point(pos: Vector2i) -> void:
 	if graph.get_point_ids() and graph.get_point_position(graph.get_closest_point(pos)) == Vector2(pos):
 		return
 	var actual_pos = tilemap.map_to_local(Vector2i(pos.x, pos.y - 1))
-	
 	graph.add_point(graph.get_available_point_id(), actual_pos)
 
 func get_jump_distance() -> int:
-	var move_speed = get_parent().air_speed
-	var jump_velocity = get_parent().jump_strength
+	var move_speed = get_parent().move_speed_ * Globals.tile_size
 	var gravity = Globals.default_gravity
-	# -jump_height = -gravity*time^2 / 2
-	# and multiply by 2 since it is only for the fall
-	# 2(2*jump_height/gravity) = time^2
-	# sqrt(4jump_height/gravity) = time
-	# 2sqrt(jump_height/gravity) = time
-	var jump_time := 2 * sqrt(jump_height*cell_size/gravity)
-	var jump_distance: int = move_speed * jump_time
-	return jump_distance
+
+	var jump_time := 2 * sqrt(2*jump_height*cell_size/gravity)
+	var distance: int = move_speed * jump_time
+	return distance

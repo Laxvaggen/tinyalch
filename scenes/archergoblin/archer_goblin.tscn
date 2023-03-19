@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnqgjx7at8i46"]
+[gd_scene load_steps=13 format=3 uid="uid://dnqgjx7at8i46"]
 
-[ext_resource type="Texture2D" uid="uid://b5xfkfb6yihie" path="res://sprites/Monsters/Goblins/archer golbin.png" id="1_86rw1"]
+[ext_resource type="Texture2D" uid="uid://b5xfkfb6yihie" path="res://sprites/monsters/goblins/archer golbin.png" id="1_86rw1"]
 [ext_resource type="Script" path="res://scenes/archergoblin/archer_goblin.gd" id="1_ho14q"]
+[ext_resource type="PackedScene" uid="uid://csrnrvb2lufua" path="res://scenes/enemy_states/enemy_state_machine.tscn" id="3_a056n"]
+[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="7_d8eoy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wop2g"]
-radius = 4.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_df266"]
+size = Vector2(14, 13.25)
 
 [sub_resource type="Animation" id="Animation_qji2n"]
 length = 0.001
@@ -115,14 +116,22 @@ _data = {
 }
 
 [node name="ArcherGoblin" type="CharacterBody2D"]
+position = Vector2(0, -7)
 collision_layer = 4
 script = ExtResource("1_ho14q")
+base_vision_score = 2
+base_hearing_score = 2
+max_health = 100
+move_speed_ = 2
+ground_acceleration = 1000
+jump_height_ = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_wop2g")
+position = Vector2(0, 0.375)
+shape = SubResource("RectangleShape2D_df266")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
 texture = ExtResource("1_86rw1")
 offset = Vector2(1, -16)
 hframes = 9
@@ -132,3 +141,13 @@ vframes = 5
 libraries = {
 "": SubResource("AnimationLibrary_kpdnx")
 }
+
+[node name="StateMachine" parent="." instance=ExtResource("3_a056n")]
+
+[node name="Pathfinder" type="Node2D" parent="."]
+position = Vector2(0, 7)
+script = ExtResource("7_d8eoy")
+
+[node name="PlayerTargeter" type="RayCast2D" parent="."]
+position = Vector2(0, -2)
+collision_mask = 3

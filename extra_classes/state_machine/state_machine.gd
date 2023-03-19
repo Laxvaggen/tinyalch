@@ -16,6 +16,12 @@ func _ready() -> void:
 		child.state_machine = self
 	state.enter()
 
+func set_references(owner_entity: Entity, animation_player: AnimationPlayer) -> void:
+	for child in get_children():
+		child.state_machine = self
+		child.animation_player = animation_player
+		child.entity = owner_entity
+
 func _unhandled_input(event: InputEvent) -> void:
 	state.handle_input(event)
 

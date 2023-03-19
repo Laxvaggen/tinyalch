@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce6rxr6o3ps05"]
+
+[ext_resource type="Texture2D" uid="uid://d02poujoo480x" path="res://sprites/questionmark.png" id="1_g0b5q"]
+
+[node name="AlertIcon" type="Sprite2D" groups=["Icon"]]
+position = Vector2(0, -13)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_g0b5q")

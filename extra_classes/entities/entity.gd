@@ -6,13 +6,15 @@ extends CharacterBody2D
 @export var max_health: int
 @export var max_mana: int
 
-## in tiles per second.
+## tiles per second.
 @export var move_speed_: int
-## in tiles per second.
+@export var ground_acceleration: int
+## tiles per second.
 @export var sneak_speed_: int
-## in tiles per second.
+## tiles per second.
 @export var air_speed_: int
-## in tiles.
+@export var air_acceleration: int
+## tiles.
 @export var jump_height_: int
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -36,17 +38,26 @@ signal died
 signal damage_taken(amount:int)
 
 func _ready() -> void:
+	on_ready()
+
+func on_ready() -> void:
 	_convert_stats()
-	if has_node("StateMachine"):
-		state_machine = $StateMachine
-	else:
-		push_error("EntityNoStateMachine")
-	if has_node("StateMachineStateLockedTimer"):
-		state_locked_timer = $StateLockedTimer
 	if has_node("AnimationPlayer"):
 		animation_player = $AnimationPlayer
 	else:
 		push_error("EntityNoAnimationPlayer")
+	if has_node("StateMachine"):
+		state_machine = $StateMachine
+		state_machine.set_references(self, animation_player)
+	else:
+		push_error("EntityNoStateMachine")
+	if has_node("StateLockedTimer"):
+		state_locked_timer = $StateLockedTimer
+	
+	if has_method("_pathfinder_ready"):
+		call("_pathfinder_ready")
+	if has_method("_save_spawn_position"):
+		call("_save_spawn_position")
 	set_up_direction(Vector2.UP)
 	if state_locked_timer != null:
 		state_locked_timer.connect("timeout",Callable(self,"unlock_state_switching"))
@@ -63,6 +74,8 @@ func _physics_process(delta: float) -> void:
 	_physics_update(delta)
 	if state_machine != null:
 		state_machine.state.physics_update(delta)
+	if is_on_ceiling() and velocity.y < 0:
+		velocity.y = 0
 	
 	move_and_slide()
 
@@ -83,7 +96,7 @@ func _convert_stats() -> void:
 	air_speed = air_speed_ * Globals.tile_size
 	# max_jump_height = 3/2 * -jump_strength^2 / gravity
 	# 
-	jump_strength = sqrt(jump_height_*Globals.tile_size*2*gravity)
+	jump_strength = 1.5*sqrt(jump_height_*Globals.tile_size*2*gravity)
 
 func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
 	health -= damage
@@ -91,12 +104,12 @@ func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
 	emit_signal("damage_taken", damage)
 	if state_machine == null:
 		return
-	if health <= 0 and state_machine.get_node("Dead"):
+	if health <= 0:
 		if state_machine.has_node("Dead"):
 			state_machine.transition_to("Dead")
 		else:
 			queue_free()
-	elif state_machine.get_node("Hit"):
+	else:
 		if state_machine.has_node("Hit"):
 			state_machine.transition_to("Hit")
 
@@ -143,18 +156,18 @@ func unlock_state_switching() -> void:
 	state_machine.state_locked = false
 
 func set_node_direction(new_direction: int, force_look_forward: bool = true) -> void:
-	if !abs(direction) == 1:
+	if !abs(new_direction) == 1:
 		return
 	if new_direction == direction:
 		return
 
-	flip_children(direction, self)
+	flip_children(new_direction, self)
 	
 	direction = new_direction
 	if force_look_forward:
 		direction = new_direction
 
-func flip_children(new_direction: int, target: Node2D) -> void:
+func flip_children(new_direction: int, target) -> void:
 	if target == null:
 		return
 	var sprite_face_left:= false
@@ -172,3 +185,21 @@ func flip_children(new_direction: int, target: Node2D) -> void:
 				child.target_position.x *= -1
 				
 		flip_children(new_direction, child)
+
+func jump() -> void:
+	velocity.y = -jump_strength
+
+func display_information_icon(icon: Sprite2D, fadein_time: float, fadeout_time: float, live_time: float) -> void:
+	for child in get_children().filter(func(node): return node.is_in_group("Icon")):
+		child.queue_free()
+	var tween = get_tree().create_tween()
+	icon.modulate.a = 0
+	add_child(icon)
+	tween.tween_property(icon, "modulate:a", 1, fadein_time)
+	await tween.finished
+	await get_tree().create_timer(live_time).timeout
+	if icon == null:
+		return
+	tween = get_tree().create_tween()
+	tween.tween_property(icon, "modulate:a", 0, fadeout_time)
+	icon.queue_free()

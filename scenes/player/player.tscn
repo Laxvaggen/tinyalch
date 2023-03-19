@@ -1,17 +1,28 @@
-[gd_scene load_steps=58 format=3 uid="uid://ce7pu08y2mqty"]
+[gd_scene load_steps=68 format=3 uid="uid://ce7pu08y2mqty"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_po8u4"]
 [ext_resource type="Texture2D" uid="uid://d2jiyo7ukdxgg" path="res://sprites/player/Tiny Alchemist Sprite Sheet 48x32.png" id="2_q88ft"]
 [ext_resource type="Texture2D" uid="uid://dekbnllma1es3" path="res://sprites/player/All 112 x 48.png" id="3_5dwhg"]
 [ext_resource type="Texture2D" uid="uid://bq7ftivyr18pb" path="res://sprites/player/All 96x48 Sprite Sheet.png" id="4_o0ujc"]
 [ext_resource type="Texture2D" uid="uid://1yxuxdr245e6" path="res://sprites/player/heal.png" id="5_hbcd3"]
+[ext_resource type="Script" path="res://scenes/player/StateMachine.gd" id="6_8r86d"]
+[ext_resource type="Script" path="res://scenes/player/Idle.gd" id="7_x1pxi"]
+[ext_resource type="Script" path="res://scenes/player/Run.gd" id="8_tn8wm"]
+[ext_resource type="Script" path="res://scenes/player/Sneak.gd" id="9_aupxw"]
+[ext_resource type="Script" path="res://scenes/player/Air.gd" id="10_ia7i1"]
+[ext_resource type="Script" path="res://scenes/player/EdgeHang.gd" id="11_xwg2o"]
+[ext_resource type="Script" path="res://scenes/player/Hit.gd" id="12_jw0n6"]
+[ext_resource type="Script" path="res://scenes/player/Dash.gd" id="12_vgrud"]
+[ext_resource type="Script" path="res://scenes/player/Die.gd" id="13_bcbmx"]
+[ext_resource type="Script" path="res://scenes/player/WaterSpell.gd" id="14_ynw03"]
+[ext_resource type="Script" path="res://scenes/player/FireSpell.gd" id="15_j5rur"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m54d0"]
 radius = 5.0
-height = 16.0
+height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_syked"]
-radius = 4.0
+radius = 3.0
 height = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gagja"]
@@ -323,7 +334,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_cy0dt"]
 resource_name = "dash"
-length = 0.5
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -331,10 +342,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [63, 64, 65, 66, 67]
+"values": [63, 64]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -348,20 +359,6 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"enable_base_sprite"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"dash"
 }]
 }
 
@@ -449,36 +446,6 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"enable_base_sprite"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_dehcv"]
-resource_name = "hang_on_ledge"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [126]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -1038,7 +1005,6 @@ _data = {
 "die": SubResource("Animation_i0bp8"),
 "fall": SubResource("Animation_841kl"),
 "grab_ledge": SubResource("Animation_61ggh"),
-"hang_on_ledge": SubResource("Animation_dehcv"),
 "idle": SubResource("Animation_lxmkw"),
 "jump": SubResource("Animation_y0lp4"),
 "knock_down": SubResource("Animation_iu8tp"),
@@ -1059,21 +1025,34 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -6)
 collision_layer = 2
 collision_mask = 65
 script = ExtResource("1_po8u4")
+base_visibility_score = 2
+base_noise_score = 2
+light_visibility_modifier = 2
+dash_distance = 3
+max_health = 100
+move_speed_ = 5
+ground_acceleration = 1000
+sneak_speed_ = 1
+air_speed_ = 4
+air_acceleration = 500
+jump_height_ = 3
 
 [node name="CollisionShapeHigh" type="CollisionShape2D" parent="."]
-position = Vector2(1, -8)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_m54d0")
 
 [node name="CollisionShapeLow" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, -4)
+position = Vector2(0, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_syked")
+disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 6)
 texture = ExtResource("2_q88ft")
 offset = Vector2(0, -16)
 hframes = 9
@@ -1107,15 +1086,72 @@ libraries = {
 }
 
 [node name="HeadInterferenceRaycast" type="RayCast2D" parent="."]
-position = Vector2(1, -8)
 target_position = Vector2(0, -8)
 
 [node name="EdgeFinderTop" type="RayCast2D" parent="."]
-position = Vector2(6, -16)
-target_position = Vector2(2, 0)
+position = Vector2(5, -8)
+target_position = Vector2(4, 0)
 
 [node name="EdgeFinderBottom" type="RayCast2D" parent="."]
-position = Vector2(6, -8)
-target_position = Vector2(2, 0)
+position = Vector2(5, -2)
+target_position = Vector2(4, 0)
+
+[node name="GroundFinder" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(0, 2)
+
+[node name="EdgeGroundFinder" type="RayCast2D" parent="."]
+position = Vector2(9, -8)
+target_position = Vector2(0, 6)
+
+[node name="StateLockedTimer" type="Timer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("6_8r86d")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("7_x1pxi")
+state_noise_multiplier = 0.0
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("8_tn8wm")
+state_visibility_multiplier = 1.25
+state_noise_multiplier = 0.75
+
+[node name="Sneak" type="Node" parent="StateMachine"]
+script = ExtResource("9_aupxw")
+state_visibility_multiplier = 0.5
+state_noise_multiplier = 0.0
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("10_ia7i1")
+state_noise_multiplier = 0.0
+
+[node name="EdgeHang" type="Node" parent="StateMachine"]
+script = ExtResource("11_xwg2o")
+state_noise_multiplier = 0.0
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("12_vgrud")
+
+[node name="DashCooldown" type="Timer" parent="StateMachine/Dash"]
+one_shot = true
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("12_jw0n6")
+
+[node name="Hitstun" type="Timer" parent="StateMachine/Hit"]
+one_shot = true
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("13_bcbmx")
+
+[node name="WaterSpell" type="Node" parent="StateMachine"]
+script = ExtResource("14_ynw03")
+
+[node name="FireSpell" type="Node" parent="StateMachine"]
+script = ExtResource("15_j5rur")
 
 [connection signal="animation_finished" from="HealSprite" to="." method="_on_heal_sprite_animation_finished"]
+[connection signal="timeout" from="StateMachine/Hit/Hitstun" to="StateMachine/Hit" method="_on_hitstun_timeout"]
