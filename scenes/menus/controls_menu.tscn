@@ -1,12 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://ypus5uvs7mpj"]
+[gd_scene load_steps=5 format=3 uid="uid://ypus5uvs7mpj"]
 
+[ext_resource type="TileSet" uid="uid://c3oqd65arsl42" path="res://resources/tinyalch_main_tileset.tres" id="1_cdxip"]
 [ext_resource type="Script" path="res://scenes/menus/controls_menu.gd" id="2_fcavp"]
+[ext_resource type="PackedScene" uid="uid://ce7pu08y2mqty" path="res://scenes/player/player.tscn" id="2_xfibs"]
 [ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="3_4ohgp"]
 
 [node name="World" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -100
+offset_left = -1792.0
+offset_top = -1122.0
+offset_right = 2126.0
+offset_bottom = 1526.0
+color = Color(0.0352941, 0.0392157, 0.0784314, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_cdxip")
 format = 2
+layer_0/tile_data = PackedInt32Array(1114126, 196608, 1, 1114127, 393216, 1, 1114128, 393216, 1, 1114129, 524288, 1, 1114130, 589824, 1, 1114131, 327680, 1, 1114132, 131072, 1, 1114133, 393216, 1, 1114134, 524288, 1, 1114135, 524288, 1, 1114136, 524288, 1, 1114137, 65536, 12, 1114138, 131072, 12, 983052, 262144, 12, 1048588, 262144, 13, 983053, 327680, 12, 1048589, 327680, 13, 524295, 458752, 2, 524296, 196608, 2, 524297, 393216, 2, 524298, 196608, 5, 589834, 327680, 4, 786443, 589824, 4, 720907, 589824, 10, 655371, 589824, 5, 851979, 589824, 7, 917514, 589824, 7, 983050, 589824, 10, 917515, 196608, 7, 1048585, 524288, 1, 1048584, 131072, 1, 1048583, 327680, 1, 1048586, 196608, 7, 589833, 327680, 6, 851978, 327680, 7, 983049, 327680, 7, 589832, 2, 65536, 589835, 196608, 5, 917516, 458752, 9, 851980, 458752, 4, 786444, 458752, 6, 720908, 458752, 7, 655372, 458752, 5, 524301, 65536, 9, 589837, 65536, 10, 524302, 131072, 9, 589838, 131072, 10, 458767, 65536, 9, 524303, 65536, 10, 458768, 131072, 9, 524304, 131072, 10, 983066, 262144, 9, 1048602, 262144, 10, 983067, 327680, 9, 1048603, 327680, 10, 1179673, 65536, 13, 1179674, 131072, 13, 917531, 589824, 10, 851995, 589824, 5, 786459, 589824, 5, 720923, 589824, 5, 524305, 131072, 2, 524306, 458752, 2, 524307, 196608, 2, 524308, 327680, 2, 524309, 589824, 2, 524310, 393216, 2, 524311, 65536, 9, 589847, 65536, 10, 524312, 131072, 9, 589848, 131072, 10, 589849, 458752, 2, 589850, 327680, 2, 589851, 196608, 5, 655387, 589824, 7, 983063, 131072, 4, 983064, 196608, 4, 983065, 262144, 4, 983062, 327680, 4, 720921, 720896, 10, 917529, 917504, 5, 655379, 917504, 5, 720911, 917504, 5, 917512, 720896, 1, 720905, 720896, 13, 983055, 720896, 4, 983058, 720896, 7, 1048596, 327680, 0, 1048597, 393216, 0, 1048598, 458752, 0, 983061, 327680, 4, 983060, 393216, 5, 786458, 524288, 12, 720909, 393216, 12, 589839, 262144, 6, 589846, 327680, 6, 917517, 262144, 7, 1048590, 262144, 7, 1048601, 327680, 7, 786454, 2, 65536, 851983, 2, 65536, 524294, 327680, 2, 524293, 65536, 5, 1048582, 262144, 1, 1048581, 65536, 7, 983045, 458752, 8, 917509, 458752, 4, 851973, 458752, 10, 786437, 458752, 8, 720901, 458752, 8, 655365, 458752, 6, 589829, 458752, 10)
+
+[node name="Player" parent="." instance=ExtResource("2_xfibs")]
+position = Vector2(311.5, 194.5)
+jump_height_ = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(295, 219)
+zoom = Vector2(3.6, 3.6)
 
 [node name="MenuItems" type="CanvasLayer" parent="."]
 script = ExtResource("2_fcavp")
@@ -42,10 +63,11 @@ text = "Controls:"
 [node name="Controls" type="Label" parent="MenuItems/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "ABCDEF
-GHIJKLMO
-PQRSTUV
-XYZ"
+text = "Move: A/D
+Jump: W
+Fall through: S
+Crouch: C
+Dash: V"
 
 [node name="Back" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2

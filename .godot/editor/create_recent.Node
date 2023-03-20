@@ -1,5 +1,7 @@
-Label
+Camera2D
+Control
 TileMap
+Label
 CollisionShape2D
 HitBox
 AnimationPlayer
@@ -11,7 +13,6 @@ Node
 ColorRect
 ShaderGlobalsOverride
 CanvasModulate
-Camera2D
 Pathfinder
 PathfindingEntity
 CharacterBody2D
@@ -26,7 +27,6 @@ LightOccluder2D
 CollisionPolygon2D
 PointLight2D
 DirectionalLight2D
-Control
 Button
 VBoxContainer
 MarginContainer

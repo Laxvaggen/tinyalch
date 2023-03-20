@@ -31,5 +31,8 @@ func _on_controls_pressed():
 	SceneManager.enter_controls()
 
 
-func _on_audio_pressed():
-	pass # Replace with function body.
+func _on_audio_toggled(button_pressed):
+	if button_pressed:
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.add_theme_icon_override("res://sprites/ui/UI - Icons18disabled.png")
+	else:
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.add_theme_icon_override("res://sprites/ui/UI - Icons18.png")

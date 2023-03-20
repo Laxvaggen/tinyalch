@@ -2,7 +2,7 @@ extends Control
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause") and get_tree().paused:
-		SceneManager.resume_game()
+		deactivate()
 
 func deactivate() -> void:
 	visible = false
@@ -20,7 +20,7 @@ func activate() -> void:
 
 
 func _on_resume_pressed():
-	SceneManager.resume_game()
+	deactivate()
 
 
 func _on_restart_level_pressed():

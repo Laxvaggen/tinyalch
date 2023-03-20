@@ -1,15 +1,14 @@
 2a60927148abd1d33b818b535e306557
-::res://::1679331047
+::res://::1679336259
 default_env.tres::Environment::-1::1678725561::0::1::::<><>::
 icon.png::CompressedTexture2D::2732464065281321328::1678725127::1678725566::1::::<><>::
 ideas.txt::TextFile::-1::1679264575::0::1::::<><>::
-node_2d.gd::GDScript::-1::1679260633::0::1::::<>Level<>::
-node_2d.tscn::PackedScene::3097653787996843971::1679331047::0::1::::<><>::res://node_2d.gd<>uid://c3oqd65arsl42<>uid://ce7pu08y2mqty<>uid://43e1vswhurx<>uid://dnqgjx7at8i46
+node_2d.tscn::PackedScene::2121882319056936772::1679336259::0::1::::<><>::uid://c3oqd65arsl42<>uid://ce7pu08y2mqty<>uid://43e1vswhurx<>uid://dnqgjx7at8i46
 ::res://extra_classes/::1679329417
 level.gd::GDScript::-1::1679329417::0::1::::Level<>Node2D<>::
-::res://extra_classes/entities/::1679329261
+::res://extra_classes/entities/::1679333062
 enemy.gd::GDScript::-1::1679326871::0::1::::Enemy<>PathfindingEntity<>::
-entity.gd::GDScript::-1::1679326871::0::1::::Entity<>CharacterBody2D<>::
+entity.gd::GDScript::-1::1679333062::0::1::::Entity<>CharacterBody2D<>::
 hitbox.gd::GDScript::-1::1679326871::0::1::::HitBox<>Area2D<>::
 hurtbox.gd::GDScript::-1::1678889662::0::1::::HurtBox<>Area2D<>::
 pathfinding_entity.gd::GDScript::-1::1679261293::0::1::::PathfindingEntity<>Entity<>::
@@ -23,49 +22,52 @@ state_machine.gd::GDScript::-1::1679235208::0::1::::StateMachine<>Node<>::
 ::res://resources/::1679328502
 tinyalch_main_theme.tres::Theme::3862703667774232953::1678889662::0::1::::<><>::uid://dibeaqtrm2sb3
 tinyalch_main_tileset.tres::TileSet::6768008781665349697::1679328502::0::1::::<><>::uid://f6jf78xbx2r0<>uid://28mmkaarspk6<>uid://2ybbj047wa8k<>uid://q8lias37j7g3
-::res://scenes/::1679330857
+::res://scenes/::1679334063
 lamp_light.gd::GDScript::-1::1679261363::0::1::::Lamp<>PointLight2D<>::
 lamp_light.tscn::PackedScene::1191828166485986096::1679261363::0::1::::<><>::uid://dvbpmwkirp4wx<>res://scenes/lamp_light.gd<>uid://chsk0ylhk3wyp
+level_exit.gd::GDScript::-1::1679334063::0::1::::<>Node2D<>::
 level_exit.tscn::PackedScene::1944706859802497916::1679330857::0::1::::<><>::res://scenes/level_exit.gd<>uid://b1lpw4hq6msrg
-level_exit.gd::GDScript::-1::1679329423::0::1::::<>Node2D<>::
-::res://scenes/archergoblin/::1679331047
+::res://scenes/archergoblin/::1679336259
 archer_goblin.gd::GDScript::-1::1679247693::0::1::::<>Enemy<>::
-archer_goblin.tscn::PackedScene::8105128694037915729::1679331047::0::1::::<><>::uid://b5xfkfb6yihie<>res://scenes/archergoblin/archer_goblin.gd<>res://extra_classes/entities/hurtbox.gd<>res://extra_classes/state_machine/state_machine.gd<>res://scenes/enemy_states/enemy_idle.gd<>res://scenes/enemy_states/enemy_alert.gd<>res://scenes/enemy_states/enemy_hunt.gd<>res://scenes/enemy_states/enemy_attack.gd<>res://extra_classes/entities/path_finder.gd<>res://scenes/enemy_states/enemy_hit.gd<>res://scenes/enemy_states/enemy_die.gd
-::res://scenes/autoloads/::1679249037
+archer_goblin.tscn::PackedScene::8105128694037915729::1679336259::0::1::::<><>::uid://b5xfkfb6yihie<>res://scenes/archergoblin/archer_goblin.gd<>res://extra_classes/entities/hurtbox.gd<>res://extra_classes/state_machine/state_machine.gd<>res://scenes/enemy_states/enemy_idle.gd<>res://scenes/enemy_states/enemy_alert.gd<>res://scenes/enemy_states/enemy_hunt.gd<>res://scenes/enemy_states/enemy_attack.gd<>res://extra_classes/entities/path_finder.gd<>res://scenes/enemy_states/enemy_hit.gd<>res://scenes/enemy_states/enemy_die.gd
+::res://scenes/autoloads/::1679336259
 background.gd::GDScript::-1::1679004615::0::1::::<>Control<>::
 globals.gd::GDScript::-1::1678977973::0::1::::<>Node<>::
-scene_manager.gd::GDScript::-1::1679064128::0::1::::<>Node2D<>::
-scene_manager.tscn::PackedScene::7452558708590312663::1679249037::0::1::::<><>::res://scenes/autoloads/scene_manager.gd<>uid://bvbefu2r37b7v<>res://scenes/menus/pause_menu.gd
-::res://scenes/enemy_states/::1679331047
+scene_manager.gd::GDScript::-1::1679334210::0::1::::<>Node2D<>::
+scene_manager.tscn::PackedScene::7452558708590312663::1679336259::0::1::::<><>::res://scenes/autoloads/scene_manager.gd<>uid://bvbefu2r37b7v<>res://scenes/menus/pause_menu.gd
+::res://scenes/enemy_states/::1679334064
 enemy_alert.gd::GDScript::-1::1679262642::0::1::::EnemyAlertState<>EnemyState<>::
 enemy_attack.gd::GDScript::-1::1679326871::0::1::::EnemyAttackState<>EnemyState<>::
 enemy_die.gd::GDScript::-1::1679233323::0::1::::EnemyDieState<>EnemyState<>::
 enemy_hit.gd::GDScript::-1::1679233656::0::1::::EnemyHitState<>EnemyState<>::
 enemy_hunt.gd::GDScript::-1::1679326871::0::1::::EnemyHuntState<>EnemyState<>::
 enemy_idle.gd::GDScript::-1::1679263117::0::1::::EnemyIdleState<>EnemyState<>::
-enemy_state_machine.tscn::PackedScene::6072155759869554604::1679331047::0::1::::<><>::res://extra_classes/state_machine/state_machine.gd<>res://scenes/enemy_states/enemy_idle.gd<>res://scenes/enemy_states/enemy_alert.gd<>res://scenes/enemy_states/enemy_hunt.gd<>res://scenes/enemy_states/enemy_attack.gd<>res://scenes/enemy_states/enemy_hit.gd<>res://scenes/enemy_states/enemy_die.gd
+enemy_state_machine.tscn::PackedScene::6072155759869554604::1679334064::0::1::::<><>::res://extra_classes/state_machine/state_machine.gd<>res://scenes/enemy_states/enemy_idle.gd<>res://scenes/enemy_states/enemy_alert.gd<>res://scenes/enemy_states/enemy_hunt.gd<>res://scenes/enemy_states/enemy_attack.gd<>res://scenes/enemy_states/enemy_hit.gd<>res://scenes/enemy_states/enemy_die.gd
 ::res://scenes/icons/::1679260675
 alert_icon.tscn::PackedScene::5118666655911041136::1679260675::0::1::::<><>::uid://d02poujoo480x
 hunt_icon.tscn::PackedScene::4800733803234548831::1679260675::0::1::::<><>::uid://cc6ig2q3en1n6
-::res://scenes/menus/::1679247511
+::res://scenes/levels/::1679336259
+level_1.tscn::PackedScene::5908828986933098398::1679336259::0::1::::<><>::uid://c3oqd65arsl42<>res://extra_classes/level.gd<>uid://ce7pu08y2mqty<>uid://bvbefu2r37b7v
+level_2.tscn::PackedScene::8663173409369327395::1679336259::0::1::::<><>::res://extra_classes/level.gd<>uid://c3oqd65arsl42<>uid://43e1vswhurx<>uid://ce7pu08y2mqty<>uid://bvbefu2r37b7v
+::res://scenes/menus/::1679336617
 controls_menu.gd::GDScript::-1::1679002643::0::1::::<>CanvasLayer<>::
-controls_menu.tscn::PackedScene::1716746005345353975::1679002893::0::1::::<><>::res://scenes/menus/controls_menu.gd<>uid://bvbefu2r37b7v
+controls_menu.tscn::PackedScene::1716746005345353975::1679335894::0::1::::<><>::uid://c3oqd65arsl42<>res://scenes/menus/controls_menu.gd<>uid://ce7pu08y2mqty<>uid://bvbefu2r37b7v
 game_complete_menu.gd::GDScript::-1::1679002317::0::1::::<>Control<>::
-game_complete_menu.tscn::PackedScene::3278999718702333801::1679247511::0::1::::<><>::uid://bvbefu2r37b7v<>res://scenes/menus/game_complete_menu.gd
+game_complete_menu.tscn::PackedScene::3278999718702333801::1679335854::0::1::::<><>::uid://bvbefu2r37b7v<>res://scenes/menus/game_complete_menu.gd<>uid://c3oqd65arsl42
 level_progress_menu.gd::GDScript::-1::1678980632::0::1::::<>Control<>::
-level_progress_menu.tscn::PackedScene::6617248502979293143::1679247511::0::1::::<><>::uid://bvbefu2r37b7v<>res://scenes/menus/level_progress_menu.gd
-level_select_menu.gd::GDScript::-1::1678980022::0::1::::<>Control<>::
-level_select_menu.tscn::PackedScene::6370366790606123869::1679247511::0::1::::<><>::uid://bvbefu2r37b7v<>res://scenes/menus/level_select_menu.gd<>uid://ctic8a4pitw45<>uid://dwbvehiy4pc58
-main_menu.gd::GDScript::-1::1678979018::0::1::::<>Control<>::
-main_menu.tscn::PackedScene::7286737384516630643::1679247511::0::1::::<><>::res://scenes/menus/main_menu.gd<>uid://bvbefu2r37b7v
-pause_menu.gd::GDScript::-1::1679063606::0::1::::<>Control<>::
+level_progress_menu.tscn::PackedScene::6617248502979293143::1679335854::0::1::::<><>::uid://bvbefu2r37b7v<>res://scenes/menus/level_progress_menu.gd<>uid://c3oqd65arsl42
+level_select_menu.gd::GDScript::-1::1679332649::0::1::::<>Control<>::
+level_select_menu.tscn::PackedScene::6370366790606123869::1679335854::0::1::::<><>::uid://bvbefu2r37b7v<>res://scenes/menus/level_select_menu.gd<>uid://ctic8a4pitw45<>uid://c3oqd65arsl42<>uid://dwbvehiy4pc58
+main_menu.gd::GDScript::-1::1679336617::0::1::::<>Control<>::
+main_menu.tscn::PackedScene::7286737384516630643::1679336617::0::1::::<><>::res://scenes/menus/main_menu.gd<>uid://bvbefu2r37b7v<>uid://c3oqd65arsl42<>uid://cpqh3fbxp5rjv<>uid://mhpgol3336y5
+pause_menu.gd::GDScript::-1::1679336257::0::1::::<>Control<>::
 ::res://scenes/muncher/::1678830286
 muncher.gd::GDScript::-1::1678830282::0::1::::<>Enemy<>::
 muncher.tscn::PackedScene::3351309477007126234::1678830286::0::1::::<><>::res://scenes/muncher/muncher.gd<>uid://dd3mv16shxqkr
 ::res://scenes/pigassassin/::1679326871
 pig_assassin.gd::GDScript::-1::1678830286::0::1::::<>Enemy<>::
 pig_assassin.tscn::PackedScene::1404933351262955769::1679326871::0::1::::<><>::uid://qjreoge1lroe<>res://scenes/pigassassin/pig_assassin.gd<>res://extra_classes/state_machine/state_machine.gd<>res://scenes/enemy_states/enemy_idle.gd<>res://scenes/enemy_states/enemy_alert.gd<>res://scenes/enemy_states/enemy_hunt.gd<>res://scenes/enemy_states/enemy_attack.gd<>res://scenes/enemy_states/enemy_hit.gd<>res://scenes/enemy_states/enemy_die.gd<>res://extra_classes/entities/path_finder.gd
-::res://scenes/player/::1679331047
+::res://scenes/player/::1679336259
 Air.gd::GDScript::-1::1679264343::0::1::::<>PlayerState<>::
 CastSpell.gd::GDScript::-1::1679330853::0::1::::<>PlayerState<>::
 Dash.gd::GDScript::-1::1679264520::0::1::::<>PlayerState<>::
@@ -76,7 +78,7 @@ Idle.gd::GDScript::-1::1679330977::0::1::::<>PlayerState<>::
 magma_shot.gd::GDScript::-1::1678729379::0::1::::<>Area2D<>::
 magma_shot.tscn::PackedScene::2294851348132747651::1678735470::0::1::::<><>::res://scenes/player/magma_shot.gd<>uid://lmlutyiq5smv
 player.gd::GDScript::-1::1679330472::0::1::::Player<>Entity<>::
-player.tscn::PackedScene::5120604666027160750::1679331047::0::1::::<><>::res://scenes/player/player.gd<>uid://d2jiyo7ukdxgg<>res://extra_classes/entities/hurtbox.gd<>uid://dekbnllma1es3<>res://extra_classes/entities/hitbox.gd<>uid://bq7ftivyr18pb<>uid://1yxuxdr245e6<>res://scenes/player/StateMachine.gd<>res://scenes/player/Idle.gd<>res://scenes/player/Run.gd<>res://scenes/player/Sneak.gd<>res://scenes/player/Air.gd<>res://scenes/player/EdgeHang.gd<>res://scenes/player/Hit.gd<>res://scenes/player/Dash.gd<>res://scenes/player/Die.gd<>res://scenes/player/CastSpell.gd
+player.tscn::PackedScene::5120604666027160750::1679336259::0::1::::<><>::res://scenes/player/player.gd<>uid://d2jiyo7ukdxgg<>res://extra_classes/entities/hurtbox.gd<>uid://dekbnllma1es3<>res://extra_classes/entities/hitbox.gd<>uid://bq7ftivyr18pb<>uid://1yxuxdr245e6<>res://scenes/player/StateMachine.gd<>res://scenes/player/Idle.gd<>res://scenes/player/Run.gd<>res://scenes/player/Sneak.gd<>res://scenes/player/Air.gd<>res://scenes/player/EdgeHang.gd<>res://scenes/player/Hit.gd<>res://scenes/player/Dash.gd<>res://scenes/player/Die.gd<>res://scenes/player/CastSpell.gd
 Run.gd::GDScript::-1::1679326871::0::1::::<>PlayerState<>::
 Sneak.gd::GDScript::-1::1679326871::0::1::::<>PlayerState<>::
 StateMachine.gd::GDScript::-1::1679064299::0::1::::<>StateMachine<>::
@@ -161,8 +163,11 @@ Spike Ejector Small 16x32.png::CompressedTexture2D::1655105630711330592::1673383
 Spikes 48x16.png::CompressedTexture2D::991194247236188360::1673383823::1678831622::1::::<><>::
 Swaying sword35x106.png::CompressedTexture2D::2585591441959769878::1673383823::1678831622::1::::<><>::
 Sword slicer 64x32.png::CompressedTexture2D::3836915003795601480::1673383823::1678831622::1::::<><>::
-::res://sprites/ui/::1679004841
+::res://sprites/ui/::1679336478
 GUI.png::CompressedTexture2D::290410030539733273::1678834412::1678834419::1::::<><>::
 GUIButtonLeft.png::CompressedTexture2D::6123124829218013448::1678979664::1678979667::1::::<><>::
 GUIButtonRight.png::CompressedTexture2D::8706763570045473901::1678979649::1678979667::1::::<><>::
 MinimalPixel v2.ttf::FontFile::7723080916423094398::1678834412::1678834419::1::::<><>::
+UI - Icons3.png::CompressedTexture2D::5859179352428160651::1679336728::1679336730::1::::<><>::
+UI - Icons18.png::CompressedTexture2D::857638991220230442::1679336687::1679336730::1::::<><>::
+UI - Icons18disabled.png::CompressedTexture2D::1218253703403103170::1679336462::1679336478::1::::<><>::

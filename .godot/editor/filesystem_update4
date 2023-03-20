@@ -18,3 +18,8 @@ res://scenes/menus/level_select_menu.tscn
 res://scenes/menus/level_progress_menu.tscn
 res://scenes/levels/level_2.tscn
 res://extra_classes/entities/entity.gd
+res://scenes/menus/main_menu.tscn
+res://scenes/menus/game_complete_menu.tscn
+res://scenes/menus/controls_menu.tscn
+res://scenes/menus/pause_menu.gd
+res://scenes/menus/main_menu.gd

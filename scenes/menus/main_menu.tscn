@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://db20raeu2djw2"]
+[gd_scene load_steps=6 format=3 uid="uid://db20raeu2djw2"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_q7kau"]
 [ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_sn8nl"]
+[ext_resource type="TileSet" uid="uid://c3oqd65arsl42" path="res://resources/tinyalch_main_tileset.tres" id="3_ns1gi"]
+[ext_resource type="Texture2D" uid="uid://cpqh3fbxp5rjv" path="res://sprites/ui/UI - Icons3.png" id="4_wprx4"]
+[ext_resource type="Texture2D" uid="uid://mhpgol3336y5" path="res://sprites/ui/UI - Icons18.png" id="5_wja4n"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,6 +17,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_sn8nl")
 script = ExtResource("1_q7kau")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -100
+layout_mode = 0
+offset_left = -1814.0
+offset_top = -1119.0
+offset_right = 2104.0
+offset_bottom = 1529.0
+color = Color(0.0352941, 0.0392157, 0.0784314, 1)
+
+[node name="TileMap" type="TileMap" parent="Control"]
+position = Vector2(-619, -334)
+scale = Vector2(2, 2)
+tile_set = ExtResource("3_ns1gi")
+format = 2
+layer_0/tile_data = PackedInt32Array(983056, 131072, 13, 983057, 131072, 1, 983058, 262144, 1, 983059, 458752, 1, 983060, 262144, 1, 983061, 327680, 1, 917519, 65536, 12, 983055, 65536, 13, 917520, 131072, 12, 851991, 262144, 9, 917527, 262144, 10, 851992, 327680, 9, 917528, 327680, 10, 983062, 262144, 1, 983063, 196608, 7, 655373, 262144, 12, 720909, 262144, 13, 655374, 327680, 12, 720910, 327680, 13, 327702, 65536, 9, 393238, 65536, 10, 327703, 131072, 9, 393239, 131072, 10, 262164, 65536, 9, 327700, 65536, 10, 262165, 131072, 9, 327701, 131072, 10, 786456, 589824, 4, 458776, 589824, 4, 917518, 65536, 7, 851982, 458752, 3, 786446, 458752, 6, 589838, 458752, 4, 524302, 458752, 7, 458766, 458752, 9, 393230, 458752, 8, 327694, 65536, 5, 327699, 524288, 2, 327698, 458752, 2, 327697, 196608, 2, 327696, 131072, 2, 327695, 524288, 2, 524312, 327680, 4, 524313, 131072, 2, 524314, 196608, 2, 720922, 65536, 12, 786458, 65536, 13, 720923, 131072, 12, 786459, 131072, 13, 786457, 131072, 1, 655387, 589824, 4, 589851, 589824, 3, 524315, 196608, 5, 524303, 131072, 4, 524304, 196608, 4, 393231, 262144, 6, 393234, 327680, 3, 393237, 262144, 3, 458775, 327680, 6, 589850, 262144, 3, 851983, 262144, 7, 917526, 327680, 7, 720921, 327680, 7, 655375, 393216, 12, 589847, 720896, 7, 786449, 720896, 4, 720917, 720896, 1, 458768, 720896, 1, 524307, 917504, 1, 917525, 917504, 1, 458771, 2, 65536)
 
 [node name="AllButtonsContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -61,15 +94,22 @@ size_flags_vertical = 8
 [node name="Controls" type="Button" parent="AllButtonsContainer/ExtraButtonsContainer"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+icon = ExtResource("4_wprx4")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Audio" type="Button" parent="AllButtonsContainer/ExtraButtonsContainer"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_vertical = 8
+toggle_mode = true
+icon = ExtResource("5_wja4n")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/LevelSelect" to="." method="_on_level_select_pressed"]
 [connection signal="pressed" from="AllButtonsContainer/MainButtonsContainer/Exit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="AllButtonsContainer/ExtraButtonsContainer/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="AllButtonsContainer/ExtraButtonsContainer/Audio" to="." method="_on_audio_pressed"]
+[connection signal="toggled" from="AllButtonsContainer/ExtraButtonsContainer/Audio" to="." method="_on_audio_toggled"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw04al6tyjadp"]
+[gd_scene load_steps=6 format=3 uid="uid://cw04al6tyjadp"]
 
 [ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="1_hj342"]
 [ext_resource type="Script" path="res://scenes/menus/level_select_menu.gd" id="1_uqdk6"]
 [ext_resource type="Texture2D" uid="uid://ctic8a4pitw45" path="res://sprites/ui/GUIButtonLeft.png" id="3_ll7fw"]
+[ext_resource type="TileSet" uid="uid://c3oqd65arsl42" path="res://resources/tinyalch_main_tileset.tres" id="3_pp3d6"]
 [ext_resource type="Texture2D" uid="uid://dwbvehiy4pc58" path="res://sprites/ui/GUIButtonRight.png" id="4_ofoir"]
 
 [node name="LevelSelectMenu" type="Control"]
@@ -14,6 +15,35 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_hj342")
 script = ExtResource("1_uqdk6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -100
+offset_left = -1799.0
+offset_top = -1096.0
+offset_right = 2119.0
+offset_bottom = 1552.0
+color = Color(0.0352941, 0.0392157, 0.0784314, 1)
+
+[node name="TileMap" type="TileMap" parent="Control"]
+position = Vector2(-604, -311)
+scale = Vector2(2, 2)
+tile_set = ExtResource("3_pp3d6")
+format = 2
+layer_0/tile_data = PackedInt32Array(983056, 131072, 13, 983057, 131072, 1, 983058, 262144, 1, 983059, 458752, 1, 983060, 262144, 1, 983061, 327680, 1, 917519, 65536, 12, 983055, 65536, 13, 917520, 131072, 12, 983062, 262144, 1, 983063, 196608, 7, 655373, 262144, 12, 720909, 262144, 13, 655374, 327680, 12, 720910, 327680, 13, 327702, 65536, 9, 393238, 65536, 10, 327703, 131072, 9, 393239, 131072, 10, 262164, 65536, 9, 327700, 65536, 10, 262165, 131072, 9, 327701, 131072, 10, 458776, 589824, 4, 917518, 65536, 7, 851982, 458752, 3, 786446, 458752, 6, 589838, 458752, 4, 524302, 458752, 7, 458766, 458752, 9, 393230, 458752, 8, 327694, 65536, 5, 327699, 524288, 2, 327698, 458752, 2, 327697, 196608, 2, 327696, 131072, 2, 327695, 524288, 2, 524312, 327680, 4, 524313, 131072, 2, 524314, 196608, 2, 720922, 65536, 12, 786458, 65536, 13, 720923, 131072, 12, 786459, 131072, 13, 655387, 589824, 4, 589851, 589824, 3, 524315, 196608, 5, 524303, 131072, 4, 524304, 196608, 4, 393231, 262144, 6, 393234, 327680, 3, 393237, 262144, 3, 458775, 327680, 6, 589850, 262144, 3, 851983, 262144, 7, 917526, 327680, 7, 655375, 393216, 12, 589847, 720896, 7, 786449, 720896, 4, 720917, 720896, 1, 458768, 720896, 1, 524307, 917504, 1, 917525, 917504, 1, 917528, 65536, 12, 983064, 65536, 13, 917529, 131072, 12, 983065, 131072, 13, 851993, 589824, 4, 786457, 589824, 4, 589849, 2, 65536)
 
 [node name="LevelSelectorContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
