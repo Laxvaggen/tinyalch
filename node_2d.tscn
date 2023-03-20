@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bker51sruhn1d"]
+[gd_scene load_steps=7 format=3 uid="uid://bker51sruhn1d"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_4wqen"]
 [ext_resource type="TileSet" uid="uid://c3oqd65arsl42" path="res://resources/tinyalch_main_tileset.tres" id="1_5g1q1"]
 [ext_resource type="PackedScene" uid="uid://q8lias37j7g3" path="res://scenes/lamp_light.tscn" id="4_4tnsk"]
 [ext_resource type="PackedScene" uid="uid://ce7pu08y2mqty" path="res://scenes/player/player.tscn" id="4_bnupy"]
+[ext_resource type="PackedScene" uid="uid://43e1vswhurx" path="res://scenes/speargoblin/spear_goblin.tscn" id="6_jq7gy"]
 [ext_resource type="PackedScene" uid="uid://dnqgjx7at8i46" path="res://scenes/archergoblin/archer_goblin.tscn" id="6_wmx7u"]
 
 [node name="World" type="Node2D"]
@@ -35,3 +36,6 @@ zoom = Vector2(3, 3)
 
 [node name="ArcherGoblin" parent="." instance=ExtResource("6_wmx7u")]
 position = Vector2(439, 383)
+
+[node name="SpearGoblin" parent="." instance=ExtResource("6_jq7gy")]
+position = Vector2(552, 376)

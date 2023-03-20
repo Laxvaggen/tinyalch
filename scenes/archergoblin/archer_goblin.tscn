@@ -1,12 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnqgjx7at8i46"]
+[gd_scene load_steps=22 format=3 uid="uid://dnqgjx7at8i46"]
 
 [ext_resource type="Texture2D" uid="uid://b5xfkfb6yihie" path="res://sprites/monsters/goblins/archer golbin.png" id="1_86rw1"]
 [ext_resource type="Script" path="res://scenes/archergoblin/archer_goblin.gd" id="1_ho14q"]
-[ext_resource type="PackedScene" uid="uid://csrnrvb2lufua" path="res://scenes/enemy_states/enemy_state_machine.tscn" id="3_a056n"]
+[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_ibs1h"]
+[ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="3_ub0xv"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="4_370kv"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="5_5c630"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="6_stujc"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_attack.gd" id="7_47umq"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="7_d8eoy"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="8_iu7yl"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="9_dijgg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df266"]
 size = Vector2(14, 13.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7oko"]
+size = Vector2(16.9997, 14.9909)
 
 [sub_resource type="Animation" id="Animation_qji2n"]
 length = 0.001
@@ -115,6 +125,9 @@ _data = {
 "run": SubResource("Animation_6fva1")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql4u0"]
+size = Vector2(160, 17)
+
 [node name="ArcherGoblin" type="CharacterBody2D"]
 position = Vector2(0, -7)
 collision_layer = 4
@@ -130,6 +143,14 @@ jump_height_ = 3
 position = Vector2(0, 0.375)
 shape = SubResource("RectangleShape2D_df266")
 
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("2_ibs1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0.504397, -0.50863)
+rotation = -0.00859151
+shape = SubResource("RectangleShape2D_r7oko")
+
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 7)
 texture = ExtResource("1_86rw1")
@@ -142,7 +163,34 @@ libraries = {
 "": SubResource("AnimationLibrary_kpdnx")
 }
 
-[node name="StateMachine" parent="." instance=ExtResource("3_a056n")]
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_ub0xv")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_370kv")
+max_roaming_distance = 10.0
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Alert" type="Node" parent="StateMachine"]
+script = ExtResource("5_5c630")
+
+[node name="Hunt" type="Node" parent="StateMachine"]
+script = ExtResource("6_stujc")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_47umq")
+
+[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("8_iu7yl")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("9_dijgg")
 
 [node name="Pathfinder" type="Node2D" parent="."]
 position = Vector2(0, 7)
@@ -151,3 +199,11 @@ script = ExtResource("7_d8eoy")
 [node name="PlayerTargeter" type="RayCast2D" parent="."]
 position = Vector2(0, -2)
 collision_mask = 3
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_ql4u0")

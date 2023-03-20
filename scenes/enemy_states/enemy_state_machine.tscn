@@ -28,6 +28,8 @@ script = ExtResource("4_y4d64")
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("5_oxwbh")
 
+[node name="Cooldown" type="Timer" parent="Attack"]
+
 [node name="Hit" type="Node" parent="."]
 script = ExtResource("6_l78sl")
 

@@ -3,7 +3,7 @@ extends Node2D
 
 var stats ={"kills":0, 
 			"stealth_kills": 0,
-			"damage taken": 0,
+			"damage_taken": 0,
 			"time": 0,
 			"times_detected": 0
 					}
@@ -50,6 +50,8 @@ func _process(delta: float) -> void:
 		erase_unpathables(tilemap)
 
 func _send_lightlevel_to_player() -> void:
+	if player == null: 
+		return
 	for lamp in lamp_nodes:
 		if lamp.player_is_in_lightcone():
 			player.receive_light_level(true)

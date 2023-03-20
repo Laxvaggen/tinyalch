@@ -56,8 +56,8 @@ func on_ready() -> void:
 	
 	if has_method("_pathfinder_ready"):
 		call("_pathfinder_ready")
-	if has_method("_save_spawn_position"):
-		call("_save_spawn_position")
+	if has_method("_enemy_init"):
+		call("_enemy_init")
 	set_up_direction(Vector2.UP)
 	if state_locked_timer != null:
 		state_locked_timer.connect("timeout",Callable(self,"unlock_state_switching"))
@@ -175,6 +175,8 @@ func flip_children(new_direction: int, target) -> void:
 		sprite_face_left = true
 	for child in target.get_children():
 		if child.get("no_flip"):
+			pass
+		elif child.is_in_group("Icon"):
 			pass
 		else:
 			if child.get("position"):

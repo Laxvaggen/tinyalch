@@ -12,6 +12,8 @@ func _get_next_state():
 	if entity.get_sight_score_difference() < 0:
 		if !entity.looking_towards_player():
 			entity.set_node_direction(entity.direction*-1)
+		if entity.player_in_attack_range():
+			state_machine.transition_to("Attack")
 		else:
 			state_machine.transition_to("Alert")
 

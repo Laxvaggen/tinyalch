@@ -57,6 +57,13 @@ func is_on_edge() -> bool:
 func is_on_platform() -> bool:
 	if !is_on_floor():
 		return false
+	var raycast: RayCast2D = $GroundFinder
+	if !raycast.is_colliding():
+		return false
+	var tilemap: TileMap = raycast.get_collider()
+	var cell_position: Vector2 = tilemap.local_to_map(tilemap.to_local(raycast.get_collision_point()))
+	if tilemap.get_cell_tile_data(0, cell_position).get_custom_data("platform"):
+		return true
 	return false
 
 func set_collision_height(height: String) -> void:

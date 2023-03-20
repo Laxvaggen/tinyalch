@@ -7,6 +7,8 @@ extends PathfindingEntity
 var player: Entity
 var spawn_position: Vector2
 
+var attack_range_area: Area2D
+
 #updates to player position if sees player
 var last_known_player_location: Vector2
 
@@ -15,8 +17,12 @@ var hunt_icon = preload("res://scenes/icons/hunt_icon.tscn")
 
 signal spotted_player
 
-func _save_spawn_position() -> void:
+func _enemy_init() -> void:
 	spawn_position = global_position
+	if has_node("AttackRange"):
+		attack_range_area = $AttackRange
+	else:
+		push_error("enemyNoAttackRange")
 
 
 func vision_obstruction_multiplier() -> int:
@@ -52,3 +58,16 @@ func looking_towards_player() -> bool:
 	if direction != Vector2(player.global_position.x - global_position.x, 0).normalized().x:
 		return false
 	return true
+
+func player_in_attack_range() -> bool:
+	if !attack_range_area:
+		return false
+	if attack_range_area.get_overlapping_bodies().has(player):
+		return true
+	return false
+
+func summon_ranged_attack(projectile_scene: PackedScene, speed) -> void:
+	var projectile_instance := projectile_scene.instantiate()
+	assert(projectile_instance is RigidBody2D)
+	projectile_instance.velocity = Vector2(direction, 0)*speed
+	get_node("/root/World").add_child(projectile_instance)

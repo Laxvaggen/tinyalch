@@ -1,11 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://b6j4slgbscg6u"]
 
 [ext_resource type="Script" path="res://scenes/troll/troll.gd" id="1_fxw58"]
-[ext_resource type="Texture2D" uid="uid://c027wpe70e73u" path="res://sprites/Monsters/Troll/troll.png" id="1_snw7n"]
+[ext_resource type="Texture2D" uid="uid://c027wpe70e73u" path="res://sprites/monsters/troll/troll.png" id="1_snw7n"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r0yda"]
-radius = 8.0
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgir8"]
+size = Vector2(17, 26)
 
 [sub_resource type="Animation" id="Animation_xehl5"]
 length = 0.001
@@ -118,8 +117,8 @@ collision_layer = 4
 script = ExtResource("1_fxw58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -14)
-shape = SubResource("CapsuleShape2D_r0yda")
+position = Vector2(-0.5, -13)
+shape = SubResource("RectangleShape2D_kgir8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_snw7n")

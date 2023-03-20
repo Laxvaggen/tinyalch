@@ -1,11 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://uatbumsrqai0"]
+[gd_scene load_steps=22 format=3 uid="uid://uatbumsrqai0"]
 
-[ext_resource type="Texture2D" uid="uid://qjreoge1lroe" path="res://sprites/Monsters/Pig Assassin/Sprite Sheet.png" id="1_bcos4"]
+[ext_resource type="Texture2D" uid="uid://qjreoge1lroe" path="res://sprites/monsters/pig assassin/Sprite Sheet.png" id="1_bcos4"]
 [ext_resource type="Script" path="res://scenes/pigassassin/pig_assassin.gd" id="1_r5jfe"]
+[ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="3_ragqs"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="4_mj00i"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="5_54pft"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="6_sh5pa"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_attack.gd" id="7_ekv60"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="8_hor5h"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="9_e5cfg"]
+[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="10_u470h"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3xbn"]
-radius = 5.0
-height = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfv8y"]
+size = Vector2(14, 14)
 
 [sub_resource type="Animation" id="Animation_08w6x"]
 length = 0.001
@@ -145,15 +152,19 @@ _data = {
 "run": SubResource("Animation_ki744")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nl3u8"]
+size = Vector2(70, 14)
+
 [node name="PigAssassin" type="CharacterBody2D"]
+position = Vector2(0, -7)
 collision_layer = 4
 script = ExtResource("1_r5jfe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_e3xbn")
+shape = SubResource("RectangleShape2D_vfv8y")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
 texture = ExtResource("1_bcos4")
 offset = Vector2(0, -16)
 hframes = 9
@@ -163,3 +174,47 @@ vframes = 7
 libraries = {
 "": SubResource("AnimationLibrary_eiln7")
 }
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_ragqs")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_mj00i")
+max_roaming_distance = 10.0
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Alert" type="Node" parent="StateMachine"]
+script = ExtResource("5_54pft")
+
+[node name="Hunt" type="Node" parent="StateMachine"]
+script = ExtResource("6_sh5pa")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_ekv60")
+
+[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("8_hor5h")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("9_e5cfg")
+
+[node name="Pathfinder" type="Node2D" parent="."]
+position = Vector2(0, 7.5)
+script = ExtResource("10_u470h")
+
+[node name="PlayerTargeter" type="RayCast2D" parent="."]
+
+[node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(0, 7.5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_nl3u8")

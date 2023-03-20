@@ -1,11 +1,27 @@
-[gd_scene load_steps=11 format=3 uid="uid://43e1vswhurx"]
+[gd_scene load_steps=25 format=3 uid="uid://43e1vswhurx"]
 
 [ext_resource type="Script" path="res://scenes/speargoblin/spear_goblin.gd" id="1_durkb"]
-[ext_resource type="Texture2D" uid="uid://d2k08x6r8pws" path="res://sprites/Monsters/Goblins/spearGolbin.png" id="2_egdet"]
+[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="2_4r4g8"]
+[ext_resource type="Texture2D" uid="uid://d2k08x6r8pws" path="res://sprites/monsters/goblins/spearGolbin.png" id="2_egdet"]
+[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="3_jn1by"]
+[ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="3_wed48"]
+[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="4_sdwan"]
+[ext_resource type="Script" path="res://scenes/speargoblin/Sprite.gd" id="5_vfbms"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_bsvcw"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_qbt5w"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_v21bk"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_attack.gd" id="9_jcpsi"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="10_s1nth"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="11_uqv6x"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3k58h"]
-radius = 4.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hr5n"]
+size = Vector2(14, 13.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1ppj"]
+size = Vector2(35, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18tp3"]
+size = Vector2(18, 15)
 
 [sub_resource type="Animation" id="Animation_mfxim"]
 length = 0.001
@@ -36,6 +52,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_w6tmg"]
@@ -114,21 +142,97 @@ _data = {
 "run": SubResource("Animation_5tv25")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xtp8"]
+size = Vector2(70, 14)
+
 [node name="SpearGoblin" type="CharacterBody2D"]
+position = Vector2(0, -7)
 collision_layer = 4
 script = ExtResource("1_durkb")
+base_vision_score = 2
+base_hearing_score = 2
+max_health = 100
+move_speed_ = 3
+ground_acceleration = 1000
+jump_height_ = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_3k58h")
+position = Vector2(0, 0.1875)
+shape = SubResource("RectangleShape2D_6hr5n")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_4r4g8")
+damage = 25
+disabled_on_start = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(17.5, 0)
+shape = SubResource("RectangleShape2D_s1ppj")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_jn1by")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_18tp3")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 7.5)
 texture = ExtResource("2_egdet")
 offset = Vector2(12, -10)
 hframes = 10
 vframes = 5
+script = ExtResource("5_vfbms")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_mucus")
 }
+
+[node name="StateLockedTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_wed48")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("6_bsvcw")
+max_roaming_distance = 10.0
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Alert" type="Node" parent="StateMachine"]
+script = ExtResource("7_qbt5w")
+
+[node name="Hunt" type="Node" parent="StateMachine"]
+script = ExtResource("8_v21bk")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("9_jcpsi")
+
+[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
+one_shot = true
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("10_s1nth")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("11_uqv6x")
+
+[node name="Pathfinder" type="Node2D" parent="."]
+position = Vector2(0, 7.5)
+script = ExtResource("4_sdwan")
+
+[node name="PlayerTargeter" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(0, 7.5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_0xtp8")

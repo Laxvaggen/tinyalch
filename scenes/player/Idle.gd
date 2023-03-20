@@ -11,7 +11,9 @@ func _get_next_state():
 	elif Input.is_action_pressed("jump"):
 		state_machine.transition_to("Air", {doJump=true})
 	elif Input.is_action_pressed("fall_through"):
-		pass
+		if player.is_on_platform():
+			player.position.y += 2
+			state_machine.transition_to("Air")
 	elif Input.is_action_pressed("dash"):
 		state_machine.transition_to("Dash")
 	

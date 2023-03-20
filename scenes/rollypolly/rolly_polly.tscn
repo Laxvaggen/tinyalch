@@ -1,10 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbt7mqv4byax3"]
+[gd_scene load_steps=23 format=3 uid="uid://bbt7mqv4byax3"]
 
 [ext_resource type="Script" path="res://scenes/rollypolly/rolly_polly.gd" id="1_5t8pt"]
-[ext_resource type="Texture2D" uid="uid://uh6pmfsnym1c" path="res://sprites/Monsters/Rolly Polly/Roller.png" id="1_k2sc2"]
+[ext_resource type="Texture2D" uid="uid://uh6pmfsnym1c" path="res://sprites/monsters/rolly polly/Roller.png" id="1_k2sc2"]
+[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_d4vrn"]
+[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_rqvdm"]
+[ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_dasmn"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_nootf"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_tvbc4"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_y8f6r"]
+[ext_resource type="Script" path="res://scenes/rollypolly/Attack.gd" id="9_cpv05"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="10_hhqno"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="11_whjqm"]
+[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_qhbdb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ye0kg"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7osa8"]
+size = Vector2(10, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bclx4"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf6ur"]
+size = Vector2(10, 7)
 
 [sub_resource type="Animation" id="Animation_wj3os"]
 length = 0.001
@@ -95,15 +111,42 @@ _data = {
 "roll": SubResource("Animation_tom8t")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrgbk"]
+size = Vector2(20, 8)
+
 [node name="RollyPolly" type="CharacterBody2D"]
+position = Vector2(0, -4)
 collision_layer = 4
 script = ExtResource("1_5t8pt")
+base_vision_score = 2
+base_hearing_score = 2
+max_health = 40
+move_speed_ = 4
+ground_acceleration = 1000
+jump_height_ = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7osa8")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, 4)
+script = ExtResource("2_d4vrn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_ye0kg")
+shape = SubResource("RectangleShape2D_bclx4")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_rqvdm")
+damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_xf6ur")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
 texture = ExtResource("1_k2sc2")
 offset = Vector2(0, -8)
 hframes = 10
@@ -113,3 +156,48 @@ vframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_a4nl0")
 }
+
+[node name="StateLockedTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_dasmn")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("6_nootf")
+max_roaming_distance = 0.0
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Alert" type="Node" parent="StateMachine"]
+script = ExtResource("7_tvbc4")
+
+[node name="Hunt" type="Node" parent="StateMachine"]
+script = ExtResource("8_y8f6r")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("9_cpv05")
+stop_motion = false
+
+[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("10_hhqno")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("11_whjqm")
+
+[node name="Pathfinder" type="Node2D" parent="."]
+script = ExtResource("12_qhbdb")
+
+[node name="PlayerTargeter" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("RectangleShape2D_rrgbk")
