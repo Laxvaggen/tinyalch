@@ -5,14 +5,20 @@ extends Node2D
 var level_example = {"filepath":"res://...",
 				"name":""}
 
-var levels: Array
+var level_1 = {"filepath":"res://scenes/levels/level_1.tscn",
+				"name":"tutorial part 1"}
+var level_2 = {"filepath":"res://scenes/levels/level_2.tscn",
+				"name":"tutorial part 2"}
+
+
+var levels: Array = [level_1]
 var completed_levels_data: Dictionary
 var current_level_index: int
 
 var in_game := false
 
 var main_menu_ref = "res://scenes/menus/main_menu.tscn"
-var level_progress_menu_ref = "res://scenes/menus/level_cleared_menu.tscn"
+var level_progress_menu_ref = "res://scenes/menus/level_progress_menu.tscn"
 var controls_menu_ref = "res://scenes/menus/controls_menu.tscn"
 var level_select_menu_ref = "res://scenes/menus/level_select_menu.tscn"
 var game_complete_menu_ref = "res://scenes/menus/game_complete_menu.tscn"
@@ -118,12 +124,12 @@ func level_cleared(stats: Dictionary) -> void:
 	export_savedata()
 	await get_tree().tree_changed
 	
-	level_progress_menu_ref.update_data(stats, true)
+	#get_tree().current_scene.update_data(stats, true)
 
 func level_failed(stats: Dictionary) -> void:
 	load_scene(level_progress_menu_ref)
-	await level_progress_menu_ref.tree_entered
-	level_progress_menu_ref.update_data(stats, false)
+	await get_tree().tree_changed
+	#get_tree().current_scene.update_data(stats, false)
 
 func enter_controls() -> void:
 	load_scene(controls_menu_ref)

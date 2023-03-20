@@ -96,7 +96,7 @@ func _convert_stats() -> void:
 	air_speed = air_speed_ * Globals.tile_size
 	# max_jump_height = 3/2 * -jump_strength^2 / gravity
 	# 
-	jump_strength = 1.5*sqrt(jump_height_*Globals.tile_size*2*gravity)
+	jump_strength = 1.6*sqrt(jump_height_*Globals.tile_size*2*gravity)
 
 func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
 	health -= damage

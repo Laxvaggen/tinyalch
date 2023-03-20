@@ -72,7 +72,8 @@ func pathfinder_finished_processing(node):
 	processing_pathfinders.erase(node)
 
 func erase_unpathables(tilemap_to_erase:TileMap) -> void:
-	var unpathable_cells = tilemap_to_erase.get_used_cells(0).filter(func(cell): 
+	var unpathable_cells = tilemap_to_erase.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) != 2)
+	unpathable_cells = unpathable_cells.filter(func(cell): 
 		return tilemap_to_erase.get_cell_tile_data(0, cell).get_custom_data("unpathable"))
 	for cell in unpathable_cells:
 		tilemap_to_erase.erase_cell(0, cell)
@@ -81,7 +82,7 @@ func erase_unpathables(tilemap_to_erase:TileMap) -> void:
 	
 #Called when level is completed
 func level_cleared() -> void:
-	SceneManager._level_cleared(stats)
+	SceneManager.level_cleared(stats)
 
 #Called when player dies
 func level_failed() -> void:

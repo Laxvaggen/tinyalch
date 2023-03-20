@@ -13,6 +13,10 @@ var visibility_score: float
 var noise_score: float
 var is_in_light: bool
 
+var magma_shot = preload("res://scenes/player/magma_shot.tscn")
+var spells = ["fury_fists", "magma_shot", "rage", "heal"]
+var selected_spell = spells[0]
+
 func _enter():
 	$HealSprite.visible = false
 	$CollisionShapeLow.set_deferred("disabled", true)
@@ -24,6 +28,17 @@ func _update(_delta) -> void:
 		set_node_direction(1)
 	elif velocity.x < 0:
 		set_node_direction(-1)
+	select_spell()
+
+func select_spell() -> void:
+	if Input.is_action_just_pressed("select_spell_1"):
+		selected_spell = spells[0]
+	elif Input.is_action_just_pressed("select_spell_2"):
+		selected_spell = spells[1]
+	elif Input.is_action_just_pressed("select_spell_3"):
+		selected_spell = spells[2]
+	elif Input.is_action_just_pressed("select_spell_4"):
+		selected_spell = spells[3]
 
 func enable_base_sprite() -> void:
 	$Sprite.visible = true
@@ -94,6 +109,11 @@ func get_noise_score() -> float:
 
 func receive_light_level(lightcone_colliding:bool) -> void:
 	is_in_light = lightcone_colliding
+
+func summon_magma_shot() -> void:
+	var shot_instance = magma_shot.instantiate()
+	shot_instance.global_position = get_global_mouse_position()
+	get_node("/root/World").add_child(shot_instance)
 
 
 func _on_heal_sprite_animation_finished():

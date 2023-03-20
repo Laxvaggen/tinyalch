@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://2ybbj047wa8k"]
+
+[ext_resource type="Script" path="res://scenes/level_exit.gd" id="1_d2o4m"]
+[ext_resource type="Texture2D" uid="uid://b1lpw4hq6msrg" path="res://sprites/crown.png" id="1_x0urp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wudm0"]
+size = Vector2(16, 10)
+
+[sub_resource type="Animation" id="Animation_dbi1q"]
+resource_name = "float"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.5, 3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d3itt"]
+_data = {
+"float": SubResource("Animation_dbi1q")
+}
+
+[node name="LevelExit" type="Node2D"]
+script = ExtResource("1_d2o4m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.611207)
+texture = ExtResource("1_x0urp")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wudm0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d3itt")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,7 +1,9 @@
-[gd_resource type="TileSet" load_steps=180 format=3 uid="uid://c3oqd65arsl42"]
+[gd_resource type="TileSet" load_steps=183 format=3 uid="uid://c3oqd65arsl42"]
 
 [ext_resource type="Texture2D" uid="uid://f6jf78xbx2r0" path="res://sprites/tiles/Tileset1.png" id="1_n8ks0"]
 [ext_resource type="Texture2D" uid="uid://28mmkaarspk6" path="res://sprites/tiles/grass tileset.png" id="2_and2o"]
+[ext_resource type="PackedScene" uid="uid://2ybbj047wa8k" path="res://scenes/level_exit.tscn" id="3_qj8fl"]
+[ext_resource type="PackedScene" uid="uid://q8lias37j7g3" path="res://scenes/lamp_light.tscn" id="4_tuacp"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_topmq"]
 tile_data = PackedInt32Array(0, 65536, 9, 65536, 65536, 10, 1, 131072, 9, 65537, 131072, 10)
@@ -1688,6 +1690,10 @@ texture = ExtResource("2_and2o")
 12:9/0/physics_layer_0/angular_velocity = 0.0
 12:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_v1sen"]
+scenes/0/scene = ExtResource("3_qj8fl")
+scenes/1/scene = ExtResource("4_tuacp")
+
 [resource]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
@@ -1700,6 +1706,7 @@ custom_data_layer_2/name = "unpathable"
 custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_uues0")
 sources/1 = SubResource("TileSetAtlasSource_jyrym")
+sources/2 = SubResource("TileSetScenesCollectionSource_v1sen")
 pattern_0 = SubResource("TileMapPattern_topmq")
 pattern_1 = SubResource("TileMapPattern_2qfxd")
 pattern_2 = SubResource("TileMapPattern_ywdth")

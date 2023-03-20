@@ -1,9 +1,10 @@
-[gd_scene load_steps=69 format=3 uid="uid://ce7pu08y2mqty"]
+[gd_scene load_steps=71 format=3 uid="uid://ce7pu08y2mqty"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_po8u4"]
 [ext_resource type="Texture2D" uid="uid://d2jiyo7ukdxgg" path="res://sprites/player/Tiny Alchemist Sprite Sheet 48x32.png" id="2_q88ft"]
 [ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_u1n8t"]
 [ext_resource type="Texture2D" uid="uid://dekbnllma1es3" path="res://sprites/player/All 112 x 48.png" id="3_5dwhg"]
+[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_xmpgi"]
 [ext_resource type="Texture2D" uid="uid://bq7ftivyr18pb" path="res://sprites/player/All 96x48 Sprite Sheet.png" id="4_o0ujc"]
 [ext_resource type="Texture2D" uid="uid://1yxuxdr245e6" path="res://sprites/player/heal.png" id="5_hbcd3"]
 [ext_resource type="Script" path="res://scenes/player/StateMachine.gd" id="6_8r86d"]
@@ -27,6 +28,9 @@ height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfvex"]
 size = Vector2(12, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krf50"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gagja"]
 atlas = ExtResource("5_hbcd3")
@@ -713,6 +717,18 @@ tracks/1/keys = {
 "method": &"enable_fire_sprite"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FuryFistsHitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_mne44"]
 resource_name = "spell_fire_magma_shot"
@@ -1027,7 +1043,7 @@ _data = {
 "transition_to_stand": SubResource("Animation_cmpnj")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -6)
 collision_layer = 2
 collision_mask = 65
@@ -1061,7 +1077,16 @@ script = ExtResource("2_u1n8t")
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_xfvex")
 
+[node name="FuryFistsHitbox" type="Area2D" parent="."]
+script = ExtResource("3_xmpgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FuryFistsHitbox"]
+position = Vector2(17, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_krf50")
+
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 6)
 texture = ExtResource("2_q88ft")
 offset = Vector2(0, -16)
@@ -1070,6 +1095,7 @@ vframes = 17
 
 [node name="WaterAttackSprite" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(0, 6)
 texture = ExtResource("3_5dwhg")
 offset = Vector2(32, -24)
 hframes = 22
@@ -1077,7 +1103,7 @@ vframes = 4
 frame = 22
 
 [node name="FireAttackSprite" type="Sprite2D" parent="."]
-visible = false
+position = Vector2(0, 6)
 texture = ExtResource("4_o0ujc")
 offset = Vector2(24, -16)
 hframes = 8
@@ -1085,6 +1111,7 @@ vframes = 4
 
 [node name="HealSprite" type="AnimatedSprite2D" parent="."]
 visible = false
+position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_fgt8l")
 frame = 21
 frame_progress = 1.0

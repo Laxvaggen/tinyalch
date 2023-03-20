@@ -17,10 +17,10 @@ func _load_level_data() -> void:
 	var stats = SceneManager.completed_levels_data[level["name"]]
 	var label_container = $LevelSelectorContainer/DataContainer/MarginContainer/VBoxContainer
 	label_container.get_node("Kills").text = "Kills" + str(stats["kills"])
-	label_container.get_node("DamageTaken").text = "Damage Taken" + str(stats["damage taken"])
+	label_container.get_node("DamageTaken").text = "Damage Taken" + str(stats["damage_taken"])
 	label_container.get_node("Time").text = "Time" + str(stats["time"])
 	label_container.get_node("TimesDetected").text = "Times Detected" + str(stats["times_detected"])
-	$LevelName.text = level["name"]
+	$LevelSelectorContainer/LevelName.text = level["name"]
 
 
 func _on_previous_level_pressed():
