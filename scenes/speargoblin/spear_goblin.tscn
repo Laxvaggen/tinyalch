@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://43e1vswhurx"]
+[gd_scene load_steps=24 format=3 uid="uid://43e1vswhurx"]
 
 [ext_resource type="Script" path="res://scenes/speargoblin/spear_goblin.gd" id="1_durkb"]
 [ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="2_4r4g8"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="6_tnrke"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_qbt5w"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_v21bk"]
-[ext_resource type="Script" path="res://scenes/enemy_states/enemy_attack.gd" id="9_jcpsi"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="10_s1nth"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="11_uqv6x"]
 
@@ -207,12 +206,6 @@ script = ExtResource("7_qbt5w")
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("8_v21bk")
-
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("9_jcpsi")
-
-[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
-one_shot = true
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("10_s1nth")

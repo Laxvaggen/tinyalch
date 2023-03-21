@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyhmhqd5gtqt5"]
+
+[ext_resource type="Texture2D" uid="uid://cyqwueqlxnv5d" path="res://sprites/player/magic/Fire Breath hit effect SpriteSheet.png" id="1_ahqyx"]
+[ext_resource type="Script" path="res://scenes/player/fire_effect.gd" id="2_t4rji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntalj"]
+atlas = ExtResource("1_ahqyx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y07xv"]
+atlas = ExtResource("1_ahqyx")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20glm"]
+atlas = ExtResource("1_ahqyx")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iflf"]
+atlas = ExtResource("1_ahqyx")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pwne"]
+atlas = ExtResource("1_ahqyx")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2j554"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntalj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y07xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20glm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iflf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pwne")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="FireEffect" type="AnimatedSprite2D"]
+position = Vector2(0, -5)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_2j554")
+frame = 4
+frame_progress = 1.0
+script = ExtResource("2_t4rji")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

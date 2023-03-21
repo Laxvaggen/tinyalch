@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dnqgjx7at8i46"]
+[gd_scene load_steps=22 format=3 uid="uid://dnqgjx7at8i46"]
 
 [ext_resource type="Texture2D" uid="uid://b5xfkfb6yihie" path="res://sprites/monsters/goblins/archer golbin.png" id="1_86rw1"]
 [ext_resource type="Script" path="res://scenes/archergoblin/archer_goblin.gd" id="1_ho14q"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="4_370kv"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="5_5c630"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="6_stujc"]
-[ext_resource type="Script" path="res://scenes/enemy_states/enemy_attack.gd" id="7_47umq"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="7_d8eoy"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="8_iu7yl"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="9_dijgg"]
@@ -164,6 +163,8 @@ libraries = {
 "": SubResource("AnimationLibrary_kpdnx")
 }
 
+[node name="StateLockedTimer" type="Timer" parent="."]
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_ub0xv")
 initial_state = NodePath("Idle")
@@ -180,12 +181,6 @@ script = ExtResource("5_5c630")
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("6_stujc")
-
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("7_47umq")
-
-[node name="Cooldown" type="Timer" parent="StateMachine/Attack"]
-one_shot = true
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("8_iu7yl")

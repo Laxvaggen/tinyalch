@@ -31,8 +31,10 @@ func _enemy_init() -> void:
 func _set_bars() -> void:
 	if status_bar_container == null:
 		return
-	status_bar_container.get_node("HealthBar").value = 100 * health/max_health
-	status_bar_container.get_node("AlertBar").value = 100 - 100 * get_sight_score_difference()/-0.5
+	if status_bar_container.get_node("HealthBar"):
+		status_bar_container.get_node("HealthBar").value = 100 * health/max_health
+	if status_bar_container.get_node("AlertBar"):
+		status_bar_container.get_node("AlertBar").value = 100 - 100 * get_sight_score_difference()/-0.5
 
 
 func vision_obstruction_multiplier() -> int:

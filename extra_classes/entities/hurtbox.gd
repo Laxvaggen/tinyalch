@@ -12,8 +12,8 @@ func _ready():
 
 
 #Called when hitbox is detected
-func _on_area_entered(hitbox: HitBox) -> void:
-	if hitbox == null:
+func _on_area_entered(hitbox) -> void:
+	if hitbox == null or !hitbox is HitBox:
 		return
 	elif hitbox.owner == owner:
 		return

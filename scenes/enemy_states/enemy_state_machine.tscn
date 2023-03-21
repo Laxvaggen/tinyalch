@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://csrnrvb2lufua"]
+[gd_scene load_steps=7 format=3 uid="uid://csrnrvb2lufua"]
 
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="1_u8duy"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="2_tsq6f"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="3_8orj6"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="4_y4d64"]
-[ext_resource type="Script" path="res://scenes/enemy_states/enemy_attack.gd" id="5_oxwbh"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="6_l78sl"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="7_h2kyv"]
 
@@ -24,11 +23,6 @@ script = ExtResource("3_8orj6")
 
 [node name="Hunt" type="Node" parent="."]
 script = ExtResource("4_y4d64")
-
-[node name="Attack" type="Node" parent="."]
-script = ExtResource("5_oxwbh")
-
-[node name="Cooldown" type="Timer" parent="Attack"]
 
 [node name="Hit" type="Node" parent="."]
 script = ExtResource("6_l78sl")

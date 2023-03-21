@@ -15,13 +15,14 @@ func physics_update(_delta):
 
 # called when state is transitioned to
 func enter(_msg = {}):
+	
 	$Hitstun.start()
 	player.lock_state_switching(5)
-	#flash white
+	player.get_node("Sprite").modulate = Color(10,10,10,10)
 
 # called when state is transitioned from
 func exit():
-	pass
+	player.get_node("Sprite").modulate = Color(1,1,1,1)
 
 
 

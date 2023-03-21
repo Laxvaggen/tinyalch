@@ -1,10 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6j4slgbscg6u"]
+[gd_scene load_steps=24 format=3 uid="uid://b6j4slgbscg6u"]
 
 [ext_resource type="Script" path="res://scenes/troll/troll.gd" id="1_fxw58"]
 [ext_resource type="Texture2D" uid="uid://c027wpe70e73u" path="res://sprites/monsters/troll/troll.png" id="1_snw7n"]
+[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_340kx"]
+[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_22srk"]
+[ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_0ux2b"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_3oinr"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_5ghx0"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_xkl4g"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="9_as13w"]
+[ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_43dqt"]
+[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="11_t522d"]
+[ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="12_kv562"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgir8"]
 size = Vector2(17, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ho5vy"]
+size = Vector2(25, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdrcj"]
+size = Vector2(42, 14)
 
 [sub_resource type="Animation" id="Animation_xehl5"]
 length = 0.001
@@ -112,15 +128,37 @@ _data = {
 "walk": SubResource("Animation_nmcev")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3dxi"]
+size = Vector2(84, 14)
+
 [node name="Troll" type="CharacterBody2D"]
+position = Vector2(0, -7)
 collision_layer = 4
 script = ExtResource("1_fxw58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -13)
+position = Vector2(-0.5, -6.5)
 shape = SubResource("RectangleShape2D_kgir8")
 
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, 6.5)
+script = ExtResource("2_340kx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0.5, -14)
+shape = SubResource("RectangleShape2D_ho5vy")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, 6.5)
+script = ExtResource("3_22srk")
+disabled_on_start = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(21, -7)
+shape = SubResource("RectangleShape2D_wdrcj")
+
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 6.5)
 texture = ExtResource("1_snw7n")
 offset = Vector2(16, -14)
 hframes = 20
@@ -130,3 +168,50 @@ vframes = 5
 libraries = {
 "": SubResource("AnimationLibrary_is24n")
 }
+
+[node name="StateLockedTimer" type="Timer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_0ux2b")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("6_3oinr")
+max_roaming_distance = 10.0
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+one_shot = true
+
+[node name="Alert" type="Node" parent="StateMachine"]
+script = ExtResource("7_5ghx0")
+
+[node name="Hunt" type="Node" parent="StateMachine"]
+script = ExtResource("8_xkl4g")
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("9_as13w")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("10_43dqt")
+
+[node name="Pathfinder" type="Node2D" parent="."]
+position = Vector2(0, 6.5)
+script = ExtResource("11_t522d")
+
+[node name="PlayerTargeter" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="AttackRange" type="Area2D" parent="."]
+position = Vector2(0, 7.5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_k3dxi")
+
+[node name="StatusBars" parent="." instance=ExtResource("12_kv562")]
+offset_left = -7.0
+offset_top = -31.0
+offset_right = 9.0
+offset_bottom = -21.0

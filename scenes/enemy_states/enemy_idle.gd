@@ -25,7 +25,6 @@ func _ready():
 # function to transition between states
 func _get_next_state():
 	var sight_score = entity.get_sight_score_difference()
-	var noise_score = entity.get_noise_score_difference()
 	if sight_score > 0:
 		state_machine.transition_to("Hunt")
 		

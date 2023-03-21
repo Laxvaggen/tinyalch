@@ -14,6 +14,7 @@ var noise_score: float
 var is_in_light: bool
 
 var magma_shot = preload("res://scenes/player/magma_shot.tscn")
+var fire_blast = preload("res://scenes/player/fire_effect.tscn")
 var spells = ["fury_fists", "magma_shot", "rage", "heal"]
 var selected_spell = spells[0]
 var max_magma_shot_range = 5 * Globals.tile_size
@@ -41,7 +42,15 @@ func _update(_delta) -> void:
 		water_state()
 	elif magic_state == "fire":
 		fire_state()
-	
+
+func _set_bars() -> void:
+	$StatusBars.get_node("HealthBar").value = 100*health/max_health
+	if animation_player.current_animation == "crouch_idle" or animation_player.current_animation == "crouch_walk":
+		$StatusBars.position.y = -10
+	else:
+		$StatusBars.position.y = -20
+
+
 func water_state() -> void:
 	if state_machine.state.name in ["Sneak", "Dash", "CastSpell"]:
 		return
@@ -168,4 +177,24 @@ func _on_second_timer_timeout():
 	if magic_state == "water":
 		gain_health(3)
 	elif magic_state == "fire":
+		get_node("Sprite").modulate = Color(10,10,10,10)
 		gain_health(-10)
+		var blast_instance = fire_blast.instantiate()
+		blast_instance.global_position = global_position + Vector2(0, 3)
+		get_node("/root/World").add_child(blast_instance)
+		await get_tree().create_timer(0.1).timeout
+		get_node("Sprite").modulate = Color(1, 1, 1, 1)
+
+
+func _on_hit_box_area_entered(area):
+	if area.owner == self:
+		return
+	if animation_player.current_animation == "spell_water_quick_slashes":
+		gain_health(10)
+		$HealSprite.play("default")
+		$HealSprite.visible = true
+		
+	elif animation_player.current_animation == "spell_water_spear":
+		gain_health(25)
+		$HealSprite.play("default")
+		$HealSprite.visible = true

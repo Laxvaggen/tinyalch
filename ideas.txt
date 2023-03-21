@@ -1,18 +1,22 @@
 TODO
 
-gain hp from hitting water spells
 
+-modulate crown to better fit aesthetic
+-fix text in tutorials by making font size bigger but scale smaller
 
-Enemies:
+ENEMIES:
+	-export vars
+	-attack animations (enable/disable hitbox)
+	-attack state
 
--Healthbar for player
 -sound
 -visual feedback:
 	-grayscale when low health (shader)
 	-screenshake
-	-shader when player gets hit, flash white
-	-
--physics objects like crates, deal damage when falling on things, can be pushed by player
+-physics objects like crates
+
+
+
 
 BROKEN:
 	enemy pathfinding, it just jumps when entering Alert
