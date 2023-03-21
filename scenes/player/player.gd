@@ -166,6 +166,6 @@ func _on_heal_sprite_animation_finished():
 
 func _on_second_timer_timeout():
 	if magic_state == "water":
-		gain_health(1)
+		gain_health(3)
 	elif magic_state == "fire":
-		gain_health(-1)
+		gain_health(-10)

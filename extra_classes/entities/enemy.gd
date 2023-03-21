@@ -15,6 +15,8 @@ var last_known_player_location: Vector2
 var alert_icon = preload("res://scenes/icons/alert_icon.tscn")
 var hunt_icon = preload("res://scenes/icons/hunt_icon.tscn")
 
+var status_bar_container
+
 signal spotted_player
 
 func _enemy_init() -> void:
@@ -23,6 +25,14 @@ func _enemy_init() -> void:
 		attack_range_area = $AttackRange
 	else:
 		push_error("enemyNoAttackRange")
+	if has_node("StatusBars"):
+		status_bar_container = $StatusBars
+
+func _set_bars() -> void:
+	if status_bar_container == null:
+		return
+	status_bar_container.get_node("HealthBar").value = 100 * health/max_health
+	status_bar_container.get_node("AlertBar").value = 100 - 100 * get_sight_score_difference()/-0.5
 
 
 func vision_obstruction_multiplier() -> int:
@@ -47,12 +57,18 @@ func get_distance_to_player() -> float:
 func get_sight_score_difference() -> float:
 	assert(player.get("visibility_score") != null)
 	var actual_vision_score: float = base_vision_score * state_machine.state.state_vision_multiplier * vision_obstruction_multiplier() / (get_distance_to_player()/Globals.tile_size)
-	return actual_vision_score - 1/player.visibility_score
+	var score: float = actual_vision_score - 1/player.visibility_score
+	if score < -0.5:
+		return -0.5
+	return score
 
 func get_noise_score_difference() -> float:
 	assert(player.get("noise_score") != null)
 	var actual_hearing_score: float = base_hearing_score * state_machine.state.state_hearing_multiplier / (get_distance_to_player()/Globals.tile_size)
-	return actual_hearing_score - 1/player.noise_score
+	var score: float = actual_hearing_score - 1/player.noise_score
+	if score < -0.5:
+		return -0.5
+	return score
  
 func looking_towards_player() -> bool:
 	if direction != Vector2(player.global_position.x - global_position.x, 0).normalized().x:

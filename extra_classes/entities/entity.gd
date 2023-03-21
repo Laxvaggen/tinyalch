@@ -68,6 +68,8 @@ func _process(delta: float) -> void:
 	_update(delta)
 	if state_machine != null:
 		state_machine.state.update(delta)
+	if has_method("_set_bars"):
+		call("_set_bars")
 	
 
 func _physics_process(delta: float) -> void:
@@ -176,13 +178,14 @@ func flip_children(new_direction: int, target) -> void:
 	for child in target.get_children():
 		if child.get("no_flip"):
 			pass
-		elif child.is_in_group("Icon"):
+		elif child.is_in_group("IGInterface"):
 			pass
 		else:
 			if child.get("position"):
 				child.position.x *= -1
 			if child is Sprite2D:
 				child.flip_h = sprite_face_left
+				child.offset.x *= -1
 			if child is RayCast2D:
 				child.target_position.x *= -1
 				

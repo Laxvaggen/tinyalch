@@ -27,4 +27,7 @@ func exit():
 
 func _on_hitstun_timeout():
 	player.unlock_state_switching()
-	state_machine.transition_to("Idle")
+	if player.is_ceiling_low():
+		state_machine.transition_to("Sneak")
+	else:
+		state_machine.transition_to("Idle")

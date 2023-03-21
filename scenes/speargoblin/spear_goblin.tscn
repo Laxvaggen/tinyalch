@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="3_jn1by"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="3_wed48"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="4_sdwan"]
-[ext_resource type="Script" path="res://scenes/speargoblin/Sprite.gd" id="5_vfbms"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_bsvcw"]
+[ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="6_tnrke"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_qbt5w"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_v21bk"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_attack.gd" id="9_jcpsi"]
@@ -182,7 +182,6 @@ texture = ExtResource("2_egdet")
 offset = Vector2(12, -10)
 hframes = 10
 vframes = 5
-script = ExtResource("5_vfbms")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -236,3 +235,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_0xtp8")
+
+[node name="StatusBars" parent="." instance=ExtResource("6_tnrke")]
+offset_left = -7.0
+offset_top = -14.0
+offset_right = 9.0
+offset_bottom = -4.0

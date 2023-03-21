@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cc6ig2q3en1n6" path="res://sprites/exclamationmark.png" id="1_p5c0i"]
 
-[node name="HuntIcon" type="Sprite2D" groups=["Icon"]]
-position = Vector2(0, -13)
+[node name="HuntIcon" type="Sprite2D" groups=["IGInterface", "Icon"]]
+position = Vector2(0, -22)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_p5c0i")

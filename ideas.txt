@@ -1,17 +1,17 @@
 TODO
 
--dashing out of level is a problem... only if there is a floor tho
+gain hp from hitting water spells
+
 
 Enemies:
-	Attack state
-		-entered by being in "hunt" and player being inside an area2d "attack range".
-		-for melee, should be as simple as playing "attack" animation, then checking distance to player again on finished
-		-oh yeah, attack range should be in both direcitons, and just flip enemy the correct way before starting animation
-		- for ranged, should be able to create a "launch projectile" function in each enemy. this could then be called in animation player
-	
-	Fix other enemies. should only need to copy paste state machine, pathfinder and playertargeter
 
--HUD (health)
+-Healthbar for player
+-sound
+-visual feedback:
+	-grayscale when low health (shader)
+	-screenshake
+	-shader when player gets hit, flash white
+	-
 -physics objects like crates, deal damage when falling on things, can be pushed by player
 
 BROKEN:
