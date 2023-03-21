@@ -113,7 +113,7 @@ theme_override_constants/margin_bottom = 6
 
 [node name="Label" type="Label" parent="PauseMenu/Control/VBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 42
 text = "Paused"
 horizontal_alignment = 1
 
@@ -132,16 +132,19 @@ layout_mode = 2
 
 [node name="Resume" type="Button" parent="PauseMenu/Control/VBoxContainer/PanelContainer/MarginContainer/ButtonsContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Resume
 "
 
 [node name="RestartLevel" type="Button" parent="PauseMenu/Control/VBoxContainer/PanelContainer/MarginContainer/ButtonsContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Restart
 "
 
 [node name="Quit" type="Button" parent="PauseMenu/Control/VBoxContainer/PanelContainer/MarginContainer/ButtonsContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Quit
 "
 

@@ -1,5 +1,7 @@
 TODO
 
+-dashing out of level is a problem... only if there is a floor tho
+
 Enemies:
 	Attack state
 		-entered by being in "hunt" and player being inside an area2d "attack range".
@@ -9,25 +11,8 @@ Enemies:
 	
 	Fix other enemies. should only need to copy paste state machine, pathfinder and playertargeter
 
--dashing out of level is a problem...
-
--spells for player
-	-take a msg and transition to spell state
-	-spell state is just play animation, ending when button no longer held
-	-or when animation finished
--when selecting spell, icon pops in and fades out
-
--coyote for player
-
-
--use visual cues instead of health/mana bars
-	-greyscale when low health for example
+-HUD (health)
 -physics objects like crates, deal damage when falling on things, can be pushed by player
-
-
-MIGHT BE DONE:
-	CALCULATE "jump_distance" CORRECTLY
-
 
 BROKEN:
 	enemy pathfinding, it just jumps when entering Alert

@@ -1,14 +1,15 @@
+CollisionShape2D
+HitBox
+Node2D
+AnimatedSprite2D
+Timer
 Camera2D
 Control
 TileMap
 Label
-CollisionShape2D
-HitBox
 AnimationPlayer
 Area2D
 Sprite2D
-Node2D
-Timer
 Node
 ColorRect
 ShaderGlobalsOverride
@@ -29,4 +30,3 @@ PointLight2D
 DirectionalLight2D
 Button
 VBoxContainer
-MarginContainer

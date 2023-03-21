@@ -105,8 +105,8 @@ func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
 	if state_machine == null:
 		return
 	if health <= 0:
-		if state_machine.has_node("Dead"):
-			state_machine.transition_to("Dead")
+		if state_machine.has_node("Die"):
+			state_machine.transition_to("Die")
 		else:
 			queue_free()
 	else:
@@ -123,7 +123,7 @@ func gain_mana(amount: int) -> void:
 	if mana > max_health:
 		mana = max_health
 
-func disable_collision(target: Node2D) -> void:
+func disable_collision(target) -> void:
 	for child in target.get_children():
 		if child is CollisionShape2D:
 			child.set_deferred("disabled", true)

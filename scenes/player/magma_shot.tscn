@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://7xv4pt3un3x4"]
+[gd_scene load_steps=13 format=3 uid="uid://7xv4pt3un3x4"]
 
 [ext_resource type="Script" path="res://scenes/player/magma_shot.gd" id="1_nphfk"]
 [ext_resource type="Texture2D" uid="uid://lmlutyiq5smv" path="res://sprites/player/Magma Shot.png" id="2_88m1b"]
+[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_pgt6u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ps6qw"]
 atlas = ExtResource("2_88m1b")
@@ -55,20 +56,29 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_haea2")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 8.0
+"speed": 10.0
 }]
 
-[node name="MagmaShot" type="Area2D"]
-collision_layer = 16
-collision_mask = 32
-script = ExtResource("1_nphfk")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ch7b3"]
+radius = 5.0
+height = 22.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="MagmaShot" type="Node2D"]
+script = ExtResource("1_nphfk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jh4lg")
 offset = Vector2(0, -16)
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_pgt6u")
+damage = 50
+knockback = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, -9)
+shape = SubResource("CapsuleShape2D_ch7b3")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

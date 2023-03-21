@@ -23,9 +23,9 @@ func enter(_msg = {}):
 	if animation_player.has_animation("die"):
 		animation_player.play("die")
 		await animation_player.animation_finished
-		queue_free()
+		entity.queue_free()
 	else:
-		queue_free()
+		entity.queue_free()
 
 # called when state is transitioned from
 func exit():

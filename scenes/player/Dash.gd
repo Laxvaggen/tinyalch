@@ -5,9 +5,14 @@ func _get_next_state():
 	pass
 
 func _get_end_pos() -> Vector2:
-	var mouse_pos := player.get_global_mouse_position()
-	var relative_end_pos := Vector2(mouse_pos-player.global_position).limit_length(player.dash_distance*Globals.tile_size)
-	return player.global_position + relative_end_pos
+	var pos = player.global_position + Vector2(player.get_global_mouse_position()-player.global_position).limit_length(player.dash_distance*Globals.tile_size)
+	var space_state = player.get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(Vector2(pos.x, pos.y - 10), Vector2(pos.x, pos.y + 1000), 1)
+	var result = space_state.intersect_ray(query)
+	if result:
+		return result["position"]
+	else:
+		return player.global_position
 
 # is called as a _process()
 func update(_delta):
@@ -29,6 +34,7 @@ func enter(_msg = {}):
 	player.velocity = Vector2.ZERO
 	animation_player.play("dash", -1, -1, true)
 	await animation_player.animation_finished
+	await get_tree().process_frame
 	player.global_position = _get_end_pos()
 	animation_player.play("dash")
 	await get_tree().create_timer(0.2).timeout

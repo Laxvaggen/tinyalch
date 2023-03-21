@@ -16,6 +16,9 @@ var is_in_light: bool
 var magma_shot = preload("res://scenes/player/magma_shot.tscn")
 var spells = ["fury_fists", "magma_shot", "rage", "heal"]
 var selected_spell = spells[0]
+var max_magma_shot_range = 5 * Globals.tile_size
+
+var magic_state = "water"
 
 func _enter():
 	$HealSprite.visible = false
@@ -26,19 +29,53 @@ func _update(_delta) -> void:
 	noise_score = get_noise_score()
 	if velocity.x > 0:
 		set_node_direction(1)
+		$WaterAttackSprite.offset.x = 24
+		$FireAttackSprite.offset.x = 24
 	elif velocity.x < 0:
 		set_node_direction(-1)
-	select_spell()
+		$WaterAttackSprite.offset.x = -24
+		$FireAttackSprite.offset.x = -24
+	if Input.is_action_just_pressed("switch_magic_state"):
+		switch_magic_state()
+	if magic_state == "water":
+		water_state()
+	elif magic_state == "fire":
+		fire_state()
+	
+func water_state() -> void:
+	if state_machine.state.name in ["Sneak", "Dash", "CastSpell"]:
+		return
+	if Input.is_action_pressed("cast_spell_1"):
+		state_machine.transition_to("CastSpell", {spell_water_quick_slashes=true})
+	elif Input.is_action_just_pressed("cast_spell_2"):
+		state_machine.transition_to("CastSpell", {spell_water_spear=true})
+	
+func fire_state() -> void:
+	if state_machine.state.name in ["Sneak", "Dash", "CastSpell"]:
+		return
+	if Input.is_action_pressed("cast_spell_1"):
+		state_machine.transition_to("CastSpell", {spell_fire_fury_fists=true})
+	elif Input.is_action_just_pressed("cast_spell_2"):
+		state_machine.transition_to("CastSpell", {spell_fire_magma_shot=true})
 
-func select_spell() -> void:
-	if Input.is_action_just_pressed("select_spell_1"):
-		selected_spell = spells[0]
-	elif Input.is_action_just_pressed("select_spell_2"):
-		selected_spell = spells[1]
-	elif Input.is_action_just_pressed("select_spell_3"):
-		selected_spell = spells[2]
-	elif Input.is_action_just_pressed("select_spell_4"):
-		selected_spell = spells[3]
+func switch_magic_state() -> void:
+	if state_machine.state_locked:
+		return
+	if state_machine.state.name in ["Sneak", "Dash", "CastSpell"]:
+		return
+	if magic_state == "water":
+		magic_state = "fire"
+		enter_fire_state()
+	elif magic_state == "fire":
+		magic_state = "water"
+		enter_water_state()
+
+func enter_fire_state() -> void:
+	state_machine.transition_to("CastSpell", {rage=true})
+
+func enter_water_state() -> void:
+	state_machine.transition_to("CastSpell", {splash=true})
+	gain_health(20)
 
 func enable_base_sprite() -> void:
 	$Sprite.visible = true
@@ -111,10 +148,24 @@ func receive_light_level(lightcone_colliding:bool) -> void:
 	is_in_light = lightcone_colliding
 
 func summon_magma_shot() -> void:
-	var shot_instance = magma_shot.instantiate()
-	shot_instance.global_position = get_global_mouse_position()
-	get_node("/root/World").add_child(shot_instance)
+	await get_tree().process_frame
+	var pos = global_position + Vector2(get_global_mouse_position()-global_position).limit_length(max_magma_shot_range)
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(Vector2(pos.x, pos.y - 1), Vector2(pos.x, pos.y + 1000), 1)
+	var result = space_state.intersect_ray(query)
+	if result:
+		var shot_instance = magma_shot.instantiate()
+		shot_instance.global_position = result["position"]
+		shot_instance.get_node("HitBox")
+		get_node("/root/World").add_child(shot_instance)
 
 
 func _on_heal_sprite_animation_finished():
 	$HealSprite.visible = false
+
+
+func _on_second_timer_timeout():
+	if magic_state == "water":
+		gain_health(1)
+	elif magic_state == "fire":
+		gain_health(-1)

@@ -1,5 +1,8 @@
 extends Control
 
+var audio_pressed_icon = load("res://sprites/ui/UI - Icons18disabled.png")
+var audio_icon = load("res://sprites/ui/UI - Icons18.png")
+
 func _ready():
 	if SceneManager.completed_levels_data.size() > 0:
 		$AllButtonsContainer/MainButtonsContainer/Continue.disabled = false
@@ -33,6 +36,6 @@ func _on_controls_pressed():
 
 func _on_audio_toggled(button_pressed):
 	if button_pressed:
-		$AllButtonsContainer/ExtraButtonsContainer/Audio.add_theme_icon_override("res://sprites/ui/UI - Icons18disabled.png")
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_pressed_icon)
 	else:
-		$AllButtonsContainer/ExtraButtonsContainer/Audio.add_theme_icon_override("res://sprites/ui/UI - Icons18.png")
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_icon)

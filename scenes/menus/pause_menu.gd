@@ -24,9 +24,11 @@ func _on_resume_pressed():
 
 
 func _on_restart_level_pressed():
+	deactivate()
 	SceneManager.restart_level()
 
 
 func _on_quit_pressed():
+	deactivate()
 	SceneManager.enter_main_menu()
 

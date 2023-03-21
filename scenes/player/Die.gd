@@ -19,6 +19,8 @@ func enter(_msg = {}):
 	player.velocity = Vector2.ZERO
 	player.disable_collision(player)
 	player.lock_state_switching(5)
+	await animation_player.animation_finished
+	player.emit_signal("died")
 
 # called when state is transitioned from
 func exit():

@@ -1,30 +1,8 @@
 extends PlayerState
 
-func fury_fists() -> void:
-	animation_player.play("spell_fire_fury_fists")
-
-func magma_shot() -> void:
-	pass
-
-func rage() -> void:
-	pass
-
-func heal() -> void:
-	pass
-
-func quick_slashes() -> void:
-	pass
-
-func water_spear() -> void:
-	pass
-
-func wave_slam() -> void:
-	pass
-
 # function to transition between states
 func _get_next_state():
-	if !Input.is_action_pressed("cast_spell"):
-		state_machine.transition_to("Idle")
+	pass
 
 # is called as a _process()
 func update(_delta):
@@ -33,12 +11,29 @@ func update(_delta):
 
 # is called as a _physics_process()
 func physics_update(_delta):
-	pass
+	player.apply_gravity(_delta)
 
 # called when state is transitioned to
 func enter(_msg = {}):
-	if player.selected_spell == "fury_fists":
-		fury_fists()
+	player.velocity = Vector2.ZERO
+	if _msg.has("rage"):
+		animation_player.play("spell_fire_rage")
+		player.lock_state_switching(0.5)
+		await get_tree().create_timer(0.6).timeout
+		state_machine.transition_to("Idle")
+	elif _msg.has("splash"):
+		$"../../WaterSplashSprite".play("default")
+		$"../../WaterSplashSprite".visible = true
+		animation_player.play("spell_water_heal")
+		player.lock_state_switching(0.5)
+		await get_tree().create_timer(0.6).timeout
+		state_machine.transition_to("Idle")
+	else:
+		player.lock_state_switching(10)
+		animation_player.play(_msg.keys()[0])
+		await animation_player.animation_finished
+		player.unlock_state_switching()
+		state_machine.transition_to("Idle")
 
 # called when state is transitioned from
 func exit():

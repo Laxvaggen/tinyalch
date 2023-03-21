@@ -27,6 +27,8 @@ var game_complete_menu_ref = "res://scenes/menus/game_complete_menu.tscn"
 var pause_menu
 var transition_scene
 
+signal entered_level_progress_menu
+
 func _ready() -> void:
 	if has_node("Transition"):
 		transition_scene = $Transition
@@ -42,6 +44,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and in_game:
 		pause_menu.call_deferred("activate")
+	if get_tree().current_scene.name == "LevelProgressMenu":
+		emit_signal("entered_level_progress_menu")
 
 #Transitions smoothly to scene
 func load_scene(scenepath: String, entering_game = false):
@@ -122,14 +126,13 @@ func level_cleared(stats: Dictionary) -> void:
 		completed_levels_data[level["name"]] = stats
 	load_scene(level_progress_menu_ref)
 	export_savedata()
-	await get_tree().tree_changed
-	
-	#get_tree().current_scene.update_data(stats, true)
+	await entered_level_progress_menu
+	get_tree().current_scene.update_data(stats, true)
 
 func level_failed(stats: Dictionary) -> void:
 	load_scene(level_progress_menu_ref)
-	await get_tree().tree_changed
-	#get_tree().current_scene.update_data(stats, false)
+	await entered_level_progress_menu
+	get_tree().current_scene.update_data(stats, false)
 
 func enter_controls() -> void:
 	load_scene(controls_menu_ref)

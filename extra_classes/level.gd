@@ -24,6 +24,7 @@ func _ready() -> void:
 		push_error("noTilemapInLevel")
 	if has_node("Player"):
 		player = $Player
+		player.connect("died", Callable(self, "level_failed"))
 	else:
 		push_error("noPlayerInLevel")
 	player.connect("damage_taken", Callable(self,"player_damage_taken"))
