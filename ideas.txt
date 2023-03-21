@@ -1,22 +1,18 @@
 TODO
 
+-can dash into small holes, and half holes
 
--modulate crown to better fit aesthetic
--fix text in tutorials by making font size bigger but scale smaller
-
-ENEMIES:
-	-export vars
-	-attack animations (enable/disable hitbox)
-	-attack state
+-pathfinding gets stuck in corners:
+	-this is because it selects the nearest node to player, and then walks towards it until player gets further away,
+	at which point it stops.
+	-but then, if it is already at the nearest node, it wont pathfind
+	-so i have to make it pathfind to nearest node to player, that is on the other side of player
+	-or just append the position at the end of the path
+	
+	-this may be fixed right now, with "append(go_to)" in set_target of pathfinding_entity
 
 -sound
 -visual feedback:
 	-grayscale when low health (shader)
 	-screenshake
 -physics objects like crates
-
-
-
-
-BROKEN:
-	enemy pathfinding, it just jumps when entering Alert

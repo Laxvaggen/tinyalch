@@ -22,6 +22,7 @@ var level_progress_menu_ref = "res://scenes/menus/level_progress_menu.tscn"
 var controls_menu_ref = "res://scenes/menus/controls_menu.tscn"
 var level_select_menu_ref = "res://scenes/menus/level_select_menu.tscn"
 var game_complete_menu_ref = "res://scenes/menus/game_complete_menu.tscn"
+var new_game_warning_ref = "res://scenes/menus/new_game_warning.tscn"
 
 
 var pause_menu
@@ -104,6 +105,9 @@ func start_new_game() -> void:
 	completed_levels_data = {}
 	export_savedata()
 	load_scene(levels[0]["filepath"], true)
+
+func enter_new_game_warning() -> void:
+	load_scene(new_game_warning_ref)
 
 func start_level(index) -> void:
 	load_scene(levels[index]["filepath"], true)

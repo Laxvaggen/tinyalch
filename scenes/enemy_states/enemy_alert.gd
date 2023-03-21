@@ -28,7 +28,7 @@ func physics_update(_delta):
 		animation_player.play(run_animation_name, -1, 0.5)
 	
 	if entity.get_sight_score_difference() > 0:
-		state_machine.transition_to("Hunt")
+		state_machine.transition_to("Hunt", {play_icon=true})
 		entity.emit_signal("spotted_player")
 		return
 	elif entity.get_noise_score_difference() > 0 and !entity.looking_towards_player():
@@ -53,7 +53,8 @@ func physics_update(_delta):
 func enter(_msg = {}):
 	entity.last_known_player_location = entity.player.global_position
 	entity.pathfinder_set_target(entity.last_known_player_location)
-	entity.display_information_icon(entity.alert_icon.instantiate(), 0.25, 0.25, 0.5)
+	if _msg.has("play_icon"):
+		entity.display_information_icon(entity.alert_icon.instantiate(), 0.25, 0.25, 0.5)
 
 # called when state is transitioned from
 func exit():

@@ -20,7 +20,6 @@ func _next_target():
 		current_target = null
 		return
 	current_target = current_path.pop_front()
-	
 	if current_target == null and current_path != []:
 		if is_on_floor():
 			jump()
@@ -34,6 +33,7 @@ func pathfinder_set_target(pos: Vector2) -> void:
 	if result:
 		var go_to = result["position"]
 		current_path = path_finder.find_path(self.position, go_to)
+		current_path.append(go_to)
 		_next_target()
 
 func pathfinder_flush_points() -> void:

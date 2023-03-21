@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6j4slgbscg6u"]
+[gd_scene load_steps=25 format=3 uid="uid://b6j4slgbscg6u"]
 
 [ext_resource type="Script" path="res://scenes/troll/troll.gd" id="1_fxw58"]
 [ext_resource type="Texture2D" uid="uid://c027wpe70e73u" path="res://sprites/monsters/troll/troll.png" id="1_snw7n"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_xkl4g"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="9_as13w"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_43dqt"]
+[ext_resource type="Script" path="res://scenes/troll/Attack.gd" id="11_7mhwx"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="11_t522d"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="12_kv562"]
 
@@ -101,6 +102,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_reposition_after_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_nmcev"]
 resource_name = "walk"
@@ -135,6 +162,12 @@ size = Vector2(84, 14)
 position = Vector2(0, -7)
 collision_layer = 4
 script = ExtResource("1_fxw58")
+base_vision_score = 2
+base_hearing_score = 2
+max_health = 300
+move_speed_ = 2
+ground_acceleration = 1000
+jump_height_ = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -6.5)
@@ -151,11 +184,13 @@ shape = SubResource("RectangleShape2D_ho5vy")
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, 6.5)
 script = ExtResource("3_22srk")
+damage = 50
 disabled_on_start = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(21, -7)
 shape = SubResource("RectangleShape2D_wdrcj")
+disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 6.5)
@@ -177,22 +212,30 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("6_3oinr")
-max_roaming_distance = 10.0
+sight_alert_threshold = -0.1
+max_roaming_distance = 3.0
+run_animation_name = "walk"
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
 
 [node name="Alert" type="Node" parent="StateMachine"]
 script = ExtResource("7_5ghx0")
+sight_alert_threshold = -0.1
+run_animation_name = "walk"
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("8_xkl4g")
+run_animation_name = "walk"
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("9_as13w")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("10_43dqt")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("11_7mhwx")
 
 [node name="Pathfinder" type="Node2D" parent="."]
 position = Vector2(0, 6.5)

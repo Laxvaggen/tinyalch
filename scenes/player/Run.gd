@@ -4,7 +4,7 @@ extends PlayerState
 func _get_next_state():
 	if !player.is_on_floor():
 		state_machine.transition_to("Air")
-	elif Input.is_action_pressed("sneak"):
+	elif Input.is_action_just_pressed("sneak"):
 		state_machine.transition_to("Sneak")
 	elif Input.is_action_pressed("jump"):
 		state_machine.transition_to("Air", {doJump=true})

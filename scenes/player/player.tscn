@@ -1304,7 +1304,7 @@ shape = SubResource("RectangleShape2D_xfvex")
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("3_xmpgi")
-damage = 5
+damage = 20
 disabled_on_start = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -1331,7 +1331,6 @@ hframes = 9
 vframes = 17
 
 [node name="WaterAttackSprite" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 6)
 texture = ExtResource("3_5dwhg")
 offset = Vector2(32, -24)
@@ -1398,6 +1397,7 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("7_x1pxi")
+state_visibility_multiplier = 0.75
 state_noise_multiplier = 0.0
 
 [node name="Run" type="Node" parent="StateMachine"]
@@ -1412,10 +1412,12 @@ state_noise_multiplier = 0.0
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("10_ia7i1")
+state_visibility_multiplier = 0.5
 state_noise_multiplier = 0.0
 
 [node name="EdgeHang" type="Node" parent="StateMachine"]
 script = ExtResource("11_xwg2o")
+state_visibility_multiplier = 0.75
 state_noise_multiplier = 0.0
 
 [node name="Dash" type="Node" parent="StateMachine"]
@@ -1436,6 +1438,7 @@ script = ExtResource("13_bcbmx")
 
 [node name="CastSpell" type="Node" parent="StateMachine"]
 script = ExtResource("15_7rrkq")
+state_visibility_multiplier = 1.25
 
 [node name="StatusBars" type="VBoxContainer" parent="." groups=["IGInterface"]]
 offset_left = -8.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bbt7mqv4byax3"]
+[gd_scene load_steps=24 format=3 uid="uid://bbt7mqv4byax3"]
 
 [ext_resource type="Script" path="res://scenes/rollypolly/rolly_polly.gd" id="1_5t8pt"]
 [ext_resource type="Texture2D" uid="uid://uh6pmfsnym1c" path="res://sprites/monsters/rolly polly/Roller.png" id="1_k2sc2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_y8f6r"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="10_hhqno"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="11_whjqm"]
+[ext_resource type="Script" path="res://scenes/rollypolly/Attack.gd" id="11_xspsc"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="12_2mk80"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_qhbdb"]
 
@@ -118,10 +119,10 @@ size = Vector2(20, 8)
 position = Vector2(0, -4)
 collision_layer = 4
 script = ExtResource("1_5t8pt")
-base_vision_score = 2
-base_hearing_score = 2
+base_vision_score = 3
+base_hearing_score = 3
 max_health = 40
-move_speed_ = 4
+move_speed_ = 5
 ground_acceleration = 1000
 jump_height_ = 3
 
@@ -167,21 +168,27 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("6_nootf")
 max_roaming_distance = 0.0
+run_animation_name = "roll"
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
 
 [node name="Alert" type="Node" parent="StateMachine"]
 script = ExtResource("7_tvbc4")
+run_animation_name = "roll"
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("8_y8f6r")
+run_animation_name = "roll"
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("10_hhqno")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("11_whjqm")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("11_xspsc")
 
 [node name="Pathfinder" type="Node2D" parent="."]
 script = ExtResource("12_qhbdb")

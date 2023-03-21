@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://43e1vswhurx"]
+[gd_scene load_steps=25 format=3 uid="uid://43e1vswhurx"]
 
 [ext_resource type="Script" path="res://scenes/speargoblin/spear_goblin.gd" id="1_durkb"]
 [ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="2_4r4g8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_qbt5w"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_v21bk"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="10_s1nth"]
+[ext_resource type="Script" path="res://scenes/speargoblin/Attack.gd" id="11_ly7h1"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="11_uqv6x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hr5n"]
@@ -148,8 +149,8 @@ size = Vector2(70, 14)
 position = Vector2(0, -7)
 collision_layer = 4
 script = ExtResource("1_durkb")
-base_vision_score = 2
-base_hearing_score = 2
+base_vision_score = 3
+base_hearing_score = 3
 max_health = 100
 move_speed_ = 3
 ground_acceleration = 1000
@@ -212,6 +213,9 @@ script = ExtResource("10_s1nth")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("11_uqv6x")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("11_ly7h1")
 
 [node name="Pathfinder" type="Node2D" parent="."]
 position = Vector2(0, 7.5)

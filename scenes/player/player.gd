@@ -30,12 +30,8 @@ func _update(_delta) -> void:
 	noise_score = get_noise_score()
 	if velocity.x > 0:
 		set_node_direction(1)
-		$WaterAttackSprite.offset.x = 24
-		$FireAttackSprite.offset.x = 24
 	elif velocity.x < 0:
 		set_node_direction(-1)
-		$WaterAttackSprite.offset.x = -24
-		$FireAttackSprite.offset.x = -24
 	if Input.is_action_just_pressed("switch_magic_state"):
 		switch_magic_state()
 	if magic_state == "water":

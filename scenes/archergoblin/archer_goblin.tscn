@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dnqgjx7at8i46"]
+[gd_scene load_steps=23 format=3 uid="uid://dnqgjx7at8i46"]
 
 [ext_resource type="Texture2D" uid="uid://b5xfkfb6yihie" path="res://sprites/monsters/goblins/archer golbin.png" id="1_86rw1"]
 [ext_resource type="Script" path="res://scenes/archergoblin/archer_goblin.gd" id="1_ho14q"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="7_d8eoy"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="8_iu7yl"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="9_dijgg"]
+[ext_resource type="Script" path="res://scenes/archergoblin/Attack.gd" id="10_7dnaw"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="12_1kngt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df266"]
@@ -47,6 +48,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [18, 19, 20, 21, 22, 23, 24, 25, 26]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"summon_arrow"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_to8l1"]
@@ -132,9 +147,9 @@ size = Vector2(160, 17)
 position = Vector2(0, -7)
 collision_layer = 4
 script = ExtResource("1_ho14q")
-base_vision_score = 2
-base_hearing_score = 2
-max_health = 100
+base_vision_score = 3
+base_hearing_score = 3
+max_health = 75
 move_speed_ = 2
 ground_acceleration = 1000
 jump_height_ = 3
@@ -171,7 +186,7 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_370kv")
-max_roaming_distance = 10.0
+max_roaming_distance = 3.0
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
@@ -187,6 +202,9 @@ script = ExtResource("8_iu7yl")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("9_dijgg")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("10_7dnaw")
 
 [node name="Pathfinder" type="Node2D" parent="."]
 position = Vector2(0, 7)
@@ -209,3 +227,6 @@ offset_left = -7.0
 offset_top = -15.0
 offset_right = 9.0
 offset_bottom = -5.0
+
+[node name="ArrowSpawn" type="Marker2D" parent="."]
+position = Vector2(25, 2)

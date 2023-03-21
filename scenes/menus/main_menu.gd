@@ -19,7 +19,10 @@ func _on_continue_pressed():
 
 
 func _on_new_game_pressed():
-	SceneManager.start_new_game()
+	if SceneManager.completed_levels_data.size() > 0:
+		SceneManager.enter_new_game_warning()
+	else:
+		SceneManager.start_new_game()
 
 
 func _on_level_select_pressed():

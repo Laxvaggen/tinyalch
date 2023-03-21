@@ -34,8 +34,9 @@ offset_left = 521.0
 offset_top = 314.0
 offset_right = 568.0
 offset_bottom = 337.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qnfy5")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "[W] - Jump
 [C] - Crouch"
 
@@ -44,8 +45,9 @@ offset_left = 413.0
 offset_top = 401.0
 offset_right = 473.0
 offset_bottom = 424.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qnfy5")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "[A], [S] - Move"
 
 [node name="Label2" type="Label" parent="."]
@@ -53,8 +55,9 @@ offset_left = 523.0
 offset_top = 403.0
 offset_right = 592.0
 offset_bottom = 426.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qnfy5")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "[S] - Fall through 
 platform"
 
@@ -63,8 +66,9 @@ offset_left = 769.0
 offset_top = 403.0
 offset_right = 848.0
 offset_bottom = 426.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qnfy5")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "Grab onto ledges by
 jumping up to them"
 
@@ -73,7 +77,8 @@ offset_left = 691.0
 offset_top = 370.0
 offset_right = 768.0
 offset_bottom = 393.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("4_qnfy5")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "Reach the crown to
 exit the level"

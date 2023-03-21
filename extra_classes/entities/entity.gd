@@ -172,9 +172,6 @@ func set_node_direction(new_direction: int, force_look_forward: bool = true) -> 
 func flip_children(new_direction: int, target) -> void:
 	if target == null:
 		return
-	var sprite_face_left:= false
-	if new_direction == -1:
-		sprite_face_left = true
 	for child in target.get_children():
 		if child.get("no_flip"):
 			pass
@@ -184,7 +181,7 @@ func flip_children(new_direction: int, target) -> void:
 			if child.get("position"):
 				child.position.x *= -1
 			if child is Sprite2D:
-				child.flip_h = sprite_face_left
+				child.flip_h = !child.flip_h
 				child.offset.x *= -1
 			if child is RayCast2D:
 				child.target_position.x *= -1

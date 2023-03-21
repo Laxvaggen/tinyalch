@@ -26,10 +26,10 @@ func _ready():
 func _get_next_state():
 	var sight_score = entity.get_sight_score_difference()
 	if sight_score > 0:
-		state_machine.transition_to("Hunt")
-		
+		state_machine.transition_to("Hunt", {play_icon=true})
+		entity.emit_signal("spotted_player")
 	elif sight_score > sight_alert_threshold:
-		state_machine.transition_to("Alert")
+		state_machine.transition_to("Alert", {play_icon=true})
 	elif entity.get_noise_score_difference() > 0 and !entity.looking_towards_player():
 		entity.set_node_direction(entity.direction*-1)
 		
@@ -50,13 +50,7 @@ func physics_update(_delta):
 		animation_player.play(idle_animation_name)
 	else:
 		animation_player.play(run_animation_name)
-	if entity.get_sight_score_difference() > 0:
-		state_machine.transition_to("Hunt")
-		entity.emit_signal("spotted_player")
-		return
-	elif entity.get_sight_score_difference() > sight_alert_threshold:
-		state_machine.transition_to("Alert")
-	elif entity.get_noise_score_difference() > 0 and !entity.looking_towards_player():
+	if entity.get_noise_score_difference() > 0 and !entity.looking_towards_player():
 		entity.set_node_direction(entity.direction*-1)
 	entity.apply_gravity(_delta)
 	
