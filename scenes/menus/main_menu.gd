@@ -40,5 +40,7 @@ func _on_controls_pressed():
 func _on_audio_toggled(button_pressed):
 	if button_pressed:
 		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_pressed_icon)
+		MusicPlayer.process_mode = Node.PROCESS_MODE_DISABLED
 	else:
 		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_icon)
+		MusicPlayer.process_mode = Node.PROCESS_MODE_INHERIT

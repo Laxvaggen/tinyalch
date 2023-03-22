@@ -13,6 +13,8 @@ var player: Player
 
 var background := preload("res://scenes/Background.tscn")
 
+var amount_of_enemies_hunting_player: int = 0
+
 func _ready() -> void:
 		
 	await get_tree().process_frame
@@ -29,11 +31,11 @@ func _ready() -> void:
 		if child.process_mode == Node.PROCESS_MODE_DISABLED:
 			child.process_mode = Node.PROCESS_MODE_INHERIT
 
-
 func set_enemy_properties() -> void:
 	for enemy in get_children().filter(func(node): return node.is_in_group("Enemy")):
 		enemy.connect("died", Callable(self,"enemy_died"))
 		enemy.connect("spotted_player", Callable(self, "player_spotted"))
+		enemy.connect("lost_player", Callable(self, "player_lost"))
 		enemy.player = player
 
 func set_lamp_properties() -> void:
@@ -81,3 +83,18 @@ func enemy_died() -> void:
 
 func player_spotted() -> void:
 	stats["times_detected"] += 1
+	amount_of_hunting_enemies_changed(1)
+	
+
+func player_lost() -> void:
+	amount_of_hunting_enemies_changed(-1)
+
+func amount_of_hunting_enemies_changed(value: int) -> void:
+	var previous_value := amount_of_enemies_hunting_player
+	amount_of_enemies_hunting_player += value
+	if previous_value > 0 and amount_of_enemies_hunting_player == 0:
+		MusicPlayer.switch_state(MusicPlayer.INGAME, 0.5)
+	elif previous_value == 0 and amount_of_enemies_hunting_player > 0:
+		MusicPlayer.switch_state(MusicPlayer.INGAME_COMBAT, 0.5)
+	
+	

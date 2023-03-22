@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=25 format=3 uid="uid://b40om3n6sapqq"]
 
 [ext_resource type="Script" path="res://scenes/enemies/troll/troll.gd" id="1_mbopp"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_s0b7f"]

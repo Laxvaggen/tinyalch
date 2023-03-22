@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://brbwuwvl77bat"]
+
+[ext_resource type="Script" path="res://scenes/sfx_player.gd" id="1_rpldd"]
+
+[node name="SFXPlayer" type="AudioStreamPlayer"]
+autoplay = true
+script = ExtResource("1_rpldd")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

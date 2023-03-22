@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3]
+[gd_scene load_steps=27 format=3 uid="uid://1vhx7kaho0c7"]
 
 [ext_resource type="Script" path="res://scenes/enemies/pigassassin/pig_assassin.gd" id="1_anglt"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_gyebr"]

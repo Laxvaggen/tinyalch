@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3]
+[gd_scene load_steps=29 format=3 uid="uid://duimuyw08akp7"]
 
 [ext_resource type="Script" path="res://scenes/enemies/muncher/muncher.gd" id="1_1as81"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_lu8um"]

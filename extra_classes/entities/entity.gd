@@ -27,6 +27,8 @@ var jump_strength: float
 
 var direction := 1
 
+var sfx_player = preload("res://scenes/sfx_player.tscn")
+
 @onready var health = max_health
 @onready var mana = max_mana
 
@@ -205,3 +207,8 @@ func display_information_icon(icon: Sprite2D, fadein_time: float, fadeout_time: 
 	tween = get_tree().create_tween()
 	tween.tween_property(icon, "modulate:a", 0, fadeout_time)
 	icon.queue_free()
+
+func play_sound_effect(sound: AudioStream) -> void:
+	var sound_player = sfx_player.instantiate()
+	sound_player.stream = sound
+	get_node("/root").add_child(sound_player)

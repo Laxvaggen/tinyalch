@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 SceneManager="*res://scenes/autoloads/scene_manager.tscn"
 Globals="*res://scenes/autoloads/globals.gd"
+MusicPlayer="*res://scenes/autoloads/music_player.tscn"
 
 [display]
 

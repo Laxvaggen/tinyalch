@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://deol7n4n6m0xx"
+path="res://.godot/imported/Full of memories.ogg-38680de6dba60b8ea60d9537f00ac62c.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/ingame_standard/Full of memories.ogg"
+dest_files=["res://.godot/imported/Full of memories.ogg-38680de6dba60b8ea60d9537f00ac62c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

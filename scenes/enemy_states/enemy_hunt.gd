@@ -15,6 +15,7 @@ func _get_next_state():
 		if entity.player_in_attack_range():
 			state_machine.transition_to("Attack")
 	else:
+		entity.emit_signal("lost_player")
 		state_machine.transition_to("Alert", {play_icon=true})
 
 # is called as a _process()

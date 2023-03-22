@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=24 format=3 uid="uid://b3ofe62vos3eh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/rollypolly/rolly_polly.gd" id="1_c76ep"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_jeydr"]

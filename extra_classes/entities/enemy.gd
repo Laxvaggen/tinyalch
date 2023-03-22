@@ -18,6 +18,7 @@ var hunt_icon = preload("res://scenes/icons/hunt_icon.tscn")
 var status_bar_container
 
 signal spotted_player
+signal lost_player
 
 func _enemy_init() -> void:
 	spawn_position = global_position

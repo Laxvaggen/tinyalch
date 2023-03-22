@@ -41,6 +41,7 @@ func _ready() -> void:
 		pause_menu.deactivate()
 	import_savedata()
 	current_level_index = completed_levels_data.size() -1
+	MusicPlayer.switch_state(MusicPlayer.MAIN_MENU)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and in_game:
@@ -99,27 +100,32 @@ func start_next_level() -> void:
 		return
 	current_level_index += 1
 	load_scene(levels[current_level_index]["filepath"], true)
+	MusicPlayer.switch_state(MusicPlayer.INGAME)
 
 func start_new_game() -> void:
 	current_level_index = 0
 	completed_levels_data = {}
 	export_savedata()
 	load_scene(levels[0]["filepath"], true)
+	MusicPlayer.switch_state(MusicPlayer.INGAME)
 
 func enter_new_game_warning() -> void:
 	load_scene(new_game_warning_ref)
 
 func start_level(index) -> void:
 	load_scene(levels[index]["filepath"], true)
+	MusicPlayer.switch_state(MusicPlayer.INGAME)
 
 func resume_game() -> void:
 	pause_menu.deactivate()
 
 func enter_main_menu() -> void:
 	load_scene(main_menu_ref)
+	MusicPlayer.switch_state(MusicPlayer.MAIN_MENU)
 
 func restart_level() -> void:
 	load_scene(levels[current_level_index]["filepath"], true)
+	MusicPlayer.switch_state(MusicPlayer.INGAME)
 
 func level_cleared(stats: Dictionary) -> void:
 	var level = levels[current_level_index]
@@ -132,11 +138,13 @@ func level_cleared(stats: Dictionary) -> void:
 	export_savedata()
 	await entered_level_progress_menu
 	get_tree().current_scene.update_data(stats, true)
+	MusicPlayer.switch_state(MusicPlayer.LEVEL_COMPLETE)
 
 func level_failed(stats: Dictionary) -> void:
 	load_scene(level_progress_menu_ref)
 	await entered_level_progress_menu
 	get_tree().current_scene.update_data(stats, false)
+	MusicPlayer.switch_state(MusicPlayer.LEVEL_FAILED)
 
 func enter_controls() -> void:
 	load_scene(controls_menu_ref)

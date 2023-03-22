@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=23 format=3 uid="uid://dhn15u262141x"]
 
 [ext_resource type="Script" path="res://scenes/enemies/archergoblin/archer_goblin.gd" id="1_4tw6c"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_jik4j"]

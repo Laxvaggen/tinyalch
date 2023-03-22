@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=25 format=3 uid="uid://58al2ilxqmpe"]
 
 [ext_resource type="Script" path="res://scenes/enemies/speargoblin/spear_goblin.gd" id="1_a2cbr"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_oqu4l"]

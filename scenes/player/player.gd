@@ -25,6 +25,7 @@ func _enter():
 	$HealSprite.visible = false
 	$CollisionShapeLow.set_deferred("disabled", true)
 
+
 func _update(_delta) -> void:
 	visibility_score = get_visibility_score()
 	noise_score = get_noise_score()

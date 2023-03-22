@@ -1,6 +1,6 @@
-res://scenes/enemy_spawns
-res://scenes/enemies/archergoblin
+res://scenes/autoloads
 res://scenes
+res://scenes/enemies/archergoblin
 res://scenes/menus
 res://sprites/player/magic
 res://scenes/levels
@@ -10,5 +10,4 @@ res://scenes/icons
 res://
 res://sprites/ui
 res://resources
-res://scenes/autoloads
 res://sprites/player

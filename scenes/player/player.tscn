@@ -1283,7 +1283,7 @@ ground_acceleration = 1000
 sneak_speed_ = 1
 air_speed_ = 4
 air_acceleration = 500
-jump_height_ = 3
+jump_height_ = 2
 
 [node name="CollisionShapeHigh" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
