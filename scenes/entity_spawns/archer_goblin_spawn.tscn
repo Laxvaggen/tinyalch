@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyevyl3eom8lq"]
+
+[ext_resource type="Script" path="res://scenes/entity_spawns/enemy_spawn.gd" id="1_r73c8"]
+[ext_resource type="PackedScene" uid="uid://ji8l7k77blrr" path="res://scenes/enemies/archergoblin/archer_goblin.tscn" id="2_5kkjf"]
+[ext_resource type="Texture2D" uid="uid://b5xfkfb6yihie" path="res://sprites/monsters/goblins/archer golbin.png" id="3_gyggt"]
+
+[node name="ArcherGoblinSpawn" type="Marker2D"]
+script = ExtResource("1_r73c8")
+entity_type = ExtResource("2_5kkjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("3_gyggt")
+hframes = 9
+vframes = 5
+region_rect = Rect2(0, 0, 15.936, 16)

@@ -1,9 +1,16 @@
-[gd_resource type="TileSet" load_steps=183 format=3 uid="uid://c3oqd65arsl42"]
+[gd_resource type="TileSet" load_steps=191 format=3 uid="uid://c3oqd65arsl42"]
 
 [ext_resource type="Texture2D" uid="uid://f6jf78xbx2r0" path="res://sprites/tiles/Tileset1.png" id="1_n8ks0"]
 [ext_resource type="Texture2D" uid="uid://28mmkaarspk6" path="res://sprites/tiles/grass tileset.png" id="2_and2o"]
 [ext_resource type="PackedScene" uid="uid://2ybbj047wa8k" path="res://scenes/level_exit.tscn" id="3_qj8fl"]
 [ext_resource type="PackedScene" uid="uid://q8lias37j7g3" path="res://scenes/lamp_light.tscn" id="4_tuacp"]
+[ext_resource type="PackedScene" uid="uid://ejab5yc26q6x" path="res://scenes/entity_spawns/player_spawn.tscn" id="5_1yo0p"]
+[ext_resource type="PackedScene" uid="uid://dyevyl3eom8lq" path="res://scenes/entity_spawns/archer_goblin_spawn.tscn" id="6_geloi"]
+[ext_resource type="PackedScene" uid="uid://dppegpruuvo7x" path="res://scenes/entity_spawns/spear_goblin_spawn.tscn" id="7_54fty"]
+[ext_resource type="PackedScene" uid="uid://dgu200ptftiqg" path="res://scenes/entity_spawns/pig_assassin_spawn.tscn" id="8_wnw7l"]
+[ext_resource type="PackedScene" uid="uid://bqpinlukk4vew" path="res://scenes/entity_spawns/rolley_spawn.tscn" id="9_iu8q3"]
+[ext_resource type="PackedScene" uid="uid://4frnkk1owp8f" path="res://scenes/entity_spawns/muncher_spawn.tscn" id="10_wi55t"]
+[ext_resource type="PackedScene" uid="uid://x08iruqnpd7l" path="res://scenes/entity_spawns/troll_spawn.tscn" id="11_gpfrw"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_topmq"]
 tile_data = PackedInt32Array(0, 65536, 9, 65536, 65536, 10, 1, 131072, 9, 65537, 131072, 10)
@@ -1691,8 +1698,19 @@ texture = ExtResource("2_and2o")
 12:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_v1sen"]
+resource_name = "WorldItems"
 scenes/0/scene = ExtResource("3_qj8fl")
 scenes/1/scene = ExtResource("4_tuacp")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4js34"]
+resource_name = "Entity Spawns"
+scenes/1/scene = ExtResource("5_1yo0p")
+scenes/2/scene = ExtResource("6_geloi")
+scenes/3/scene = ExtResource("7_54fty")
+scenes/4/scene = ExtResource("8_wnw7l")
+scenes/5/scene = ExtResource("9_iu8q3")
+scenes/6/scene = ExtResource("10_wi55t")
+scenes/7/scene = ExtResource("11_gpfrw")
 
 [resource]
 occlusion_layer_0/light_mask = 1
@@ -1707,6 +1725,7 @@ custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_uues0")
 sources/1 = SubResource("TileSetAtlasSource_jyrym")
 sources/2 = SubResource("TileSetScenesCollectionSource_v1sen")
+sources/3 = SubResource("TileSetScenesCollectionSource_4js34")
 pattern_0 = SubResource("TileMapPattern_topmq")
 pattern_1 = SubResource("TileMapPattern_2qfxd")
 pattern_2 = SubResource("TileMapPattern_ywdth")

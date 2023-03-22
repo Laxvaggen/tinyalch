@@ -7,7 +7,7 @@
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_25nsm"]
 polygon = PackedVector2Array(13, -16, 0, -36, -13, -16, -36, -32, 0, -37, 36, -32)
 
-[node name="LampLight" type="PointLight2D"]
+[node name="LampLight" type="PointLight2D" groups=["Lamp"]]
 scale = Vector2(0.1, 0.1)
 shadow_enabled = true
 texture = ExtResource("1_xjfor")

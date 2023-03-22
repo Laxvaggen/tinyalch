@@ -8,47 +8,48 @@ var stats ={"kills":0,
 			"times_detected": 0
 					}
 
-var processing_pathfinders: Array
-
 var lamp_nodes: Array
-
 var player: Player
-
 var tilemap: TileMap
 
+
+
 func _ready() -> void:
+	
 	if has_node("TileMap"):
 		tilemap = $TileMap
 
 	else:
 		push_error("noTilemapInLevel")
+		
+	await get_tree().process_frame
 	if has_node("Player"):
 		player = $Player
 		player.connect("died", Callable(self, "level_failed"))
 	else:
 		push_error("noPlayerInLevel")
 	player.connect("damage_taken", Callable(self,"player_damage_taken"))
-	for enemy in get_children().filter(func(node): return node is Enemy):
+	set_enemy_properties()
+	set_lamp_properties()
+	for child in get_children():
+		if child.process_mode == Node.PROCESS_MODE_DISABLED:
+			child.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func set_enemy_properties() -> void:
+	for enemy in get_children().filter(func(node): return node.is_in_group("Enemy")):
 		enemy.connect("died", Callable(self,"enemy_died"))
 		enemy.connect("spotted_player", Callable(self, "player_spotted"))
 		enemy.player = player
-	for pathfinder_node in get_pathfinders():
-		pathfinder_node.started_processing.connect(Callable(self, "pathfinder_started_processing"))
-		pathfinder_node.finished_processing.connect(Callable(self, "pathfinder_finished_processing"))
-	
-	for lamp_node in get_children().filter(func(node): return node is Lamp):
+
+func set_lamp_properties() -> void:
+	for lamp_node in tilemap.get_children().filter(func(node): return node.is_in_group("Lamp")):
 		lamp_node.player = player
-		if lamp_node.has_node("RayCast2D"):
-			lamp_node.get_node("RayCast2D")
-			
 		lamp_nodes.append(lamp_node)
-	
 
 func _process(delta: float) -> void:
 	stats["time"] += delta
 	_send_lightlevel_to_player()
-	if processing_pathfinders.size() == 0:
-		erase_unpathables(tilemap)
 
 func _send_lightlevel_to_player() -> void:
 	if player == null: 
@@ -59,21 +60,8 @@ func _send_lightlevel_to_player() -> void:
 			return
 	player.receive_light_level(false)
 
-func get_pathfinders() -> Array:
-	var pathfinders: Array = []
-	for enemy in get_children().filter( func(node): return node is Enemy):
-		if has_node("PathFinder"):
-			pathfinders.append(enemy.get_node("PathFinder"))
-	return pathfinders
-
-func pathfinder_started_processing(node):
-	processing_pathfinders.append(node)
-
-func pathfinder_finished_processing(node):
-	processing_pathfinders.erase(node)
-
 func erase_unpathables(tilemap_to_erase:TileMap) -> void:
-	var unpathable_cells = tilemap_to_erase.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) != 2)
+	var unpathable_cells = tilemap_to_erase.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) == 0)
 	unpathable_cells = unpathable_cells.filter(func(cell): 
 		return tilemap_to_erase.get_cell_tile_data(0, cell).get_custom_data("unpathable"))
 	for cell in unpathable_cells:

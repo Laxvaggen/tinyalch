@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ejab5yc26q6x"]
+
+[ext_resource type="Script" path="res://scenes/entity_spawns/enemy_spawn.gd" id="1_ev1ko"]
+[ext_resource type="PackedScene" uid="uid://ce7pu08y2mqty" path="res://scenes/player/player.tscn" id="2_m8j2d"]
+[ext_resource type="Texture2D" uid="uid://d2jiyo7ukdxgg" path="res://sprites/player/Tiny Alchemist Sprite Sheet 48x32.png" id="3_ehmww"]
+
+[node name="PlayerSpawn" type="Marker2D"]
+script = ExtResource("1_ev1ko")
+entity_type = ExtResource("2_m8j2d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -10)
+texture = ExtResource("3_ehmww")
+hframes = 9
+vframes = 17
+region_rect = Rect2(0, 0, 15.936, 16)

@@ -1,8 +1,20 @@
 TODO
 
--can dash into small holes, and half holes
+-as long as enemy spawn tiles exist, unpathable cells also exist
+-when there are no more enemy spawn tile, unpathable tiles can be removed
+-REMEMBER TO ADD ERASE UNPATHABLES CALL TO LEVEL.GD
+-enemies dont seem to care about unpathables anyway...
 
--pathfinding gets stuck in corners:
+
+-sound
+-visual feedback:
+	-grayscale when low health (shader)
+	-screenshake
+-physics objects like crates
+
+-can dash into small holes
+
+-pathfinding may get stuck in corners:
 	-this is because it selects the nearest node to player, and then walks towards it until player gets further away,
 	at which point it stops.
 	-but then, if it is already at the nearest node, it wont pathfind
@@ -11,8 +23,4 @@ TODO
 	
 	-this may be fixed right now, with "append(go_to)" in set_target of pathfinding_entity
 
--sound
--visual feedback:
-	-grayscale when low health (shader)
-	-screenshake
--physics objects like crates
+

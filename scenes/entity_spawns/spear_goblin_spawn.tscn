@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dppegpruuvo7x"]
+
+[ext_resource type="Script" path="res://scenes/entity_spawns/enemy_spawn.gd" id="1_o28ci"]
+[ext_resource type="PackedScene" uid="uid://des58orpf8fae" path="res://scenes/enemies/speargoblin/spear_goblin.tscn" id="2_k08iw"]
+[ext_resource type="Texture2D" uid="uid://d2k08x6r8pws" path="res://sprites/monsters/goblins/spearGolbin.png" id="3_0u53n"]
+
+[node name="SpearGoblinSpawn" type="Marker2D"]
+script = ExtResource("1_o28ci")
+entity_type = ExtResource("2_k08iw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, -4)
+texture = ExtResource("3_0u53n")
+hframes = 9
+vframes = 5
+region_rect = Rect2(0, 0, 15.936, 16)

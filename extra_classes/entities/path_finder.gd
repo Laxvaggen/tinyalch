@@ -59,6 +59,12 @@ func _ready() -> void:
 	connect_points()
 	emit_signal("finished_processing", self)
 
+func get_relevant_cells():
+	var cells = tilemap.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) in [0, 1])
+	cells = cells.filter(func(cell): 
+		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("decoration"))
+	return cells
+
 func connect_points():
 	var points = graph.get_point_ids()
 	for point in points:
@@ -113,9 +119,7 @@ func connect_points():
 	
 func create_map() -> void:
 	var space_state = get_world_2d().direct_space_state
-	var cells = tilemap.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) != 2)
-	cells = cells.filter(func(cell): 
-		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("decoration"))
+	var cells = get_relevant_cells()
 	for cell in cells:
 		var type = cell_type(cell)
 		if type and type != Vector2i.ZERO:
@@ -147,9 +151,7 @@ func cell_type(pos: Vector2i, global = false, is_above = false):
 		pos = tilemap.local_to_map(pos)
 	if is_above:
 		pos = Vector2(pos.x, pos.y + 1)
-	var cells = tilemap.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) != 2)
-	cells = cells.filter(func(cell): 
-		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("decoration"))
+	var cells = get_relevant_cells()
 	if Vector2i(pos.x, pos.y - 1) in cells:
 		return null
 	

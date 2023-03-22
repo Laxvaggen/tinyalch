@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://4frnkk1owp8f"]
+
+[ext_resource type="Script" path="res://scenes/entity_spawns/enemy_spawn.gd" id="1_qm1ao"]
+[ext_resource type="PackedScene" uid="uid://dlyao1e36g06k" path="res://scenes/enemies/muncher/muncher.tscn" id="2_nk2ol"]
+[ext_resource type="Texture2D" uid="uid://dd3mv16shxqkr" path="res://sprites/monsters/muncher/muncher_no_outline.png" id="3_j7dlx"]
+
+[node name="MuncherSpawn" type="Marker2D"]
+script = ExtResource("1_qm1ao")
+entity_type = ExtResource("2_nk2ol")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -31)
+texture = ExtResource("3_j7dlx")
+flip_h = true
+hframes = 6
+vframes = 9
+region_rect = Rect2(0, 0, 15.936, 16)

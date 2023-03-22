@@ -1,3 +1,5 @@
+Sprite2D
+Marker2D
 Label
 VBoxContainer
 Button
@@ -18,7 +20,6 @@ Control
 TileMap
 AnimationPlayer
 Area2D
-Sprite2D
 ColorRect
 ShaderGlobalsOverride
 CanvasModulate
@@ -29,4 +30,3 @@ RayCast2D
 EnemyHuntState
 EnemyAlertState
 EnemyIdleState
-StateMachine

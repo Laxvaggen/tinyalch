@@ -1455,6 +1455,10 @@ texture_under = ExtResource("20_g15ge")
 texture_progress = ExtResource("21_taurr")
 texture_progress_offset = Vector2(1, 0)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(6, 6)
+position_smoothing_enabled = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="animation_finished" from="HealSprite" to="." method="_on_heal_sprite_animation_finished"]
 [connection signal="animation_finished" from="WaterSplashSprite" to="WaterSplashSprite" method="_on_animation_finished"]
