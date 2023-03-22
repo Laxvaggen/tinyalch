@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="1_388mv"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="1_388mv"]
 [ext_resource type="Script" path="res://scenes/enemies/archergoblin/archer_projectile.gd" id="1_jhyf6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tt7ne"]

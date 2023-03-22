@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://7xv4pt3un3x4"]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://scenes/player/magma_shot.gd" id="1_nphfk"]
 [ext_resource type="Texture2D" uid="uid://wggpbs0ppe3v" path="res://sprites/player/magic/Explosion 2 SpriteSheet.png" id="2_v82xc"]
-[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_pgt6u"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="3_pgt6u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ybyh"]
 atlas = ExtResource("2_v82xc")

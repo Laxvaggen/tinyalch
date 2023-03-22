@@ -1,7 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://ji8l7k77blrr"]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://scenes/enemies/archergoblin/archer_goblin.gd" id="1_4tw6c"]
-[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_jik4j"]
+[ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_jik4j"]
 [ext_resource type="Texture2D" uid="uid://b5xfkfb6yihie" path="res://sprites/monsters/goblins/archer golbin.png" id="3_2couv"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="4_4xgf0"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="5_nlbex"]

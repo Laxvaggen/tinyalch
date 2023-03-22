@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dlyao1e36g06k"]
+[gd_scene load_steps=29 format=3]
 
 [ext_resource type="Script" path="res://scenes/enemies/muncher/muncher.gd" id="1_1as81"]
-[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="2_lu8um"]
-[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="3_xksa2"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_lu8um"]
+[ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="3_xksa2"]
 [ext_resource type="Texture2D" uid="uid://dd3mv16shxqkr" path="res://sprites/monsters/muncher/muncher_no_outline.png" id="4_4nhpn"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_vvs7w"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_fi2go"]

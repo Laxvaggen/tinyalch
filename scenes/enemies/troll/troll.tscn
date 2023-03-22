@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbh6wbshymeud"]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://scenes/enemies/troll/troll.gd" id="1_mbopp"]
-[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_s0b7f"]
-[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_c0rat"]
+[ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_s0b7f"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="3_c0rat"]
 [ext_resource type="Texture2D" uid="uid://c027wpe70e73u" path="res://sprites/monsters/troll/troll.png" id="4_5wa14"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_7ejpt"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_g1ej3"]

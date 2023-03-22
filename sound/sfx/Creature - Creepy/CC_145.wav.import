@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hb7sc71mdq47"
+path="res://.godot/imported/CC_145.wav-b82bccc4099cf68ccecb0f1e9ea5fb62.sample"
+
+[deps]
+
+source_file="res://sound/sfx/Creature - Creepy/CC_145.wav"
+dest_files=["res://.godot/imported/CC_145.wav-b82bccc4099cf68ccecb0f1e9ea5fb62.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

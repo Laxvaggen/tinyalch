@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://des58orpf8fae"]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://scenes/enemies/speargoblin/spear_goblin.gd" id="1_a2cbr"]
-[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="2_oqu4l"]
-[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="3_2kl7c"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_oqu4l"]
+[ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="3_2kl7c"]
 [ext_resource type="Texture2D" uid="uid://d2k08x6r8pws" path="res://sprites/monsters/goblins/spearGolbin.png" id="4_xnn70"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_02e5h"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_85y0u"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://dw21k0hjp0xdd"]
+[gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://scenes/enemies/pigassassin/pig_assassin.gd" id="1_anglt"]
-[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_gyebr"]
-[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_nni8y"]
+[ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_gyebr"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="3_nni8y"]
 [ext_resource type="Texture2D" uid="uid://qjreoge1lroe" path="res://sprites/monsters/pig assassin/Sprite Sheet.png" id="4_8pxo5"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_2g6b4"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_pl5tl"]

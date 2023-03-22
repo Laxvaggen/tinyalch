@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://in6di48wfm77"]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://scenes/enemies/rollypolly/rolly_polly.gd" id="1_c76ep"]
-[ext_resource type="Script" path="res://extra_classes/entities/hurtbox.gd" id="2_jeydr"]
-[ext_resource type="Script" path="res://extra_classes/entities/hitbox.gd" id="3_l7c22"]
+[ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_jeydr"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="3_l7c22"]
 [ext_resource type="Texture2D" uid="uid://uh6pmfsnym1c" path="res://sprites/monsters/rolly polly/Roller.png" id="4_gcsf6"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_q2lhk"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_xrnby"]

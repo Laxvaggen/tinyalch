@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://djnxg8n1wg8ey"
+path="res://.godot/imported/jungle_09.wav-de20a397cfd537fc4414e23b0a2813ef.sample"
+
+[deps]
+
+source_file="res://sound/sfx/jungle ambiance/jungle_09.wav"
+dest_files=["res://.godot/imported/jungle_09.wav-de20a397cfd537fc4414e23b0a2813ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

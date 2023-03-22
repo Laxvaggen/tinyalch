@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=3 uid="uid://cegwrq1niq671"]
+
+[ext_resource type="Script" path="res://extra_classes/trap.gd" id="1_7335x"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_wmf32"]
+[ext_resource type="Texture2D" uid="uid://dmysl7i510u4" path="res://sprites/tiles/traps/Bear trap 32x19.png" id="3_rn4rj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7igng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nwe8"]
+size = Vector2(6, 16)
+
+[sub_resource type="Animation" id="Animation_qu7s0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_0tlry"]
+resource_name = "activate"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 10, 11, 12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_svnld"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xshxo"]
+_data = {
+"RESET": SubResource("Animation_qu7s0"),
+"activate": SubResource("Animation_0tlry"),
+"idle": SubResource("Animation_svnld")
+}
+
+[node name="BearTrap" type="Area2D"]
+position = Vector2(0, -2)
+script = ExtResource("1_7335x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7igng")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_wmf32")
+damage = 25
+knockback = 0
+disabled_on_start = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_0nwe8")
+
+[node name="ActivationTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ResetTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_rn4rj")
+hframes = 5
+vframes = 4
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xshxo")
+}

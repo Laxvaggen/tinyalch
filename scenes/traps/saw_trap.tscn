@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://cye3jppp6cgwv"]
+
+[ext_resource type="Script" path="res://extra_classes/trap.gd" id="1_3yuyp"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="1_kc6v1"]
+[ext_resource type="Texture2D" uid="uid://ccjlymhdag6mp" path="res://sprites/tiles/traps/Circular Saw 16x16.png" id="2_52rve"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n32ha"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_l6ims"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_w4fyo"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cjksb"]
+_data = {
+"RESET": SubResource("Animation_l6ims"),
+"idle": SubResource("Animation_w4fyo")
+}
+
+[node name="SawTrap" type="Area2D"]
+position = Vector2(0, 8)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_3yuyp")
+always_active = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("1_kc6v1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_n32ha")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("2_52rve")
+hframes = 8
+vframes = 3
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cjksb")
+}

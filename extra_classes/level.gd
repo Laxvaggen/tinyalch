@@ -11,11 +11,12 @@ var stats ={"kills":0,
 var lamp_nodes: Array
 var player: Player
 
-
+var background := preload("res://scenes/Background.tscn")
 
 func _ready() -> void:
 		
 	await get_tree().process_frame
+	add_child(background.instantiate())
 	if has_node("Player"):
 		player = $Player
 		player.connect("died", Callable(self, "level_failed"))

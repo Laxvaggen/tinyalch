@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=191 format=3 uid="uid://c3oqd65arsl42"]
+[gd_resource type="TileSet" load_steps=197 format=3 uid="uid://c3oqd65arsl42"]
 
 [ext_resource type="Texture2D" uid="uid://f6jf78xbx2r0" path="res://sprites/tiles/Tileset1.png" id="1_n8ks0"]
 [ext_resource type="Texture2D" uid="uid://28mmkaarspk6" path="res://sprites/tiles/grass tileset.png" id="2_and2o"]
@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bqpinlukk4vew" path="res://scenes/entity_spawns/rolley_spawn.tscn" id="9_iu8q3"]
 [ext_resource type="PackedScene" uid="uid://4frnkk1owp8f" path="res://scenes/entity_spawns/muncher_spawn.tscn" id="10_wi55t"]
 [ext_resource type="PackedScene" uid="uid://x08iruqnpd7l" path="res://scenes/entity_spawns/troll_spawn.tscn" id="11_gpfrw"]
+[ext_resource type="PackedScene" uid="uid://dsfwfixdfbk0a" path="res://scenes/traps/spike_trap.tscn" id="12_eakh4"]
+[ext_resource type="PackedScene" uid="uid://cwwxyp5jt4qfs" path="res://scenes/traps/spike_ejector_small.tscn" id="13_mayf5"]
+[ext_resource type="PackedScene" uid="uid://5rjd0ux6n634" path="res://scenes/traps/spike_ejector.tscn" id="14_hbuhm"]
+[ext_resource type="PackedScene" uid="uid://cye3jppp6cgwv" path="res://scenes/traps/saw_trap.tscn" id="15_bulj4"]
+[ext_resource type="PackedScene" uid="uid://cegwrq1niq671" path="res://scenes/traps/bear_trap.tscn" id="16_p7fxj"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_topmq"]
 tile_data = PackedInt32Array(0, 65536, 9, 65536, 65536, 10, 1, 131072, 9, 65537, 131072, 10)
@@ -1712,6 +1717,14 @@ scenes/5/scene = ExtResource("9_iu8q3")
 scenes/6/scene = ExtResource("10_wi55t")
 scenes/7/scene = ExtResource("11_gpfrw")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_t4unc"]
+resource_name = "Traps"
+scenes/2/scene = ExtResource("12_eakh4")
+scenes/3/scene = ExtResource("13_mayf5")
+scenes/4/scene = ExtResource("14_hbuhm")
+scenes/5/scene = ExtResource("15_bulj4")
+scenes/6/scene = ExtResource("16_p7fxj")
+
 [resource]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
@@ -1726,6 +1739,7 @@ sources/0 = SubResource("TileSetAtlasSource_uues0")
 sources/1 = SubResource("TileSetAtlasSource_jyrym")
 sources/2 = SubResource("TileSetScenesCollectionSource_v1sen")
 sources/3 = SubResource("TileSetScenesCollectionSource_4js34")
+sources/4 = SubResource("TileSetScenesCollectionSource_t4unc")
 pattern_0 = SubResource("TileMapPattern_topmq")
 pattern_1 = SubResource("TileMapPattern_2qfxd")
 pattern_2 = SubResource("TileMapPattern_ywdth")

@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsfwfixdfbk0a"]
+
+[ext_resource type="Script" path="res://extra_classes/trap.gd" id="1_1htuu"]
+[ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_x2tel"]
+[ext_resource type="Texture2D" uid="uid://oee3bbwoqst1" path="res://sprites/tiles/traps/Spikes 48x16.png" id="3_3lga2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ty6"]
+size = Vector2(45, 12)
+
+[sub_resource type="Animation" id="Animation_c3ow1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_evpm2"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u607f"]
+_data = {
+"RESET": SubResource("Animation_c3ow1"),
+"idle": SubResource("Animation_evpm2")
+}
+
+[node name="SpikeTrap" type="Area2D"]
+script = ExtResource("1_1htuu")
+always_active = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_x2tel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_n6ty6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_3lga2")
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u607f")
+}

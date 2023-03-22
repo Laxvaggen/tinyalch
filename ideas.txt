@@ -1,24 +1,20 @@
 TODO
 
-load background automatically
-make lamps swing
-make traps & add to tilemap
+-sound
+-visual feedback:
+	-grayscale when low health (shader)
+	-screenshake
+-physics objects, just for decoration
+	-crates
+	-barrels
 
+-can dash into small holes
 
 
 -as long as enemy spawn tiles exist, unpathable cells also exist
 -when there are no more enemy spawn tile, unpathable tiles can be removed
 -REMEMBER TO ADD ERASE UNPATHABLES CALL TO LEVEL.GD
 -enemies dont seem to care about unpathables anyway...
-
-
--sound
--visual feedback:
-	-grayscale when low health (shader)
-	-screenshake
--physics objects like crates
-
--can dash into small holes
 
 -pathfinding may get stuck in corners:
 	-this is because it selects the nearest node to player, and then walks towards it until player gets further away,
@@ -28,5 +24,3 @@ make traps & add to tilemap
 	-or just append the position at the end of the path
 	
 	-this may be fixed right now, with "append(go_to)" in set_target of pathfinding_entity
-
-
