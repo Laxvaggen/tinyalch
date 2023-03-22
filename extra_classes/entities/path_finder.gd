@@ -51,7 +51,7 @@ func _ready() -> void:
 	jump_distance = get_jump_distance() - 0.5
 	
 	graph = AStar2D.new()
-	tilemap = find_parent("World").find_child("TileMap")
+	tilemap = find_parent("World")
 
 	assert(tilemap != null)
 	await get_tree().process_frame

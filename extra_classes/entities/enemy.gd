@@ -84,8 +84,3 @@ func player_in_attack_range() -> bool:
 		return true
 	return false
 
-func summon_ranged_attack(projectile_scene: PackedScene, speed) -> void:
-	var projectile_instance := projectile_scene.instantiate()
-	assert(projectile_instance is RigidBody2D)
-	projectile_instance.velocity = Vector2(direction, 0)*speed
-	get_node("/root/World").add_child(projectile_instance)

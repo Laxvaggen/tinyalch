@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://q8lias37j7g3"]
+[gd_scene load_steps=7 format=3 uid="uid://q8lias37j7g3"]
 
 [ext_resource type="Texture2D" uid="uid://dvbpmwkirp4wx" path="res://sprites/light sprite.png" id="1_xjfor"]
 [ext_resource type="Script" path="res://scenes/lamp_light.gd" id="2_46him"]
@@ -6,6 +6,25 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_25nsm"]
 polygon = PackedVector2Array(13, -16, 0, -36, -13, -16, -36, -32, 0, -37, 36, -32)
+
+[sub_resource type="Animation" id="Animation_e6rhy"]
+resource_name = "swing"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bo8mw"]
+_data = {
+"swing": SubResource("Animation_e6rhy")
+}
 
 [node name="LampLight" type="PointLight2D" groups=["Lamp"]]
 scale = Vector2(0.1, 0.1)
@@ -34,3 +53,8 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(13, 11, 36, -5, 0, -10, -36, -5, -13, 11, 0, -9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bo8mw")
+}

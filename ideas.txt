@@ -1,5 +1,11 @@
 TODO
 
+load background automatically
+make lamps swing
+make traps & add to tilemap
+
+
+
 -as long as enemy spawn tiles exist, unpathable cells also exist
 -when there are no more enemy spawn tile, unpathable tiles can be removed
 -REMEMBER TO ADD ERASE UNPATHABLES CALL TO LEVEL.GD

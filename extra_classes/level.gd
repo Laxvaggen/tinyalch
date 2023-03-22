@@ -1,5 +1,5 @@
 class_name Level
-extends Node2D
+extends TileMap
 
 var stats ={"kills":0, 
 			"stealth_kills": 0,
@@ -10,17 +10,10 @@ var stats ={"kills":0,
 
 var lamp_nodes: Array
 var player: Player
-var tilemap: TileMap
 
 
 
 func _ready() -> void:
-	
-	if has_node("TileMap"):
-		tilemap = $TileMap
-
-	else:
-		push_error("noTilemapInLevel")
 		
 	await get_tree().process_frame
 	if has_node("Player"):
@@ -43,7 +36,7 @@ func set_enemy_properties() -> void:
 		enemy.player = player
 
 func set_lamp_properties() -> void:
-	for lamp_node in tilemap.get_children().filter(func(node): return node.is_in_group("Lamp")):
+	for lamp_node in get_children().filter(func(node): return node.is_in_group("Lamp")):
 		lamp_node.player = player
 		lamp_nodes.append(lamp_node)
 
@@ -60,12 +53,12 @@ func _send_lightlevel_to_player() -> void:
 			return
 	player.receive_light_level(false)
 
-func erase_unpathables(tilemap_to_erase:TileMap) -> void:
-	var unpathable_cells = tilemap_to_erase.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) == 0)
+func erase_unpathables() -> void:
+	var unpathable_cells = get_used_cells(0).filter(func(cell): return get_cell_source_id(0, cell) == 0)
 	unpathable_cells = unpathable_cells.filter(func(cell): 
-		return tilemap_to_erase.get_cell_tile_data(0, cell).get_custom_data("unpathable"))
+		return get_cell_tile_data(0, cell).get_custom_data("unpathable"))
 	for cell in unpathable_cells:
-		tilemap_to_erase.erase_cell(0, cell)
+		erase_cell(0, cell)
 	
 	
 	
