@@ -1,5 +1,7 @@
 extends PlayerState
 
+
+var dash_sound_effect = load("res://sound/Retro Charge 07.wav")
 # function to transition between states
 func _get_next_state():
 	pass
@@ -48,6 +50,7 @@ func enter(_msg = {}):
 	await animation_player.animation_finished
 	await get_tree().process_frame
 	player.global_position = _get_end_pos()
+	player.play_sound_effect(dash_sound_effect)
 	animation_player.play("dash")
 	await get_tree().create_timer(0.2).timeout
 	player.unlock_state_switching()

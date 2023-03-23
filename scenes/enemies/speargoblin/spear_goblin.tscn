@@ -1,16 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://58al2ilxqmpe"]
+[gd_scene load_steps=28 format=3 uid="uid://58al2ilxqmpe"]
 
 [ext_resource type="Script" path="res://scenes/enemies/speargoblin/spear_goblin.gd" id="1_a2cbr"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_oqu4l"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="3_2kl7c"]
 [ext_resource type="Texture2D" uid="uid://d2k08x6r8pws" path="res://sprites/monsters/goblins/spearGolbin.png" id="4_xnn70"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_02e5h"]
+[ext_resource type="AudioStream" uid="uid://dlmdgh7jf5ouh" path="res://sound/Retro Swooosh 07.wav" id="5_xqnug"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_85y0u"]
+[ext_resource type="AudioStream" uid="uid://dexnxxeg352wc" path="res://sound/Retro FootStep Grass 01.wav" id="6_643xt"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_1eowy"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_nawux"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="9_23le7"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_dal87"]
 [ext_resource type="Script" path="res://scenes/enemies/speargoblin/Attack.gd" id="11_u1h6v"]
+[ext_resource type="AudioStream" uid="uid://bl8qw5dhr6kht" path="res://sound/Retro Impact Punch Hurt 01.wav" id="12_u8bjq"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_ysrtn"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_708l2"]
 
@@ -64,6 +67,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("5_xqnug"), -5],
+"method": &"play_sound_effect"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_w6tmg"]
@@ -130,6 +147,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("6_643xt"), -5],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("6_643xt"), -5],
+"method": &"play_sound_effect"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mucus"]
@@ -209,6 +243,7 @@ script = ExtResource("8_nawux")
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("9_23le7")
+hit_sound = ExtResource("12_u8bjq")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("10_dal87")

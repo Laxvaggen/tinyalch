@@ -1,9 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://duimuyw08akp7"]
+[gd_scene load_steps=31 format=3 uid="uid://duimuyw08akp7"]
 
 [ext_resource type="Script" path="res://scenes/enemies/muncher/muncher.gd" id="1_1as81"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_lu8um"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="3_xksa2"]
 [ext_resource type="Texture2D" uid="uid://dd3mv16shxqkr" path="res://sprites/monsters/muncher/muncher_no_outline.png" id="4_4nhpn"]
+[ext_resource type="AudioStream" uid="uid://xa0p7v52ea06" path="res://sound/543386__thedragonsspark__nom-noise.wav" id="5_o6bym"]
+[ext_resource type="AudioStream" uid="uid://du5sopiabf32b" path="res://sound/feet_46.wav" id="5_or0hb"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_vvs7w"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_fi2go"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_g3hyk"]
@@ -65,6 +67,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("5_o6bym"), -5],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ejb0t"]
 resource_name = "attack_2"
@@ -92,6 +108,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("5_o6bym"), -5],
+"method": &"play_sound_effect"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8jqj8"]
@@ -203,6 +233,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [24, 25, 26, 27, 28, 29]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.59),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("5_or0hb"), -5],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("5_or0hb"), -5],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rt7ck"]
 resource_name = "walk"
@@ -264,7 +311,6 @@ disabled_on_start = true
 position = Vector2(38, -14)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_38wsj")
-disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, 6)

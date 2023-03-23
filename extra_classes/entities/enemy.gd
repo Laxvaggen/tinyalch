@@ -15,7 +15,12 @@ var last_known_player_location: Vector2
 var alert_icon = preload("res://scenes/icons/alert_icon.tscn")
 var hunt_icon = preload("res://scenes/icons/hunt_icon.tscn")
 
+var alert_noise = load("res://sound/Retro Blop 07.wav")
+var hunt_noise = load("res://sound/Retro Blip 15.wav")
+
 var status_bar_container
+
+var vision_score_above_minimum_time: float = 0.1
 
 signal spotted_player
 signal lost_player
@@ -38,6 +43,12 @@ func _set_bars() -> void:
 		status_bar_container.get_node("AlertBar").value = 100 - 100 * get_sight_score_difference()/-0.5
 
 
+func _physics_update(delta) -> void:
+	if get_sight_score_difference() > -0.5:
+		vision_score_above_minimum_time += delta * 0.1
+	else:
+		vision_score_above_minimum_time = 0.1
+
 func vision_obstruction_multiplier() -> int:
 	if player == null:
 		return 0
@@ -59,7 +70,7 @@ func get_distance_to_player() -> float:
 
 func get_sight_score_difference() -> float:
 	assert(player.get("visibility_score") != null)
-	var actual_vision_score: float = base_vision_score * state_machine.state.state_vision_multiplier * vision_obstruction_multiplier() / (get_distance_to_player()/Globals.tile_size)
+	var actual_vision_score: float = base_vision_score * state_machine.state.state_vision_multiplier * vision_obstruction_multiplier() / (get_distance_to_player()/Globals.tile_size) * sqrt(vision_score_above_minimum_time)
 	var score: float = actual_vision_score - 1/player.visibility_score
 	if score < -0.5:
 		return -0.5

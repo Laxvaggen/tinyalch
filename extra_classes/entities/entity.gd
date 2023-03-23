@@ -121,6 +121,11 @@ func gain_health(amount: int) -> void:
 	health += amount
 	if health > max_health:
 		health = max_health
+	elif health <= 0:
+		if state_machine.has_node("Die"):
+			state_machine.transition_to("Die")
+		else:
+			queue_free()
 
 func gain_mana(amount: int) -> void:
 	mana += amount
@@ -192,6 +197,7 @@ func flip_children(new_direction: int, target) -> void:
 
 func jump() -> void:
 	velocity.y = -jump_strength
+	global_position.y -= 1
 
 func display_information_icon(icon: Sprite2D, fadein_time: float, fadeout_time: float, live_time: float) -> void:
 	for child in get_children().filter(func(node): return node.is_in_group("Icon")):
@@ -208,7 +214,8 @@ func display_information_icon(icon: Sprite2D, fadein_time: float, fadeout_time: 
 	tween.tween_property(icon, "modulate:a", 0, fadeout_time)
 	icon.queue_free()
 
-func play_sound_effect(sound: AudioStream) -> void:
+func play_sound_effect(sound: AudioStream, volume_db := -5) -> void:
 	var sound_player = sfx_player.instantiate()
 	sound_player.stream = sound
+	sound_player.volume_db = volume_db
 	add_child(sound_player)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://1vhx7kaho0c7"]
+[gd_scene load_steps=30 format=3 uid="uid://1vhx7kaho0c7"]
 
 [ext_resource type="Script" path="res://scenes/enemies/pigassassin/pig_assassin.gd" id="1_anglt"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_gyebr"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="3_nni8y"]
 [ext_resource type="Texture2D" uid="uid://qjreoge1lroe" path="res://sprites/monsters/pig assassin/Sprite Sheet.png" id="4_8pxo5"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_2g6b4"]
+[ext_resource type="AudioStream" uid="uid://dexnxxeg352wc" path="res://sound/Retro FootStep Grass 01.wav" id="5_ek8l4"]
+[ext_resource type="AudioStream" uid="uid://dlmdgh7jf5ouh" path="res://sound/Retro Swooosh 07.wav" id="5_xpnb5"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_pl5tl"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_a621c"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_s5txe"]
@@ -12,6 +14,7 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_rqwmo"]
 [ext_resource type="Script" path="res://scenes/enemies/pigassassin/Attack.gd" id="11_2m1ct"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_tap4d"]
+[ext_resource type="AudioStream" uid="uid://bl8qw5dhr6kht" path="res://sound/Retro Impact Punch Hurt 01.wav" id="12_tq7s2"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_86531"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfv8y"]
@@ -65,6 +68,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("5_xpnb5"), -5],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_yx8yl"]
 resource_name = "attack_2"
@@ -93,6 +110,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("5_xpnb5"), -5],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_am8gf"]
 resource_name = "attack_3"
@@ -120,6 +151,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("5_xpnb5"), -5],
+"method": &"play_sound_effect"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_u2tle"]
@@ -186,6 +231,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [9, 10, 11, 12, 13, 14, 15, 16]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("5_ek8l4"), -5],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("5_ek8l4"), -5],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eiln7"]
 _data = {
@@ -230,7 +292,6 @@ disabled_on_start = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(11, 0)
 shape = SubResource("RectangleShape2D_v0u1v")
-disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 7)
@@ -265,6 +326,7 @@ script = ExtResource("8_s5txe")
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("9_mf0g6")
+hit_sound = ExtResource("12_tq7s2")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("10_rqwmo")

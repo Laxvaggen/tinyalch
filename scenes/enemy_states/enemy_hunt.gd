@@ -36,6 +36,7 @@ func enter(_msg = {}):
 	animation_player.play(run_animation_name)
 	if _msg.has("play_icon"):
 		entity.display_information_icon(entity.hunt_icon.instantiate(), 0.25, 0.25, 0.5)
+		entity.play_sound_effect(entity.hunt_noise)
 
 # called when state is transitioned from
 func exit():

@@ -1,5 +1,7 @@
 extends PlayerState
 
+var die_sound = load("res://sound/explosion_03.wav")
+
 # function to transition between states
 func _get_next_state():
 	pass
@@ -15,6 +17,7 @@ func physics_update(_delta):
 
 # called when state is transitioned to
 func enter(_msg = {}):
+	player.play_sound_effect(die_sound)
 	animation_player.play("die")
 	player.velocity = Vector2.ZERO
 	player.disable_collision(player)

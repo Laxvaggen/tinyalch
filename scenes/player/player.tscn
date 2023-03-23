@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://dhi6e5cjpmpm7"]
+[gd_scene load_steps=106 format=3 uid="uid://dhi6e5cjpmpm7"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_po8u4"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_610mi"]
@@ -13,11 +13,19 @@
 [ext_resource type="Script" path="res://scenes/player/Run.gd" id="8_tn8wm"]
 [ext_resource type="Script" path="res://scenes/player/Sneak.gd" id="9_aupxw"]
 [ext_resource type="Script" path="res://scenes/player/WaterSplashSprite.gd" id="9_snb3j"]
+[ext_resource type="AudioStream" uid="uid://cjr3kgsl4tvj2" path="res://sound/Retro FootStep Mud 01.wav" id="10_2mqwt"]
+[ext_resource type="AudioStream" uid="uid://8gd8qd786wia" path="res://sound/Retro Impact Punch 07.wav" id="10_5k0ew"]
 [ext_resource type="Script" path="res://scenes/player/Air.gd" id="10_ia7i1"]
+[ext_resource type="AudioStream" uid="uid://bl8qw5dhr6kht" path="res://sound/Retro Impact Punch Hurt 01.wav" id="10_x808h"]
+[ext_resource type="AudioStream" uid="uid://dexnxxeg352wc" path="res://sound/Retro FootStep Grass 01.wav" id="10_xuyw2"]
+[ext_resource type="AudioStream" uid="uid://d3b5sjjtukw13" path="res://sound/Retro Explosion Short 01.wav" id="11_wtbqt"]
 [ext_resource type="Script" path="res://scenes/player/EdgeHang.gd" id="11_xwg2o"]
 [ext_resource type="Script" path="res://scenes/player/Hit.gd" id="12_jw0n6"]
 [ext_resource type="Script" path="res://scenes/player/Dash.gd" id="12_vgrud"]
+[ext_resource type="AudioStream" uid="uid://dlmdgh7jf5ouh" path="res://sound/Retro Swooosh 07.wav" id="13_0ftte"]
+[ext_resource type="AudioStream" uid="uid://dsi01lbjwr1ma" path="res://sound/Retro Impact Water 03.wav" id="13_b0cs3"]
 [ext_resource type="Script" path="res://scenes/player/Die.gd" id="13_bcbmx"]
+[ext_resource type="AudioStream" uid="uid://bjneey1gomnax" path="res://sound/Retro Falling Water 07.wav" id="14_3fqmj"]
 [ext_resource type="Script" path="res://scenes/player/CastSpell.gd" id="15_7rrkq"]
 [ext_resource type="Texture2D" uid="uid://cw15ksohn85n8" path="res://sprites/ui/GUIBarBackground.png" id="20_g15ge"]
 [ext_resource type="Texture2D" uid="uid://ddpxh3rp5i2ue" path="res://sprites/ui/GUIBarHealth.png" id="21_taurr"]
@@ -35,6 +43,9 @@ size = Vector2(12, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krf50"]
 radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_poi4t"]
+radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tcbup"]
 radius = 33.27
@@ -493,6 +504,23 @@ tracks/1/keys = {
 "method": &"enable_base_sprite"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("10_xuyw2"), -15],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_xuyw2"), -15],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_cy0dt"]
 resource_name = "dash"
@@ -767,6 +795,23 @@ tracks/1/keys = {
 "method": &"enable_base_sprite"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("10_2mqwt")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_2mqwt")],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_efn8r"]
 resource_name = "run_stop"
@@ -895,6 +940,41 @@ tracks/3/keys = {
 "update": 1,
 "values": [25]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("10_5k0ew")],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_mne44"]
 resource_name = "spell_fire_magma_shot"
@@ -939,6 +1019,20 @@ tracks/2/keys = {
 "method": &"summon_magma_shot"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("10_x808h")],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_nwngv"]
 resource_name = "spell_fire_rage"
@@ -980,6 +1074,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("11_wtbqt")],
+"method": &"play_sound_effect"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_1faw5"]
@@ -1048,10 +1156,10 @@ tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false, true, false, true]
+"values": [false, true, false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1064,6 +1172,23 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [5]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("13_0ftte")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("13_0ftte")],
+"method": &"play_sound_effect"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_1hvas"]
@@ -1146,6 +1271,35 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"enable_water_sprite"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WaveSlamHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("13_b0cs3")],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("14_3fqmj")],
+"method": &"play_sound_effect"
 }]
 }
 
@@ -1304,13 +1458,22 @@ shape = SubResource("RectangleShape2D_xfvex")
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("3_4kvwe")
-damage = 20
+damage = 5
 disabled_on_start = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(17, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_krf50")
+
+[node name="WaveSlamHitBox" type="Area2D" parent="."]
+script = ExtResource("3_4kvwe")
+damage = 20
+disabled_on_start = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSlamHitBox"]
+position = Vector2(33, -2)
+shape = SubResource("CircleShape2D_poi4t")
 
 [node name="RageHitBox" type="Area2D" parent="."]
 script = ExtResource("3_4kvwe")
@@ -1321,7 +1484,6 @@ disabled_on_start = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RageHitBox"]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_tcbup")
-disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 6)
@@ -1331,6 +1493,7 @@ hframes = 9
 vframes = 17
 
 [node name="WaterAttackSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 6)
 texture = ExtResource("3_5dwhg")
 offset = Vector2(32, -24)
@@ -1415,6 +1578,10 @@ script = ExtResource("10_ia7i1")
 state_visibility_multiplier = 0.5
 state_noise_multiplier = 0.0
 
+[node name="CoyoteTimer" type="Timer" parent="StateMachine/Air"]
+wait_time = 0.1
+one_shot = true
+
 [node name="EdgeHang" type="Node" parent="StateMachine"]
 script = ExtResource("11_xwg2o")
 state_visibility_multiplier = 0.75
@@ -1460,6 +1627,7 @@ zoom = Vector2(6, 6)
 position_smoothing_enabled = true
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="WaveSlamHitBox" to="." method="_on_wave_slam_hit_box_area_entered"]
 [connection signal="animation_finished" from="HealSprite" to="." method="_on_heal_sprite_animation_finished"]
 [connection signal="animation_finished" from="WaterSplashSprite" to="WaterSplashSprite" method="_on_animation_finished"]
 [connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]

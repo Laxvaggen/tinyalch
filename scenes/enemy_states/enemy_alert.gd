@@ -7,6 +7,8 @@ extends EnemyState
 @export var idle_animation_name: String = "idle"
 
 
+var vision_above_zero_time: float
+
 # pathfind to last known player location, when reaches it, stand around for a little bit, then
 # pathfind back to spawn location
 # when in spawn location, transition to idle
@@ -18,6 +20,7 @@ func _get_next_state():
 # is called as a _process()
 func update(_delta):
 	_get_next_state()
+		
 
 
 # is called as a _physics_process()
@@ -55,6 +58,7 @@ func enter(_msg = {}):
 	entity.pathfinder_set_target(entity.last_known_player_location)
 	if _msg.has("play_icon"):
 		entity.display_information_icon(entity.alert_icon.instantiate(), 0.25, 0.25, 0.5)
+		entity.play_sound_effect(entity.alert_noise)
 
 # called when state is transitioned from
 func exit():

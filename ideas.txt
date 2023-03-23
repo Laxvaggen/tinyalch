@@ -1,18 +1,14 @@
 TODO
-Add coyote to player
-Change stealth mechanic: enemie scan never spot player instantly
+
+-crown shatter effect when exiting level
+
+-change second water spell
+-change magic - water no longer heals when entered
+-second water spell is pretty much unusable rn (separate sprite, unlock movement earlier)
+
+
 increase size of pause menu
 music fade out
-
--sound
-	-find good audio, use "play_sound_effect" in entities to play
--find when enemies no longer see player, and then switch back to standard ingame music
--on every "spotted player" signal received: add 1 to a score
--on every "lost player" signal received: subtract 1 from score
--if score changed to 0: play normal ingame music.
--if score changed and is above 0: play combat ingame music
-(the way im doing it is probably VERY DUMB)
-
 
 -controls: write up all controls
 

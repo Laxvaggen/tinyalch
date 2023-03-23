@@ -50,8 +50,6 @@ func physics_update(_delta):
 		animation_player.play(idle_animation_name)
 	else:
 		animation_player.play(run_animation_name)
-	if entity.get_noise_score_difference() > 0 and !entity.looking_towards_player():
-		entity.set_node_direction(entity.direction*-1)
 	entity.apply_gravity(_delta)
 	
 	if !entity.current_path == []:

@@ -1,15 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://b3ofe62vos3eh"]
+[gd_scene load_steps=26 format=3 uid="uid://b3ofe62vos3eh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/rollypolly/rolly_polly.gd" id="1_c76ep"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_jeydr"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="3_l7c22"]
 [ext_resource type="Texture2D" uid="uid://uh6pmfsnym1c" path="res://sprites/monsters/rolly polly/Roller.png" id="4_gcsf6"]
+[ext_resource type="AudioStream" uid="uid://5gwqwsuspk0s" path="res://sound/Retro FootStep Gravel 01.wav" id="5_8ce8d"]
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="5_q2lhk"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="6_xrnby"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_alert.gd" id="7_vsd0r"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="8_qbq3h"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="9_3716h"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_ly0b2"]
+[ext_resource type="AudioStream" uid="uid://c485a54mct0dt" path="res://sound/hurt_031.wav" id="10_v8qp1"]
 [ext_resource type="Script" path="res://scenes/enemies/rollypolly/Attack.gd" id="11_sucif"]
 [ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_08qtx"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_sdasr"]
@@ -102,6 +104,32 @@ tracks/0/keys = {
 "update": 1,
 "values": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [ExtResource("5_8ce8d"), -5],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("5_8ce8d"), -5],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("5_8ce8d"), -5],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("5_8ce8d"), -5],
+"method": &"play_sound_effect"
+}, {
+"args": [ExtResource("5_8ce8d"), -5],
+"method": &"play_sound_effect"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a4nl0"]
 _data = {
@@ -183,6 +211,7 @@ run_animation_name = "roll"
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("9_3716h")
+hit_sound = ExtResource("10_v8qp1")
 
 [node name="Die" type="Node" parent="StateMachine"]
 script = ExtResource("10_ly0b2")

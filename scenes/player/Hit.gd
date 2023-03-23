@@ -1,5 +1,6 @@
 extends PlayerState
 
+var hit_sound = load("res://sound/hit_058.wav")
 # function to transition between states
 func _get_next_state():
 	pass
@@ -15,10 +16,11 @@ func physics_update(_delta):
 
 # called when state is transitioned to
 func enter(_msg = {}):
-	
+	player.play_sound_effect(hit_sound)
 	$Hitstun.start()
 	player.lock_state_switching(5)
 	player.get_node("Sprite").modulate = Color(10,10,10,10)
+	
 
 # called when state is transitioned from
 func exit():

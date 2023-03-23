@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=24 format=3 uid="uid://da6sbdni8d73e"]
 
 [ext_resource type="Script" path="res://scenes/player/magma_shot.gd" id="1_nphfk"]
 [ext_resource type="Texture2D" uid="uid://wggpbs0ppe3v" path="res://sprites/player/magic/Explosion 2 SpriteSheet.png" id="2_v82xc"]

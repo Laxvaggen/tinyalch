@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://boqn0lvaabkwu"]
 
 [ext_resource type="Script" path="res://extra_classes/state_machine/state_machine.gd" id="1_u8duy"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_idle.gd" id="2_tsq6f"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hunt.gd" id="4_y4d64"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="6_l78sl"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="7_h2kyv"]
-
 
 [node name="StateMachine" type="Node"]
 script = ExtResource("1_u8duy")

@@ -21,6 +21,10 @@ var max_magma_shot_range = 5 * Globals.tile_size
 
 var magic_state = "water"
 
+var water_splash_sound = load("res://sound/Retro Impact Water 03.wav")
+var heal_sound = load("res://sound/Retro Magic 11.wav")
+var jump_sound = load("res://sound/feet_13.wav")
+
 func _enter():
 	$HealSprite.visible = false
 	$CollisionShapeLow.set_deferred("disabled", true)
@@ -54,7 +58,7 @@ func water_state() -> void:
 	if Input.is_action_pressed("cast_spell_1"):
 		state_machine.transition_to("CastSpell", {spell_water_quick_slashes=true})
 	elif Input.is_action_just_pressed("cast_spell_2"):
-		state_machine.transition_to("CastSpell", {spell_water_spear=true})
+		state_machine.transition_to("CastSpell", {spell_water_wave_slam=true})
 	
 func fire_state() -> void:
 	if state_machine.state.name in ["Sneak", "Dash", "CastSpell"]:
@@ -75,13 +79,14 @@ func switch_magic_state() -> void:
 	elif magic_state == "fire":
 		magic_state = "water"
 		enter_water_state()
+		play_sound_effect(water_splash_sound)
 
 func enter_fire_state() -> void:
 	state_machine.transition_to("CastSpell", {rage=true})
 
 func enter_water_state() -> void:
 	state_machine.transition_to("CastSpell", {splash=true})
-	gain_health(20)
+	play_sound_effect(heal_sound, -15)
 
 func enable_base_sprite() -> void:
 	$Sprite.visible = true
@@ -166,6 +171,12 @@ func summon_magma_shot() -> void:
 		get_node("/root/World").add_child(shot_instance)
 
 
+func jump() -> void:
+	velocity.y = -jump_strength
+	global_position.y -= 1
+	play_sound_effect(jump_sound)
+
+
 func _on_heal_sprite_animation_finished():
 	$HealSprite.visible = false
 
@@ -188,10 +199,17 @@ func _on_hit_box_area_entered(area):
 		return
 	if animation_player.current_animation == "spell_water_quick_slashes":
 		gain_health(10)
+		play_sound_effect(heal_sound, -15)
 		$HealSprite.play("default")
 		$HealSprite.visible = true
 		
-	elif animation_player.current_animation == "spell_water_spear":
-		gain_health(25)
-		$HealSprite.play("default")
-		$HealSprite.visible = true
+
+
+
+func _on_wave_slam_hit_box_area_entered(area):
+	if area.owner == self:
+		return
+	gain_health(25)
+	play_sound_effect(heal_sound, -15)
+	$HealSprite.play("default")
+	$HealSprite.visible = true
