@@ -1,4 +1,8 @@
 TODO
+Add coyote to player
+Change stealth mechanic: enemie scan never spot player instantly
+increase size of pause menu
+music fade out
 
 -sound
 	-find good audio, use "play_sound_effect" in entities to play

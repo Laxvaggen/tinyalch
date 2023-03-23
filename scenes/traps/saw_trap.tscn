@@ -48,7 +48,7 @@ _data = {
 [node name="SawTrap" type="Area2D"]
 position = Vector2(0, 8)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_3yuyp")
 always_active = true
 

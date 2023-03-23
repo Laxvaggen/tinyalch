@@ -11,12 +11,15 @@ var animation_player: AnimationPlayer
 
 
 func _ready():
+	collision_layer = 0
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(2, true)
 	if always_active:
 		if has_node("AnimationPlayer") and get_node("AnimationPlayer").has_animation("idle"):
 			get_node("AnimationPlayer").play("idle")
 		return
-	assert(has_node("CollisionShape2D"))
 	
+	assert(has_node("CollisionShape2D"))
 	if has_node("HitBox"):
 		hitbox = $HitBox
 		assert(hitbox.has_node("CollisionShape2D"))

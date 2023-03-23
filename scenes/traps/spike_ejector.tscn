@@ -10,8 +10,8 @@ size = Vector2(11, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cloqo"]
 size = Vector2(6, 26)
 
-[sub_resource type="Animation" id="Animation_vu12p"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_ashmf"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [18]
 }
 
 [sub_resource type="Animation" id="Animation_64s2l"]
@@ -53,8 +53,8 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_ashmf"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_vu12p"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -65,7 +65,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [18]
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p61vt"]
