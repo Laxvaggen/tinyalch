@@ -28,7 +28,7 @@ func enter(_msg = {}):
 
 # called when state is transitioned from
 func exit():
-	pass
+	entity.disable_collision($"../../HitBox")
 
 func _on_animation_player_animation_finished(anim_name):
 	if !"attack" in anim_name or state_machine.state != self:

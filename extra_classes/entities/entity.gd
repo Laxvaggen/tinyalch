@@ -211,4 +211,4 @@ func display_information_icon(icon: Sprite2D, fadein_time: float, fadeout_time: 
 func play_sound_effect(sound: AudioStream) -> void:
 	var sound_player = sfx_player.instantiate()
 	sound_player.stream = sound
-	get_node("/root").add_child(sound_player)
+	add_child(sound_player)

@@ -32,5 +32,5 @@ func enter(_msg = {}):
 
 # called when state is transitioned from
 func exit():
-	pass
+	entity.disable_collision($"../../HitBox")
 

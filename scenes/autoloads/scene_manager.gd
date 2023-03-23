@@ -10,8 +10,11 @@ var level_1 = {"filepath":"res://scenes/levels/level_1.tscn",
 var level_2 = {"filepath":"res://scenes/levels/level_2.tscn",
 				"name":"tutorial part 2"}
 
+var level_3 = {"filepath": "res://scenes/levels/level_3.tscn",
+				"name": "test level 1"}
 
-var levels: Array = [level_1, level_2]
+
+var levels: Array = [level_1, level_2, level_3]
 var completed_levels_data: Dictionary
 var current_level_index: int
 
