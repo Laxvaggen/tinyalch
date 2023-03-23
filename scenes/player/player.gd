@@ -58,7 +58,7 @@ func water_state() -> void:
 	if Input.is_action_pressed("cast_spell_1"):
 		state_machine.transition_to("CastSpell", {spell_water_quick_slashes=true})
 	elif Input.is_action_just_pressed("cast_spell_2"):
-		state_machine.transition_to("CastSpell", {spell_water_wave_slam=true})
+		state_machine.transition_to("CastSpell", {spell_water_spear=true})
 	
 func fire_state() -> void:
 	if state_machine.state.name in ["Sneak", "Dash", "CastSpell"]:

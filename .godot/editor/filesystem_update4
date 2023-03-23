@@ -25,3 +25,5 @@ res://asset_sources.txt
 res://scenes/enemy_states/enemy_idle.gd
 res://scenes/enemy_states/enemy_alert.gd
 res://scenes/level_exit.tscn
+res://scenes/traps/saw_trap.tscn
+res://scenes/menus/game_complete_menu.tscn

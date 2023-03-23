@@ -44,8 +44,9 @@ size = Vector2(12, 16)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krf50"]
 radius = 6.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_poi4t"]
-radius = 11.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yh2v4"]
+radius = 8.0
+height = 46.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tcbup"]
 radius = 33.27
@@ -1222,26 +1223,28 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("WaterRClickAttackHitbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5),
+"times": PackedFloat32Array(0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox:damage")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [20]
+"values": [{
+"args": [ExtResource("14_3fqmj"), -5],
+"method": &"play_sound_effect"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8nwuv"]
@@ -1276,7 +1279,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WaveSlamHitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("WaterRClickAttackHitbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1458,7 +1461,7 @@ shape = SubResource("RectangleShape2D_xfvex")
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("3_4kvwe")
-damage = 5
+damage = 20
 disabled_on_start = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -1466,14 +1469,15 @@ position = Vector2(17, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_krf50")
 
-[node name="WaveSlamHitBox" type="Area2D" parent="."]
+[node name="WaterRClickAttackHitbox" type="Area2D" parent="."]
 script = ExtResource("3_4kvwe")
-damage = 20
+knockback = 200
 disabled_on_start = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaveSlamHitBox"]
-position = Vector2(33, -2)
-shape = SubResource("CircleShape2D_poi4t")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterRClickAttackHitbox"]
+position = Vector2(21, 0)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_yh2v4")
 
 [node name="RageHitBox" type="Area2D" parent="."]
 script = ExtResource("3_4kvwe")
@@ -1486,6 +1490,7 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_tcbup")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 6)
 texture = ExtResource("2_q88ft")
 offset = Vector2(0, -16)
@@ -1493,7 +1498,6 @@ hframes = 9
 vframes = 17
 
 [node name="WaterAttackSprite" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 6)
 texture = ExtResource("3_5dwhg")
 offset = Vector2(32, -24)
@@ -1627,7 +1631,7 @@ zoom = Vector2(6, 6)
 position_smoothing_enabled = true
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="area_entered" from="WaveSlamHitBox" to="." method="_on_wave_slam_hit_box_area_entered"]
+[connection signal="area_entered" from="WaterRClickAttackHitbox" to="." method="_on_wave_slam_hit_box_area_entered"]
 [connection signal="animation_finished" from="HealSprite" to="." method="_on_heal_sprite_animation_finished"]
 [connection signal="animation_finished" from="WaterSplashSprite" to="WaterSplashSprite" method="_on_animation_finished"]
 [connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]

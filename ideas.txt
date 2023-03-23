@@ -2,11 +2,6 @@ TODO
 
 -crown shatter effect when exiting level
 
--change second water spell
--change magic - water no longer heals when entered
--second water spell is pretty much unusable rn (separate sprite, unlock movement earlier)
-
-
 increase size of pause menu
 music fade out
 
