@@ -12,13 +12,19 @@ var lamp_nodes: Array
 var player: Player
 
 var background := preload("res://scenes/Background.tscn")
-
+var pathfinder := preload("res://scenes/pathfinder.tscn")
+var darken_canvas := CanvasModulate.new()
 var amount_of_enemies_hunting_player: int = 0
 
+
 func _ready() -> void:
-		
-	await get_tree().process_frame
 	add_child(background.instantiate())
+	darken_canvas.color = "060606"
+	add_child(darken_canvas)
+	add_child(pathfinder.instantiate())
+	await get_tree().process_frame
+	
+	
 	if has_node("Player"):
 		player = $Player
 		player.connect("died", Callable(self, "level_failed"))

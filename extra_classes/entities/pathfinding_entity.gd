@@ -10,8 +10,8 @@ var target_padding = 5
 var path_finder: Pathfinder
 
 func _pathfinder_ready():
-	if has_node("Pathfinder"):
-		path_finder = $Pathfinder
+	if find_parent("World").has_node("Pathfinder"):
+		path_finder = find_parent("World").get_node("Pathfinder")
 	else:
 		push_error("PathfindingEntityNoPathFinder")
 

@@ -46,10 +46,12 @@ func enter(_msg = {}):
 	player.lock_state_switching(0.1)
 	animation_player.play("transition_to_crouch")
 	player.set_collision_height("low")
+	create_tween().tween_property($"../../PointLight2D", "energy", 0.1, 1)
 
 # called when state is transitioned from
 func exit():
 	animation_player.play("transition_to_stand")
 	player.set_collision_height("high")
 	player.lock_state_switching(0.1)
+	create_tween().tween_property($"../../PointLight2D", "energy", 0.5, 0.5)
 

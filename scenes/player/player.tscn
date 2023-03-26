@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://dhi6e5cjpmpm7"]
+[gd_scene load_steps=108 format=3 uid="uid://dhi6e5cjpmpm7"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_po8u4"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_610mi"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://scenes/player/CastSpell.gd" id="15_7rrkq"]
 [ext_resource type="Texture2D" uid="uid://cw15ksohn85n8" path="res://sprites/ui/GUIBarBackground.png" id="20_g15ge"]
 [ext_resource type="Texture2D" uid="uid://ddpxh3rp5i2ue" path="res://sprites/ui/GUIBarHealth.png" id="21_taurr"]
+[ext_resource type="Texture2D" uid="uid://dvbpmwkirp4wx" path="res://sprites/light sprite.png" id="30_5yq12"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m54d0"]
 radius = 5.0
@@ -1091,6 +1092,50 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_2v4cf"]
+resource_name = "spell_water_enter"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterAttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [88, 89, 90, 91, 92, 93, 94]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enable_water_sprite"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("13_b0cs3"), -5],
+"method": &"play_sound_effect"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_1faw5"]
 resource_name = "spell_water_heal"
 length = 0.1
@@ -1416,6 +1461,7 @@ _data = {
 "spell_fire_fury_fists": SubResource("Animation_dml0i"),
 "spell_fire_magma_shot": SubResource("Animation_mne44"),
 "spell_fire_rage": SubResource("Animation_nwngv"),
+"spell_water_enter": SubResource("Animation_2v4cf"),
 "spell_water_heal": SubResource("Animation_1faw5"),
 "spell_water_quick_slashes": SubResource("Animation_lbhsi"),
 "spell_water_spear": SubResource("Animation_1hvas"),
@@ -1502,7 +1548,7 @@ position = Vector2(0, 6)
 texture = ExtResource("3_5dwhg")
 offset = Vector2(32, -24)
 hframes = 22
-vframes = 4
+vframes = 5
 frame = 22
 
 [node name="FireAttackSprite" type="Sprite2D" parent="."]
@@ -1514,6 +1560,7 @@ hframes = 8
 vframes = 4
 
 [node name="HealSprite" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_fgt8l")
 frame = 21
@@ -1521,11 +1568,10 @@ frame_progress = 1.0
 offset = Vector2(0, -16)
 
 [node name="WaterSplashSprite" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(-2, -11)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_qsl7l")
-frame = 19
-frame_progress = 1.0
 script = ExtResource("9_snb3j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1629,6 +1675,11 @@ texture_progress_offset = Vector2(1, 0)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
 position_smoothing_enabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("30_5yq12")
+texture_scale = 0.1
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="WaterRClickAttackHitbox" to="." method="_on_wave_slam_hit_box_area_entered"]

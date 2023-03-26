@@ -1,0 +1,97 @@
+[gd_scene load_steps=16 format=3 uid="uid://g28j4wldr6to"]
+
+[ext_resource type="Texture2D" uid="uid://b2wlm4bcwy7ou" path="res://sprites/player/magic/Water Splash 02.png" id="1_djjs3"]
+[ext_resource type="Script" path="res://scenes/player/water_effect.gd" id="2_5o814"]
+[ext_resource type="Texture2D" uid="uid://cj3pvnl0un15s" path="res://sprites/player/magic/watertransitionsprite.png" id="2_obem6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjfnc"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(0, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdruu"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(112, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxvum"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(224, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqx6r"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(336, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovo58"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(448, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prn0e"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(560, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3ssx"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(672, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1jcg"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(784, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4p7p"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(896, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gpdi"]
+atlas = ExtResource("1_djjs3")
+region = Rect2(1120, 0, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34e7r"]
+atlas = ExtResource("2_obem6")
+region = Rect2(672, 0, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4oyl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjfnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdruu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxvum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqx6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovo58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prn0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3ssx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1jcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4p7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gpdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34e7r")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="WaterEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_q4oyl")
+offset = Vector2(8, -24)
+script = ExtResource("2_5o814")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

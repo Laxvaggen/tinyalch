@@ -14,7 +14,7 @@ func _get_end_pos() -> Vector2:
 	var query = PhysicsRayQueryParameters2D.create(Vector2(pos.x, pos.y - 10), Vector2(pos.x, pos.y + 4*Globals.tile_size), 1)
 	var result = space_state.intersect_ray(query)
 	if result:
-		return result["position"]
+		return Vector2(result["position"] - Vector2(0, 6))
 	else:
 		return player.global_position
 

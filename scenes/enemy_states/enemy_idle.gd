@@ -60,6 +60,7 @@ func physics_update(_delta):
 
 # called when state is transitioned to
 func enter(_msg = {}):
+	animation_player.play(idle_animation_name)
 	_set_new_roaming_target()
 
 # called when state is transitioned from

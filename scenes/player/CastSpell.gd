@@ -15,18 +15,16 @@ func physics_update(_delta):
 
 # called when state is transitioned to
 func enter(_msg = {}):
-	player.velocity = Vector2.ZERO
+	player.velocity.x = 0
 	if _msg.has("rage"):
 		animation_player.play("spell_fire_rage")
 		player.lock_state_switching(0.5)
 		await get_tree().create_timer(0.6).timeout
 		state_machine.transition_to("Idle")
 	elif _msg.has("splash"):
-		$"../../WaterSplashSprite".play("default")
-		$"../../WaterSplashSprite".visible = true
-		animation_player.play("spell_water_heal")
+		animation_player.play("spell_water_enter")
 		player.lock_state_switching(0.5)
-		await get_tree().create_timer(0.6).timeout
+		await get_tree().create_timer(0.7).timeout
 		state_machine.transition_to("Idle")
 	else:
 		player.lock_state_switching(10)

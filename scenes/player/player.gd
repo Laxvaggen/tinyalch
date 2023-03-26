@@ -15,13 +15,13 @@ var is_in_light: bool
 
 var magma_shot = preload("res://scenes/player/magma_shot.tscn")
 var fire_blast = preload("res://scenes/player/fire_effect.tscn")
+var water_splash = preload("res://scenes/player/water_effect.tscn")
 var spells = ["fury_fists", "magma_shot", "rage", "heal"]
 var selected_spell = spells[0]
 var max_magma_shot_range = 5 * Globals.tile_size
 
 var magic_state = "water"
 
-var water_splash_sound = load("res://sound/Retro Impact Water 03.wav")
 var heal_sound = load("res://sound/Retro Magic 11.wav")
 var jump_sound = load("res://sound/feet_13.wav")
 
@@ -79,14 +79,15 @@ func switch_magic_state() -> void:
 	elif magic_state == "fire":
 		magic_state = "water"
 		enter_water_state()
-		play_sound_effect(water_splash_sound)
 
 func enter_fire_state() -> void:
 	state_machine.transition_to("CastSpell", {rage=true})
 
 func enter_water_state() -> void:
 	state_machine.transition_to("CastSpell", {splash=true})
-	play_sound_effect(heal_sound, -15)
+	var splash_instance = water_splash.instantiate()
+	splash_instance.position = Vector2(0, 6)
+	add_child(splash_instance)
 
 func enable_base_sprite() -> void:
 	$Sprite.visible = true

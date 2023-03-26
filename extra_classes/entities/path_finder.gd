@@ -1,8 +1,8 @@
 class_name Pathfinder
 extends Node2D
 
-var jump_height: float
-var jump_distance: float
+var jump_height: float = 2.5*Globals.tile_size
+var jump_distance: float = 2*Globals.tile_size
 
 var tilemap: TileMap
 var graph
@@ -47,13 +47,12 @@ func find_path(start, end) -> Array:
 	return actions
 
 func _ready() -> void:
-	jump_height = get_parent().jump_height_ - 0.5
-	jump_distance = get_jump_distance() - 0.5
 	
 	graph = AStar2D.new()
 	tilemap = find_parent("World")
 
 	assert(tilemap != null)
+	global_position = tilemap.global_position
 	await get_tree().process_frame
 	create_map()
 	connect_points()

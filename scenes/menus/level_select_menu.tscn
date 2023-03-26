@@ -32,6 +32,7 @@ grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 z_index = -100
+layout_mode = 0
 offset_left = -1799.0
 offset_top = -1096.0
 offset_right = 2119.0

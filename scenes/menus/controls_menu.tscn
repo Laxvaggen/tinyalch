@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://c3oqd65arsl42" path="res://resources/tinyalch_main_tileset.tres" id="1_cdxip"]
 [ext_resource type="Script" path="res://scenes/menus/controls_menu.gd" id="2_fcavp"]
-[ext_resource type="PackedScene" uid="uid://ce7pu08y2mqty" path="res://scenes/player/player.tscn" id="2_xfibs"]
+[ext_resource type="PackedScene" uid="uid://dhi6e5cjpmpm7" path="res://scenes/player/player.tscn" id="2_xfibs"]
 [ext_resource type="Theme" uid="uid://bvbefu2r37b7v" path="res://resources/tinyalch_main_theme.tres" id="3_4ohgp"]
 
 [node name="World" type="Node2D"]
@@ -23,7 +23,6 @@ layer_0/tile_data = PackedInt32Array(1114126, 196608, 1, 1114127, 393216, 1, 111
 
 [node name="Player" parent="." instance=ExtResource("2_xfibs")]
 position = Vector2(311.5, 194.5)
-jump_height_ = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(295, 219)
@@ -63,11 +62,13 @@ text = "Controls:"
 [node name="Controls" type="Label" parent="MenuItems/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Move: A/D
-Jump: W
-Fall through: S
-Crouch: C
-Dash: V"
+text = "Move - A/D
+Jump - W
+Fall through - S
+Crouch - C
+Dash - V
+Switch Magic - R
+Use spells - LMB/RMB"
 
 [node name="Back" type="Button" parent="MenuItems/VBoxContainer"]
 layout_mode = 2

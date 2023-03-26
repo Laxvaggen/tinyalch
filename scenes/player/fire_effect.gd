@@ -4,7 +4,7 @@ var sfx_player = preload("res://scenes/sfx_player.tscn")
 
 func _ready():
 	play("default")
-	await get_tree().create_timer(0.05)
+	await get_tree().create_timer(0.05).timeout
 	play_sound_effect(load("res://sound/Retro Impact LoFi 09.wav"))
 
 
