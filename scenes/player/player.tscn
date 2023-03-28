@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dhi6e5cjpmpm7"]
+[gd_scene load_steps=85 format=3 uid="uid://dhi6e5cjpmpm7"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_po8u4"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_610mi"]
@@ -9,10 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://1yxuxdr245e6" path="res://sprites/player/heal.png" id="5_hbcd3"]
 [ext_resource type="Script" path="res://scenes/player/StateMachine.gd" id="6_8r86d"]
 [ext_resource type="Script" path="res://scenes/player/Idle.gd" id="7_x1pxi"]
-[ext_resource type="Texture2D" uid="uid://bkrih7w2x2nrd" path="res://sprites/player/magic/Water Splash 01 - Spritesheet.png" id="8_nw6ej"]
 [ext_resource type="Script" path="res://scenes/player/Run.gd" id="8_tn8wm"]
 [ext_resource type="Script" path="res://scenes/player/Sneak.gd" id="9_aupxw"]
-[ext_resource type="Script" path="res://scenes/player/WaterSplashSprite.gd" id="9_snb3j"]
 [ext_resource type="AudioStream" uid="uid://cjr3kgsl4tvj2" path="res://sound/Retro FootStep Mud 01.wav" id="10_2mqwt"]
 [ext_resource type="AudioStream" uid="uid://8gd8qd786wia" path="res://sound/Retro Impact Punch 07.wav" id="10_5k0ew"]
 [ext_resource type="Script" path="res://scenes/player/Air.gd" id="10_ia7i1"]
@@ -212,154 +210,6 @@ animations = [{
 "loop": false,
 "name": &"default",
 "speed": 8.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ql2c7"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(0, 0, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5g7g6"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(66, 0, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vh4ee"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(132, 0, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1318"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(198, 0, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_57c7s"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(264, 0, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hxhp"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(0, 77, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jmi72"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(66, 77, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2qfix"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(132, 77, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nv8gu"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(198, 77, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1u0t3"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(264, 77, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hp6go"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(0, 154, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0sy28"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(66, 154, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hsw7j"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(132, 154, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qbkj6"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(198, 154, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xwvj4"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(264, 154, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_16fil"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(0, 231, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxc0m"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(66, 231, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5xxk6"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(132, 231, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fvhme"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(198, 231, 66, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b3q4k"]
-atlas = ExtResource("8_nw6ej")
-region = Rect2(264, 231, 66, 77)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qsl7l"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ql2c7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5g7g6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vh4ee")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k1318")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_57c7s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1hxhp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jmi72")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2qfix")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nv8gu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1u0t3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hp6go")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0sy28")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hsw7j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qbkj6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xwvj4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_16fil")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cxc0m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5xxk6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fvhme")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b3q4k")
-}],
-"loop": false,
-"name": &"default",
-"speed": 15.0
 }]
 
 [sub_resource type="Animation" id="Animation_7vl6k"]
@@ -1567,13 +1417,6 @@ frame = 21
 frame_progress = 1.0
 offset = Vector2(0, -16)
 
-[node name="WaterSplashSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(-2, -11)
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_qsl7l")
-script = ExtResource("9_snb3j")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_kf8tg")
@@ -1679,11 +1522,10 @@ position_smoothing_enabled = true
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.5
 texture = ExtResource("30_5yq12")
-texture_scale = 0.1
+texture_scale = 0.2
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="WaterRClickAttackHitbox" to="." method="_on_wave_slam_hit_box_area_entered"]
 [connection signal="animation_finished" from="HealSprite" to="." method="_on_heal_sprite_animation_finished"]
-[connection signal="animation_finished" from="WaterSplashSprite" to="WaterSplashSprite" method="_on_animation_finished"]
 [connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Hit/Hitstun" to="StateMachine/Hit" method="_on_hitstun_timeout"]

@@ -22,8 +22,8 @@ var status_bar_container
 
 var vision_score_above_minimum_time: float = 0.1
 
-signal spotted_player
-signal lost_player
+signal spotted_player(entity)
+signal lost_player(entity)
 
 func _enemy_init() -> void:
 	spawn_position = global_position

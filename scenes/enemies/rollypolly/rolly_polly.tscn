@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b3ofe62vos3eh"]
+[gd_scene load_steps=25 format=3 uid="uid://b3ofe62vos3eh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/rollypolly/rolly_polly.gd" id="1_c76ep"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_jeydr"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_ly0b2"]
 [ext_resource type="AudioStream" uid="uid://c485a54mct0dt" path="res://sound/hurt_031.wav" id="10_v8qp1"]
 [ext_resource type="Script" path="res://scenes/enemies/rollypolly/Attack.gd" id="11_sucif"]
-[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_08qtx"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_sdasr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7osa8"]
@@ -218,9 +217,6 @@ script = ExtResource("10_ly0b2")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("11_sucif")
-
-[node name="Pathfinder" type="Node2D" parent="."]
-script = ExtResource("12_08qtx")
 
 [node name="PlayerTargeter" type="RayCast2D" parent="."]
 collision_mask = 3

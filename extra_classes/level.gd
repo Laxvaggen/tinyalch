@@ -14,16 +14,16 @@ var player: Player
 var background := preload("res://scenes/Background.tscn")
 var pathfinder := preload("res://scenes/pathfinder.tscn")
 var darken_canvas := CanvasModulate.new()
-var amount_of_enemies_hunting_player: int = 0
+var entities_hunting_player := []
 
 
 func _ready() -> void:
 	add_child(background.instantiate())
-	darken_canvas.color = "060606"
+	darken_canvas.color = Globals.brightness_color
 	add_child(darken_canvas)
 	add_child(pathfinder.instantiate())
-	await get_tree().process_frame
 	
+	await get_tree().process_frame
 	
 	if has_node("Player"):
 		player = $Player
@@ -87,20 +87,16 @@ func enemy_died() -> void:
 	#stats["stealth_kills"] += 1
 	stats["kills"] += 1
 
-func player_spotted() -> void:
-	stats["times_detected"] += 1
-	amount_of_hunting_enemies_changed(1)
-	
+func player_spotted(entity) -> void:
+	if !entity in entities_hunting_player:
+		stats["times_detected"] += 1
+		if entities_hunting_player.size() == 0:
+			MusicPlayer.switch_state(MusicPlayer.INGAME_COMBAT)
+		entities_hunting_player.append(entity)
 
-func player_lost() -> void:
-	amount_of_hunting_enemies_changed(-1)
 
-func amount_of_hunting_enemies_changed(value: int) -> void:
-	var previous_value := amount_of_enemies_hunting_player
-	amount_of_enemies_hunting_player += value
-	if previous_value > 0 and amount_of_enemies_hunting_player == 0:
-		MusicPlayer.switch_state(MusicPlayer.INGAME, 0.5)
-	elif previous_value == 0 and amount_of_enemies_hunting_player > 0:
-		MusicPlayer.switch_state(MusicPlayer.INGAME_COMBAT, 0.5)
-	
-	
+func player_lost(entity) -> void:
+	if entity in entities_hunting_player:
+		entities_hunting_player.erase(entity)
+		if entities_hunting_player.size() == 0:
+			MusicPlayer.switch_state(MusicPlayer.INGAME)

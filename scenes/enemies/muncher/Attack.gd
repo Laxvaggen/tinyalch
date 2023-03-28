@@ -38,7 +38,7 @@ func _on_animation_player_animation_finished(anim_name):
 			entity.set_node_direction(entity.direction * -1)
 		if entity.get_sight_score_difference() < 0:
 			state_machine.transition_to("Alert")
-			entity.emit_signal("lost_player")
+			entity.emit_signal("lost_player", entity)
 			return
 		_play_attack()
 	else:

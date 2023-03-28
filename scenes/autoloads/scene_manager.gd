@@ -12,10 +12,12 @@ var level_2 = {"filepath":"res://scenes/levels/level_2.tscn",
 var level_3 = {"filepath": "res://scenes/levels/level_3.tscn",
 				"name": "tutorial part 3"}
 var level_4 = {"filepath": "res://scenes/levels/level_4.tscn",
-				"name": "The Muncher"}
+				"name": "Entrance"}
+var level_5 = {"filepath": "res://scenes/levels/level_5.tscn",
+				"name": "The Descent"}
 
 
-var levels: Array = [level_1, level_2, level_3, level_4]
+var levels: Array = [level_1, level_2, level_3, level_4, level_5]
 var completed_levels_data: Dictionary
 var current_level_index: int
 
@@ -117,6 +119,7 @@ func enter_new_game_warning() -> void:
 	load_scene(new_game_warning_ref)
 
 func start_level(index) -> void:
+	current_level_index = index
 	load_scene(levels[index]["filepath"], true)
 	MusicPlayer.switch_state(MusicPlayer.INGAME)
 

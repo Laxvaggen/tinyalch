@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=197 format=3 uid="uid://c3oqd65arsl42"]
+[gd_resource type="TileSet" load_steps=198 format=3 uid="uid://c3oqd65arsl42"]
 
 [ext_resource type="Texture2D" uid="uid://f6jf78xbx2r0" path="res://sprites/tiles/Tileset1.png" id="1_n8ks0"]
 [ext_resource type="Texture2D" uid="uid://28mmkaarspk6" path="res://sprites/tiles/grass tileset.png" id="2_and2o"]
@@ -40,6 +40,9 @@ tile_data = PackedInt32Array(0, 262145, 12, 65536, 262145, 13, 1, 327681, 12, 65
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gpook"]
 tile_data = PackedInt32Array(0, 131073, 12, 65536, 131073, 13, 1, 196609, 12, 65537, 196609, 13)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_7p1g3"]
+tile_data = PackedInt32Array(0, 327680, 5, 1, 131072, 4, 2, 196608, 4, 3, 262144, 4, 4, 327680, 5)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hh072"]
 
@@ -1748,3 +1751,4 @@ pattern_4 = SubResource("TileMapPattern_qhv8y")
 pattern_5 = SubResource("TileMapPattern_ddpxo")
 pattern_6 = SubResource("TileMapPattern_d5nts")
 pattern_7 = SubResource("TileMapPattern_gpook")
+pattern_8 = SubResource("TileMapPattern_7p1g3")

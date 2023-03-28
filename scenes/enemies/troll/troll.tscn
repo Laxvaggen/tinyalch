@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b40om3n6sapqq"]
+[gd_scene load_steps=27 format=3 uid="uid://b40om3n6sapqq"]
 
 [ext_resource type="Script" path="res://scenes/enemies/troll/troll.gd" id="1_mbopp"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_s0b7f"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="9_kvxc8"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_wsqkh"]
 [ext_resource type="Script" path="res://scenes/enemies/troll/Attack.gd" id="11_qxyma"]
-[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_4wpc7"]
 [ext_resource type="AudioStream" uid="uid://bdjc1xri6q1si" path="res://sound/CCA_147.wav" id="12_ad4rb"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_e6po8"]
 
@@ -269,10 +268,6 @@ script = ExtResource("10_wsqkh")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("11_qxyma")
-
-[node name="Pathfinder" type="Node2D" parent="."]
-position = Vector2(0, 6.5)
-script = ExtResource("12_4wpc7")
 
 [node name="PlayerTargeter" type="RayCast2D" parent="."]
 collision_mask = 3

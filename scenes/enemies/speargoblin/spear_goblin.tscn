@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://58al2ilxqmpe"]
+[gd_scene load_steps=27 format=3 uid="uid://58al2ilxqmpe"]
 
 [ext_resource type="Script" path="res://scenes/enemies/speargoblin/spear_goblin.gd" id="1_a2cbr"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_oqu4l"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_dal87"]
 [ext_resource type="Script" path="res://scenes/enemies/speargoblin/Attack.gd" id="11_u1h6v"]
 [ext_resource type="AudioStream" uid="uid://bl8qw5dhr6kht" path="res://sound/Retro Impact Punch Hurt 01.wav" id="12_u8bjq"]
-[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_ysrtn"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_708l2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hr5n"]
@@ -250,10 +249,6 @@ script = ExtResource("10_dal87")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("11_u1h6v")
-
-[node name="Pathfinder" type="Node2D" parent="."]
-position = Vector2(0, 7.5)
-script = ExtResource("12_ysrtn")
 
 [node name="PlayerTargeter" type="RayCast2D" parent="."]
 collision_mask = 3

@@ -32,7 +32,7 @@ func physics_update(_delta):
 	
 	if entity.get_sight_score_difference() > 0:
 		state_machine.transition_to("Hunt", {play_icon=true})
-		entity.emit_signal("spotted_player")
+		entity.emit_signal("spotted_player", entity)
 		return
 	elif entity.get_noise_score_difference() > 0 and !entity.looking_towards_player():
 		entity.set_node_direction(entity.direction*-1)

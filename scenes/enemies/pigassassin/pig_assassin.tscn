@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://1vhx7kaho0c7"]
+[gd_scene load_steps=29 format=3 uid="uid://1vhx7kaho0c7"]
 
 [ext_resource type="Script" path="res://scenes/enemies/pigassassin/pig_assassin.gd" id="1_anglt"]
 [ext_resource type="Script" path="res://extra_classes/hurtbox.gd" id="2_gyebr"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="9_mf0g6"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_rqwmo"]
 [ext_resource type="Script" path="res://scenes/enemies/pigassassin/Attack.gd" id="11_2m1ct"]
-[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_tap4d"]
 [ext_resource type="AudioStream" uid="uid://bl8qw5dhr6kht" path="res://sound/Retro Impact Punch Hurt 01.wav" id="12_tq7s2"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_86531"]
 
@@ -313,6 +312,7 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("6_pl5tl")
+sight_alert_threshold = -0.5
 max_roaming_distance = 10.0
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
@@ -320,6 +320,7 @@ one_shot = true
 
 [node name="Alert" type="Node" parent="StateMachine"]
 script = ExtResource("7_a621c")
+sight_alert_threshold = -0.5
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("8_s5txe")
@@ -333,10 +334,6 @@ script = ExtResource("10_rqwmo")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("11_2m1ct")
-
-[node name="Pathfinder" type="Node2D" parent="."]
-position = Vector2(0, 7.5)
-script = ExtResource("12_tap4d")
 
 [node name="PlayerTargeter" type="RayCast2D" parent="."]
 collision_mask = 3

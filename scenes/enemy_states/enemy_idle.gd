@@ -27,11 +27,9 @@ func _get_next_state():
 	var sight_score = entity.get_sight_score_difference()
 	if sight_score > 0:
 		state_machine.transition_to("Hunt", {play_icon=true})
-		entity.emit_signal("spotted_player")
+		entity.emit_signal("spotted_player", entity)
 	elif sight_score > sight_alert_threshold:
 		state_machine.transition_to("Alert", {play_icon=true})
-	elif entity.get_noise_score_difference() > 0 and !entity.looking_towards_player():
-		entity.set_node_direction(entity.direction*-1)
 		
  
 func _set_new_roaming_target() -> void:

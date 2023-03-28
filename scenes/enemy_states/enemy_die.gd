@@ -20,6 +20,7 @@ func enter(_msg = {}):
 	entity.velocity = Vector2.ZERO
 	entity.lock_state_switching(100)
 	entity.emit_signal("died")
+	entity.emit_signal("lost_player", entity)
 	if animation_player.has_animation("die"):
 		animation_player.play("die")
 		await animation_player.animation_finished

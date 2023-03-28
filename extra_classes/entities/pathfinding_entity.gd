@@ -7,7 +7,7 @@ var current_target
 var padding = 1
 var target_padding = 5
 
-var path_finder: Pathfinder
+var path_finder
 
 func _pathfinder_ready():
 	if find_parent("World").has_node("Pathfinder"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://duimuyw08akp7"]
+[gd_scene load_steps=30 format=3 uid="uid://duimuyw08akp7"]
 
 [ext_resource type="Script" path="res://scenes/enemies/muncher/muncher.gd" id="1_1as81"]
 [ext_resource type="Script" path="res://extra_classes/hitbox.gd" id="2_lu8um"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_hit.gd" id="9_bhvbr"]
 [ext_resource type="Script" path="res://scenes/enemy_states/enemy_die.gd" id="10_djon2"]
 [ext_resource type="Script" path="res://scenes/enemies/muncher/Attack.gd" id="11_kq7de"]
-[ext_resource type="Script" path="res://extra_classes/entities/path_finder.gd" id="12_xofs6"]
 [ext_resource type="PackedScene" uid="uid://ci72tla0hpbtf" path="res://scenes/status_bars.tscn" id="13_iew4u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6v44a"]
@@ -289,7 +288,7 @@ size = Vector2(116, 23.5)
 position = Vector2(0, 2)
 collision_layer = 4
 script = ExtResource("1_1as81")
-base_vision_score = 4
+base_vision_score = 6
 base_hearing_score = 2
 max_health = 200
 move_speed_ = 4
@@ -360,10 +359,6 @@ script = ExtResource("10_djon2")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("11_kq7de")
-
-[node name="Pathfinder" type="Node2D" parent="."]
-position = Vector2(0, -5)
-script = ExtResource("12_xofs6")
 
 [node name="PlayerTargeter" type="RayCast2D" parent="."]
 collision_mask = 3
