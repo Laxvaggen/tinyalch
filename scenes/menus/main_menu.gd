@@ -13,6 +13,16 @@ func _ready():
 	
 	if SceneManager.all_levels_completed():
 		$AllButtonsContainer/MainButtonsContainer/Continue.disabled = true
+	
+	if MusicPlayer.enabled == false:
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_pressed_icon)
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_pressed_no_signal(true)
+	else:
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_icon)
+		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_pressed_no_signal(false)
+
+func _process(delta):
+	print($AllButtonsContainer/ExtraButtonsContainer/Audio.button_pressed)
 
 func _on_continue_pressed():
 	SceneManager.start_next_level()
@@ -40,7 +50,7 @@ func _on_controls_pressed():
 func _on_audio_toggled(button_pressed):
 	if button_pressed:
 		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_pressed_icon)
-		MusicPlayer.process_mode = Node.PROCESS_MODE_DISABLED
+		MusicPlayer.disable()
 	else:
 		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_icon)
-		MusicPlayer.process_mode = Node.PROCESS_MODE_INHERIT
+		MusicPlayer.enable()

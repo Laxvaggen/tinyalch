@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2ybbj047wa8k"]
+[gd_scene load_steps=7 format=3 uid="uid://2ybbj047wa8k"]
 
 [ext_resource type="Script" path="res://scenes/level_exit.gd" id="1_d2o4m"]
 [ext_resource type="Texture2D" uid="uid://b1lpw4hq6msrg" path="res://sprites/crown.png" id="1_x0urp"]
@@ -38,6 +38,10 @@ _data = {
 "float": SubResource("Animation_dbi1q")
 }
 
+[sub_resource type="Curve" id="Curve_veht8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="LevelExit" type="Node2D"]
 script = ExtResource("1_d2o4m")
 
@@ -57,5 +61,19 @@ shape = SubResource("RectangleShape2D_wudm0")
 libraries = {
 "": SubResource("AnimationLibrary_d3itt")
 }
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 80.0
+damping_min = 50.0
+damping_max = 50.0
+scale_amount_curve = SubResource("Curve_veht8")
+color = Color(0.972549, 0.654902, 0.454902, 1)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -32,13 +32,26 @@ var state = MAIN_MENU
 var volume: float= -20
 var fadein_time: float = 4
 
+var enabled: bool = true
+
+func disable() -> void:
+	stop()
+	enabled = false
+
+func enable() -> void:
+	enabled = true
+	_on_finished()
+
 func switch_state(new_state, custom_fadein_time := fadein_time, custom_volume := volume) -> void:
+	
 	state = new_state
 	var tween = get_tree().create_tween()
 	volume_db = -80
 	tween.tween_property(self, "volume_db", custom_volume, custom_fadein_time)
 	
 	stream = _get_song()
+	if !enabled:
+		return
 	play()
 
 func _get_song() -> AudioStream:
@@ -58,5 +71,8 @@ func _get_song() -> AudioStream:
 
 
 func _on_finished():
+
 	stream = _get_song()
+	if !enabled:
+		return
 	play()

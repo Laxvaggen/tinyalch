@@ -8,4 +8,8 @@ func _ready():
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
+		
+		$CPUParticles2D.emitting = true
+		$Sprite2D.visible = false
+		await get_tree().create_timer(0.5).timeout
 		exit_reached.emit()
