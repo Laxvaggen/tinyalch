@@ -1,5 +1,7 @@
 extends PlayerState
 
+var direction = 1
+
 # function to transition between states
 func _get_next_state():
 	pass
@@ -7,6 +9,7 @@ func _get_next_state():
 # is called as a _process()
 func update(_delta):
 	_get_next_state()
+	player.set_node_direction(direction)
 
 
 # is called as a _physics_process()
@@ -16,6 +19,7 @@ func physics_update(_delta):
 # called when state is transitioned to
 func enter(_msg = {}):
 	player.velocity.x = 0
+	direction = player.direction
 	if _msg.has("rage"):
 		animation_player.play("spell_fire_rage")
 		player.lock_state_switching(0.5)
