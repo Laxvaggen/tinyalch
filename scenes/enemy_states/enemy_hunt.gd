@@ -2,10 +2,12 @@ class_name EnemyHuntState
 extends EnemyState
 
 
-@export var run_animation_name: String  = "run"
 # update player location constantly. if cannot see player anymore, go back to alert
 # always move towards player location
 # and transition to attack if within range
+
+@export var run_animation_name: String  = "run"
+
 
 # function to transition between states
 func _get_next_state():

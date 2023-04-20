@@ -1,6 +1,8 @@
 class_name PlayerState
 extends State
 
+#Base class for states of player state machine
+
 var player: Player
 
 @export var state_visibility_multiplier: float = 1

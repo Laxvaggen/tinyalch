@@ -14,12 +14,14 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("2_tsq6f")
 max_roaming_distance = 10.0
+damage_multiplier = 5.0
 
 [node name="Timer" type="Timer" parent="Idle"]
 one_shot = true
 
 [node name="Alert" type="Node" parent="."]
 script = ExtResource("3_8orj6")
+damage_multiplier = 5.0
 
 [node name="Hunt" type="Node" parent="."]
 script = ExtResource("4_y4d64")

@@ -15,6 +15,7 @@ func _ready() -> void:
 	_load_level_data()
 
 func _load_level_data(level_completed:=true) -> void:
+	# Update labels to correctly display level stats, no stats if level is not completed
 	var level = selectable_levels[level_index]
 	$LevelSelectorContainer/LevelName.text = level["name"]
 	if !level_completed:

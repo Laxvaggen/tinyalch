@@ -11,8 +11,8 @@ func _ready():
 	connect("area_entered",Callable(self,"_on_area_entered"))
 
 
-#Called when hitbox is detected
-func _on_area_entered(hitbox) -> void:
+
+func _on_area_entered(hitbox) -> void: # called when hitbox is detected
 	if hitbox == null or !hitbox is HitBox:
 		return
 	elif hitbox.owner == owner:

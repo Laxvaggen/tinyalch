@@ -196,6 +196,7 @@ initial_state = NodePath("Idle")
 script = ExtResource("6_xrnby")
 max_roaming_distance = 0.0
 run_animation_name = "roll"
+damage_multiplier = 5.0
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
@@ -203,6 +204,7 @@ one_shot = true
 [node name="Alert" type="Node" parent="StateMachine"]
 script = ExtResource("7_vsd0r")
 run_animation_name = "roll"
+damage_multiplier = 5.0
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("8_qbq3h")

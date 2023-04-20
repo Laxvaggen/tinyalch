@@ -1,5 +1,8 @@
 extends AudioStreamPlayer
 
+# Music playe autoload, plays different music depending on current situation (stealth/ in combat/ in menus)
+
+
 var main_menu_music = [
 	load("res://music/menu/when_snow_become_ashes.ogg")
 ]
@@ -43,7 +46,7 @@ func enable() -> void:
 	_on_finished()
 
 func switch_state(new_state, custom_fadein_time := fadein_time, custom_volume := volume) -> void:
-	
+	#start music corresponding to new state
 	state = new_state
 	var tween = get_tree().create_tween()
 	volume_db = -80
@@ -55,6 +58,7 @@ func switch_state(new_state, custom_fadein_time := fadein_time, custom_volume :=
 	play()
 
 func _get_song() -> AudioStream:
+	# pick a song depending on current state
 	var song: AudioStream
 	match state:
 		MAIN_MENU:

@@ -9,13 +9,13 @@ var target_padding = 5
 
 var path_finder
 
-func _pathfinder_ready():
+func _pathfinder_ready(): # called by self in "entity" class
 	if find_parent("World").has_node("Pathfinder"):
 		path_finder = find_parent("World").get_node("Pathfinder")
 	else:
 		push_error("PathfindingEntityNoPathFinder")
 
-func _next_target():
+func _next_target(): # select next pathfinder point
 	if len(current_path) == 0:
 		current_target = null
 		return
@@ -25,7 +25,7 @@ func _next_target():
 			jump()
 		_next_target()
 
-func pathfinder_set_target(pos: Vector2) -> void:
+func pathfinder_set_target(pos: Vector2) -> void: 
 	await get_tree().process_frame
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(Vector2(pos.x, pos.y - 1), Vector2(pos.x, pos.y + 1000), 1)
@@ -35,9 +35,6 @@ func pathfinder_set_target(pos: Vector2) -> void:
 		current_path = path_finder.find_path(self.position, go_to)
 		current_path.append(go_to)
 		_next_target()
-
-func pathfinder_flush_points() -> void:
-	current_path = []
 
 func pathfinder_get_move_direction() -> int:
 	var return_value := 3
@@ -55,7 +52,7 @@ func pathfinder_get_move_direction() -> int:
 	return return_value
 
 
-func pathfind(move_speed_multiplier:float=1):
+func pathfind(move_speed_multiplier:float=1): # move toward target point/coordinate
 	var move_direction = pathfinder_get_move_direction()
 	velocity = Vector2(move_speed*move_direction*move_speed_multiplier, velocity.y)
 	if abs(move_direction) == 1:

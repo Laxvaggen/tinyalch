@@ -2,6 +2,7 @@ class_name EnemyHitState
 extends EnemyState
 
 
+
 @export var hit_sound:AudioStream
 
 # function to transition between states

@@ -314,6 +314,7 @@ initial_state = NodePath("Idle")
 script = ExtResource("6_pl5tl")
 sight_alert_threshold = -0.5
 max_roaming_distance = 10.0
+damage_multiplier = 5.0
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
@@ -321,6 +322,7 @@ one_shot = true
 [node name="Alert" type="Node" parent="StateMachine"]
 script = ExtResource("7_a621c")
 sight_alert_threshold = -0.5
+damage_multiplier = 5.0
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("8_s5txe")

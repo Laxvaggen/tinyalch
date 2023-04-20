@@ -40,9 +40,6 @@ signal died
 signal damage_taken(amount:int)
 
 func _ready() -> void:
-	on_ready()
-
-func on_ready() -> void:
 	_convert_stats()
 	if has_node("AnimationPlayer"):
 		animation_player = $AnimationPlayer
@@ -64,7 +61,6 @@ func on_ready() -> void:
 	if state_locked_timer != null:
 		state_locked_timer.connect("timeout",Callable(self,"unlock_state_switching"))
 	_enter()
-
 
 func _process(delta: float) -> void:
 	_update(delta)
@@ -98,16 +94,17 @@ func _convert_stats() -> void:
 	move_speed = move_speed_ * Globals.tile_size
 	sneak_speed = sneak_speed_ * Globals.tile_size
 	air_speed = air_speed_ * Globals.tile_size
-	# max_jump_height = 3/2 * -jump_strength^2 / gravity
-	# 
 	jump_strength = 1.6*sqrt(jump_height_*Globals.tile_size*2*gravity)
 
-func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void:
-	health -= damage
+func take_damage(damage: int, knockback: Vector2, _source: Node2D) -> void: # called by "hurtbox" child
+	
 	velocity = knockback
 	emit_signal("damage_taken", damage)
 	if state_machine == null:
+		health -= damage
 		return
+	else:
+		health -= damage * state_machine.state.damage_multiplier
 	if health <= 0:
 		if state_machine.has_node("Die"):
 			state_machine.transition_to("Die")

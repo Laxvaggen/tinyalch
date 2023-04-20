@@ -5,6 +5,8 @@ var state_machine:StateMachine
 var animation_player: AnimationPlayer
 var entity: Entity
 
+@export var damage_multiplier: float = 1
+
 func handle_input(_event: InputEvent) -> void:
 	pass
 

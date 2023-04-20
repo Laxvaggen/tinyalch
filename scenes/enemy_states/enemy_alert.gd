@@ -1,6 +1,11 @@
 class_name EnemyAlertState
 extends EnemyState
 
+# pathfind to last known player location, updated when entering
+# return to idle if reaches goal without spotting player
+# transition to hunt if spots player
+
+
 @export var sight_alert_threshold: float = -0.25
 
 @export var run_animation_name: String  = "run"
@@ -9,9 +14,7 @@ extends EnemyState
 
 var vision_above_zero_time: float
 
-# pathfind to last known player location, when reaches it, stand around for a little bit, then
-# pathfind back to spawn location
-# when in spawn location, transition to idle
+
 
 # function to transition between states
 func _get_next_state():

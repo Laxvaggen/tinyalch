@@ -14,6 +14,9 @@ signal finished_processing(entity:Pathfinder)
 
 
 func find_path(start, end) -> Array:
+	"""
+	return a list of actions: move right/left/jump depending on path
+	"""
 	var first_point = graph.get_closest_point(start)
 	var last_point = graph.get_closest_point(end)
 	var path = graph.get_id_path(first_point, last_point)
@@ -59,12 +62,19 @@ func _ready() -> void:
 	emit_signal("finished_processing", self)
 
 func get_relevant_cells():
+	"""
+	return a list of tiles/cells in current tilemap, excluding tiles pathfinder should not interact with
+	"""
 	var cells = tilemap.get_used_cells(0).filter(func(cell): return tilemap.get_cell_source_id(0, cell) in [0, 1])
 	cells = cells.filter(func(cell): 
 		return !tilemap.get_cell_tile_data(0, cell).get_custom_data("decoration"))
 	return cells
 
 func connect_points():
+	"""
+	create connections/paths between points, which pathfinding entities can navigate
+	"""
+	
 	var points = graph.get_point_ids()
 	for point in points:
 		var close_right = -1
@@ -117,6 +127,9 @@ func connect_points():
 			graph.connect_points(point, join, false)
 	
 func create_map() -> void:
+	"""
+	create points to be navigated between
+	"""
 	var space_state = get_world_2d().direct_space_state
 	var cells = get_relevant_cells()
 	for cell in cells:
@@ -146,6 +159,9 @@ func create_map() -> void:
 					
 
 func cell_type(pos: Vector2i, global = false, is_above = false):
+	"""
+	get cell type, defined by existence of adjacent cells
+	"""
 	if global:
 		pos = tilemap.local_to_map(pos)
 	if is_above:
@@ -172,11 +188,3 @@ func create_point(pos: Vector2i) -> void:
 		return
 	var actual_pos = tilemap.map_to_local(Vector2i(pos.x, pos.y - 1))
 	graph.add_point(graph.get_available_point_id(), actual_pos)
-
-func get_jump_distance() -> int:
-	var move_speed = get_parent().move_speed_ * Globals.tile_size
-	var gravity = Globals.default_gravity
-
-	var jump_time := 2 * sqrt(2*jump_height*cell_size/gravity)
-	var distance: int = move_speed * jump_time
-	return distance

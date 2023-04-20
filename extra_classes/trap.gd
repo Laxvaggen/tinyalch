@@ -42,7 +42,7 @@ func _ready():
 	
 	connect("area_entered", Callable(self, "_cycle_trap"))
 
-#Use and reset trap, if trap is activatable
+#Use and reset trap, if trap is activatable, called when player enters detection area
 func _cycle_trap(_area) -> void:
 	activation_delay.start()
 	await activation_delay.timeout

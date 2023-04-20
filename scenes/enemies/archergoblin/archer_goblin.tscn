@@ -219,12 +219,14 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_nlbex")
 max_roaming_distance = 3.0
+damage_multiplier = 5.0
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
 
 [node name="Alert" type="Node" parent="StateMachine"]
 script = ExtResource("6_p6427")
+damage_multiplier = 5.0
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("7_01sei")

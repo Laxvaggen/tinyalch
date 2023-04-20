@@ -246,6 +246,7 @@ script = ExtResource("6_g1ej3")
 sight_alert_threshold = -0.1
 max_roaming_distance = 3.0
 run_animation_name = "walk"
+damage_multiplier = 5.0
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
 one_shot = true
@@ -254,6 +255,7 @@ one_shot = true
 script = ExtResource("7_lojeq")
 sight_alert_threshold = -0.1
 run_animation_name = "walk"
+damage_multiplier = 5.0
 
 [node name="Hunt" type="Node" parent="StateMachine"]
 script = ExtResource("8_aw14k")

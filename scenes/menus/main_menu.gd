@@ -21,9 +21,6 @@ func _ready():
 		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_button_icon(audio_icon)
 		$AllButtonsContainer/ExtraButtonsContainer/Audio.set_pressed_no_signal(false)
 
-func _process(delta):
-	print($AllButtonsContainer/ExtraButtonsContainer/Audio.button_pressed)
-
 func _on_continue_pressed():
 	SceneManager.start_next_level()
 

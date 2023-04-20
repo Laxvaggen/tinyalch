@@ -16,7 +16,7 @@ func _ready() -> void:
 		child.state_machine = self
 	state.enter()
 
-func set_references(owner_entity: Entity, animation_player: AnimationPlayer) -> void:
+func set_references(owner_entity: Entity, animation_player: AnimationPlayer) -> void: # create references in child states
 	for child in get_children():
 		child.state_machine = self
 		child.animation_player = animation_player
@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 
-#Exit current state and enter new state
-func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
+
+func transition_to(target_state_name: String, msg: Dictionary = {}) -> void: # exit current state and enter new state
 	if not has_node(target_state_name) or state_locked:
 		return
 	

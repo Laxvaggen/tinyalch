@@ -37,14 +37,14 @@ func _ready() -> void:
 		if child.process_mode == Node.PROCESS_MODE_DISABLED:
 			child.process_mode = Node.PROCESS_MODE_INHERIT
 
-func set_enemy_properties() -> void:
+func set_enemy_properties() -> void: # create references in enemies, connect signals in enemies 
 	for enemy in get_children().filter(func(node): return node.is_in_group("Enemy")):
 		enemy.connect("died", Callable(self,"enemy_died"))
 		enemy.connect("spotted_player", Callable(self, "player_spotted"))
 		enemy.connect("lost_player", Callable(self, "player_lost"))
 		enemy.player = player
 
-func set_lamp_properties() -> void:
+func set_lamp_properties() -> void: # create references in lamp, for light level calculation
 	for lamp_node in get_children().filter(func(node): return node.is_in_group("Lamp")):
 		lamp_node.player = player
 		lamp_nodes.append(lamp_node)
@@ -62,7 +62,7 @@ func _send_lightlevel_to_player() -> void:
 			return
 	player.receive_light_level(false)
 
-func erase_unpathables() -> void:
+func erase_unpathables() -> void: # Erase "unpathable" cells from tilemap
 	var unpathable_cells = get_used_cells(0).filter(func(cell): return get_cell_source_id(0, cell) == 0)
 	unpathable_cells = unpathable_cells.filter(func(cell): 
 		return get_cell_tile_data(0, cell).get_custom_data("unpathable"))
@@ -87,7 +87,7 @@ func enemy_died() -> void:
 	#stats["stealth_kills"] += 1
 	stats["kills"] += 1
 
-func player_spotted(entity) -> void:
+func player_spotted(entity) -> void: # called when receiving signal from enemy
 	if !entity in entities_hunting_player:
 		stats["times_detected"] += 1
 		if entities_hunting_player.size() == 0:
@@ -95,7 +95,7 @@ func player_spotted(entity) -> void:
 		entities_hunting_player.append(entity)
 
 
-func player_lost(entity) -> void:
+func player_lost(entity) -> void:  # called when receiving signal from enemy
 	if entity in entities_hunting_player:
 		entities_hunting_player.erase(entity)
 		if entities_hunting_player.size() == 0:

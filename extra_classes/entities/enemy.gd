@@ -9,7 +9,6 @@ var spawn_position: Vector2
 
 var attack_range_area: Area2D
 
-#updates to player position if sees player
 var last_known_player_location: Vector2
 
 var alert_icon = preload("res://scenes/icons/alert_icon.tscn")
@@ -25,7 +24,7 @@ var vision_score_above_minimum_time: float = 0.1
 signal spotted_player(entity)
 signal lost_player(entity)
 
-func _enemy_init() -> void:
+func _enemy_init() -> void: # called by self in "entity" class on tree entered
 	spawn_position = global_position
 	if has_node("AttackRange"):
 		attack_range_area = $AttackRange
@@ -34,7 +33,7 @@ func _enemy_init() -> void:
 	if has_node("StatusBars"):
 		status_bar_container = $StatusBars
 
-func _set_bars() -> void:
+func _set_bars() -> void: # set values for status bars
 	if status_bar_container == null:
 		return
 	if status_bar_container.get_node("HealthBar"):
@@ -52,7 +51,6 @@ func _physics_update(delta) -> void:
 func vision_obstruction_multiplier() -> int:
 	if player == null:
 		return 0
-	# return 0 if not looking in direction of player
 	if !looking_towards_player():
 		return 0
 	var raycast:RayCast2D = $PlayerTargeter

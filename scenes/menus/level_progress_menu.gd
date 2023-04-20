@@ -1,6 +1,7 @@
 extends Control
 
 func update_data(stats: Dictionary, level_completed:bool) -> void:
+	# Update labels to correctly display stats
 	if !level_completed:
 		$VBoxContainer/PanelContainer/HBoxContainer/ButtonsContainer/Continue.disabled = true
 		$VBoxContainer/PanelContainer2/MarginContainer/LevelStatus.text = "You Died"

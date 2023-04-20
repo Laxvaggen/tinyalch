@@ -6,15 +6,17 @@ var level_example = {"filepath":"res://...",
 				"name":""}
 
 var level_1 = {"filepath":"res://scenes/levels/level_1.tscn",
-				"name":"tutorial part 1"}
+				"name":"Tutorial part 1"}
 var level_2 = {"filepath":"res://scenes/levels/level_2.tscn",
-				"name":"tutorial part 2"}
+				"name":"Tutorial part 2"}
 var level_3 = {"filepath": "res://scenes/levels/level_3.tscn",
-				"name": "tutorial part 3"}
+				"name": "Tutorial part 3"}
 var level_4 = {"filepath": "res://scenes/levels/level_4.tscn",
 				"name": "Entrance"}
 var level_5 = {"filepath": "res://scenes/levels/level_5.tscn",
-				"name": "The Descent"}
+				"name": "Descent"}
+var level_6 = {"filepath":"res://scenes/levels/level_6.tscn",
+				"name":"Tunnels"}
 
 
 var levels: Array = [level_1, level_2, level_3, level_4, level_5]
